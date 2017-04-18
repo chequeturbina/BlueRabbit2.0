@@ -19,6 +19,7 @@
         
         <script src="js/jquery.min.js"></script>
         <script src="js/modernizr-custom.js"></script>
+        <script src="js/validar.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
@@ -33,10 +34,12 @@
 		<div class="menu-wrap">
 			<h1 class="logo"><a>BIENVENIDO</a></h1>
 			<i class="icon-remove menu-close"></i>
+                        <form method="GET" name=form action="/BlueRabbit/administrador">
                         <img src="imagenes/avatar.png" class="img-circle center-block" alt="Cinque Terre" width="180" height="180">
                         <h2><input class="form-control" id="correo" name="correo" placeholder="Correo" type="email" required></h2>
                         <h3><input class="form-control" id="password" name="password" placeholder="Password" type="password" required></h3>
-                        <h4><button class="btn btn-danger" type="button">Iniciar Sesion</button></h4>
+                        <h4><button class="btn btn-danger" onclick="validar()" value=Acceder type="button">Iniciar Sesion</button></h4>
+                        </form>
                         <h5><form method="GET" action="/BlueRabbit/registrar">
                             <button type="submit" class="btn btn-danger">Registrar</button>
                             </form>

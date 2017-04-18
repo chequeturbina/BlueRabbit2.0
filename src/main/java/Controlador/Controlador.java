@@ -32,6 +32,25 @@ public class Controlador {
     public String inicio(){
         return "inicio";
     }
+    
+    /**
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/administrador", method = RequestMethod.GET)
+    public ModelAndView administrador(ModelMap model) {
+        return new ModelAndView("administrador", model);
+
+    }
+    
+    @RequestMapping(value = "/registrar", method = RequestMethod.GET)
+    public ModelAndView registrar(ModelMap model) {
+        return new ModelAndView("registrar", model);
+
+    }
+    
+    
 
     @RequestMapping(value="/comida", method = RequestMethod.GET)
     public ModelAndView comida(ModelMap model,HttpServletRequest request){

@@ -22,8 +22,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
-    color: #333;
+    color: #FFFFFF;
 }
+
 
 
 /* Paragraph & Typographic */
@@ -104,6 +105,15 @@ a:after {
 	color: white;
 	font-size: 70px;
 	font-weight: 700;
+        text-align: center;
+}
+
+#headerwrap h4 {
+	margin-top: 80px;
+	color: white;
+	font-size: 70px;
+	font-weight: 700;
+        text-align: left;
 }
 
 #headerwrap h3 {
@@ -127,7 +137,7 @@ a:after {
 	background: #1a1a1a;
 	padding-top: 70px;
 	padding-bottom: 70px;
-	text-align: center
+	text-align: right
 }
 
 #f h3 {
@@ -325,3 +335,6 @@ a:after {
       background-color: #2f2f2f; /* Black Gray */
       color: #fff;
   }
+
+
+  
