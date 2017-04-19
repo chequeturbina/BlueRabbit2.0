@@ -7,16 +7,12 @@ package Mapeo;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -30,10 +26,6 @@ public class Puesto {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idpuesto")
     private int idPuesto;
-
-    @OneToOne
-    @JoinColumn(name="Comida_idComida") /*El fk que está en el sql de la base de datos*/
-    private Comida Comida_idComida;
     
     @Column(name="nombre")
     private String nombre;
@@ -44,6 +36,8 @@ public class Puesto {
     @Column(name="calificacion")
     private float calificacion;
     
+    @Column(name="menu")
+    private String menu;
     
     @OneToMany(mappedBy="puesto")
     private Set<Comentarios> comentarios = new HashSet<>();
@@ -51,11 +45,12 @@ public class Puesto {
     
     public Puesto(){}
 
-    public Puesto(int idPuesto, String nombre, String descripcion, float calificacion) {
+    public Puesto(int idPuesto, String nombre, String descripcion, float calificacion, String menu) {
         this.idPuesto = idPuesto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.calificacion = calificacion;
+        this.menu = menu;
     }   
     
     public int getIdPuesto() {
@@ -98,13 +93,14 @@ public class Puesto {
         this.comentarios = comentarios;
     }
 
-    public Comida getComida_idComida() {
-        return Comida_idComida;
+    public String getMenu() {
+        return menu;
     }
 
-    public void setComida_idComida(Comida Comida_idComida) {
-        this.Comida_idComida = Comida_idComida;
+    public void setMenu(String menu) {
+        this.menu = menu;
     }
 
+ 
     
 }

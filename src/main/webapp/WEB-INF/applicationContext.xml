@@ -24,7 +24,6 @@
         <property name="annotatedClasses">
             <list>
                 <value>Mapeo.Usuario</value>
-                <value>Mapeo.Comida</value>
                 <value>Mapeo.Puesto</value>
                 <value>Mapeo.Comentarios</value>
             </list>
@@ -41,10 +40,6 @@
     <!--  Se agrega para poder inyectarlo a los Controladores, revisa Controlador.java
           en el paquete controlador, se esta haciendo uso de @Autowiring-->
     <bean id="UsuarioModel" class="Modelo.UsuarioModel"
-        p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
-    />
-
-    <bean id="ComidaModel" class="Modelo.ComidaModel"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
 
