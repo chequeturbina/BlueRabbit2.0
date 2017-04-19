@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 //MAPA
+var marcador=1;
  function initMap() {
           var myLatLng = {lat: 19.323447, lng: -99.179642};
           var map = new google.maps.Map(document.getElementById('map'), {
@@ -12,23 +13,18 @@
               zoom: 21
           });
                
-       var contentString = 'Come down and play';
-       
-       var infowindow = new google.maps.InfoWindow({
-           content: contentString
-       });
+       //Marcador manual
+       function placeMarker(map, location) {
+           var marker = new google.maps.Marker({
+               position: location,
+               map: map  
+           });
+           //var infowindow = new google.maps.InfoWindow({
+               //content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+           //});
+           //infowindow.open(map,marker);
+       }
       
-        // Marcador en la misma posicion
-          var marker = new google.maps.Marker({
-              map: map,
-              position: myLatLng,
-              title: 'Marcador',
-              animation: google.maps.Animation.BOUNCE
-             
-          });
-          
-          marker.addListener('click', function() {
-              infowindow.open(map, marker);
-          });
+      google.maps.event.addListener(map, 'click', function(event) {
+          placeMarker(map, event.latLng);});
       }
-

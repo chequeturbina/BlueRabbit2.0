@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/mapadmin.css">
         
         <script src="js/jquery.min.js"></script>
         <script src="js/modernizr-custom.js"></script>
@@ -75,10 +76,22 @@
 		<div class="container">
 			<div class="row">
 				<h3>Agregar Puesto</h3>
-											
+                                <div class="col-xs-5 btn-group">
+                                            <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
+                                            <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
+                                            <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
+                                            <button class="btn btn-primary " onclick="validar()" value=Acceder type="button">Agregar Puesto</button>
+                                    </div>
+                            
+				<div id="map">
+                            <script src="js/mapa.js"></script>
+                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMap"async defer></script>
+				
+			</div>
+			</div>						
 			</div>
 		</div><!-- /container -->
-	</div><!-- /f -->
+	
         
         <!-- ========== Modificar Puesto ========== -->
 	<section id="modificarpuesto" name="modificarpuesto"></section>
