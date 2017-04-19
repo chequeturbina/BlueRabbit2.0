@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 //MAPA
-var marcador=1;
  function initMap() {
+          var marcador=1;
           var myLatLng = {lat: 19.323447, lng: -99.179642};
           var map = new google.maps.Map(document.getElementById('map'), {
               center: myLatLng,
@@ -14,17 +14,19 @@ var marcador=1;
           });
                
        //Marcador manual
-       function placeMarker(map, location) {
+       function placeMarker(map, location,marcador) {
+           var marcador=1;
            var marker = new google.maps.Marker({
                position: location,
-               map: map  
+               map: map
            });
-           //var infowindow = new google.maps.InfoWindow({
-               //content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-           //});
-           //infowindow.open(map,marker);
        }
       
       google.maps.event.addListener(map, 'click', function(event) {
-          placeMarker(map, event.latLng);});
+          if(marcador===1){
+              placeMarker(map, event.latLng);
+          }else{
+              alert("ya no puedes agregar mas");
+          }
+      marcador=marcador+1;});
       }

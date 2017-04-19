@@ -80,17 +80,18 @@
                                             <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
                                             <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
                                             <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
+                                             <input type="text" class="form-control" placeholder="Longitud" id="longitud">
+                                             <input type="text" class="form-control" value=latitud id="latitud">
                                             <button class="btn btn-primary " onclick="validar()" value=Acceder type="button">Agregar Puesto</button>
-                                    </div>
-                            
-				<div id="map">
-                            <script src="js/mapa.js"></script>
-                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMap"async defer></script>
+                                </div>
+                                   <div id="map1">
+                            <script src="js/mapadmin.js"></script>
+                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMapadmin"async defer></script>
 				
+			</div>    
 			</div>
-			</div>						
 			</div>
-		</div><!-- /container -->
+		</div>
 	
         
         <!-- ========== Modificar Puesto ========== -->

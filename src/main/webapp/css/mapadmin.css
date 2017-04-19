@@ -7,8 +7,19 @@ and open the template in the editor.
     Created on : 18/04/2017, 05:13:22 PM
     Author     : emmanuel
 */
-
 #map1 {
-        height: 100%;
-        float: right;
-      }
+      width: 50%;
+      height: 600px;
+      -webkit-filter: grayscale(40%);
+      filter: grayscale(40%);
+      float: right;
+  }
+  
+.container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  .bg-4 { 
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
