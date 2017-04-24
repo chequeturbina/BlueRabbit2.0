@@ -82,7 +82,9 @@
                                             <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
                                              <input type="text" class="form-control" placeholder="Longitud" id="longitud">
                                              <input type="text" class="form-control"placeholder=latitud id="latitud">
+                                             <form method="submit" action="/BlueRabbit/registro">
                                             <button class="btn btn-primary " onclick="validar()" value=Acceder type="button">Agregar Puesto</button>
+                                             </form>
                                 </div>
                                    <div id="map1">
                             <script src="js/mapadmin.js"></script>
