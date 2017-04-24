@@ -59,24 +59,33 @@ public class Controlador {
     public ModelAndView agregarPuesto(ModelMap model) {
         return new ModelAndView("agregarPuesto", model);
     }  
-     @RequestMapping(value = "/registro", method = RequestMethod.GET)
+     @RequestMapping(value = "/agregar", method = RequestMethod.GET)
     public ModelAndView registro(ModelMap model,HttpServletRequest request) {
         Puesto p = null;
         
+        int idPuesto = 0;
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         String menu = request.getParameter("menu");
         Float longitud = Float.parseFloat(request.getParameter("longitud"));
         Float latitud = Float.parseFloat(request.getParameter("latitud"));
-        Float califacion = Float.parseFloat(request.getParameter("califacion"));
-        
+        Float calificacion = Float.parseFloat(request.getParameter("califacion"));
+      /*  
+        p.setIdPuesto(idPuesto);
+        p.setNombre(nombre);
+        p.setDescripcion(descripcion);
+        p.setMenu(menu);
+        p.setLongitud(longitud);
+        p.setLatitud(latitud);
+        p.setCalificacion(calificacion);*/
+       
         if(p != null){
-          String error = "El no mbre del puesto ya existe";
+          String error = "El nombre del puesto ya existe";
             model.addAttribute("mensaje",error);
             return new ModelAndView("error",model);
         }
         else{
-            p = new Puesto(nombre,descripcion,califacion,menu,longitud,latitud);
+            p = new Puesto(idPuesto,nombre,descripcion,calificacion,menu,latitud,longitud);
             puesto.insert(p);
         }
         

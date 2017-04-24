@@ -50,8 +50,8 @@ public class Puesto {
     
     public Puesto(){}
 
-    public Puesto(/*int idPuesto,*/ String nombre, String descripcion, float calificacion, String menu, float longitud,float latitud) {
-       // this.idPuesto = idPuesto;
+    public Puesto(int idPuesto, String nombre, String descripcion, float calificacion, String menu, float longitud,float latitud) {
+       this.idPuesto = idPuesto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.calificacion = calificacion;
