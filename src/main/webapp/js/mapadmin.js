@@ -17,6 +17,7 @@ function initMapadmin() {
            var marcador=1;
            var marker = new google.maps.Marker({
                position: location,
+               draggable: true,
                map: map1
            });
            var latitud =location.lat();
@@ -33,4 +34,4 @@ function initMapadmin() {
               alert("ya no puedes agregar mas");
           }
       marcador=marcador+1;});
-      }
+}
