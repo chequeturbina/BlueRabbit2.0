@@ -33,7 +33,6 @@ public class UsuarioModel {
     */
     public void crearUsuario(String nombre, String correo, String contrasena, String url_foto){
         Session session = sessionFactory.openSession();
-        Transaction tx = null;
         
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -42,13 +41,15 @@ public class UsuarioModel {
         usuario.setFoto(url_foto);
         
         try{
-            
+            session = sessionFactory.openSession();
+            Transaction tx = null;
             tx = session.beginTransaction();
             session.save(usuario);
             tx.commit();
             
         }catch(Exception e){
             e.printStackTrace();
+            
         }finally{
             session.close();
         }
@@ -111,21 +112,26 @@ public class UsuarioModel {
     
     public List listarUsuarios(){
         Session session = sessionFactory.openSession();
-        Transaction tx = null;
+        Transaction tx = null; 
         List usuarios = null;
         
         try{
-            
             tx = session.beginTransaction();
-            Query query = session.createQuery("from usuario");
+            Query query = session.createQuery("from Usuario");
             usuarios =  query.list();
+//            Usuario u = (Usuario)usuarios.get(0);
+  //          System.out.println("Nombre "+u.getNombre());
+    //        System.out.println("id " +u.getIdUsuario());
+      //      System.out.println("correo " +u.getCorreo());
+        //    System.out.println("url "+u.getFoto());
             tx.commit();
             
         }catch(Exception e){
             e.printStackTrace();
+            tx.rollback();
         }finally{
             session.close();
-        }
+        } 
         return usuarios;
     }
 
@@ -141,7 +147,7 @@ public class UsuarioModel {
         try{
             
             tx = session.beginTransaction();
-            Query query = session.createQuery("from usuario as p where p.nombre = :var");
+            Query query = session.createQuery("from Usuario as p where p.nombre = :var");
             query.setParameter("var", nombre);
             usuario = (Usuario)query.uniqueResult();
             tx.commit();

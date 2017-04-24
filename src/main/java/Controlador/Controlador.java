@@ -7,6 +7,12 @@ package Controlador;
 
 import Mapeo.Puesto;
 import Modelo.PuestoModel;
+import Mapeo.Usuario;
+import Modelo.UsuarioModel;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +30,9 @@ public class Controlador {
    
     PuestoModel puesto = null;
     
+    @Autowired
+    UsuarioModel usuario_db;
+
     @RequestMapping(value="/")
     public String inicio(){
         return "inicio";
@@ -72,6 +81,33 @@ public class Controlador {
         }
         
         return new ModelAndView("agregarPuesto", model);
-    } 
+    }
     
+    @RequestMapping(value="/lista",method = RequestMethod.GET)
+    public ModelAndView lista(ModelMap model,HttpServletRequest request){
+        
+        List u = usuario_db.listarUsuarios();
+        Usuario uu = (Usuario)u.get(0);
+            System.out.println("Nombre: "+uu.getNombre());
+            System.out.println("id: " +uu.getIdUsuario());
+            System.out.println("correo: " +uu.getCorreo());
+        model.addAttribute("usuarios",u); /*la variable, la lista*/
+        return new ModelAndView("lista",model); /*la vista, el modelo*/    
+    }
+
+    @RequestMapping(value="/mostrarUsuario", method = RequestMethod.GET)
+    public ModelAndView profesor(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombre1");
+        Usuario prof = usuario_db.buscarUsuario(p);
+        
+        String info = "";
+        if (prof == null){
+            model.addAttribute("info", info+"No se encontro nungun profesor con ese nombre");
+        }else{
+            model.addAttribute("info", info+"El usuario es");
+            model.addAttribute("profesor", prof);
+        }
+        return new ModelAndView("mostrarUsuario",model);
+    
+    }    
 }
