@@ -3,7 +3,10 @@
  */
 package Modelo;
 
+import Mapeo.Puesto;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -16,6 +19,24 @@ public class PuestoModel {
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+    
+    public void insert(Puesto p) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            
+            session.persist(p);
+            tx.commit();
+         
+        } catch (Exception e) {
+            if(tx != null){
+                e.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
     }
     
 }

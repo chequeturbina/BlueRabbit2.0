@@ -39,18 +39,25 @@ public class Puesto {
     @Column(name="menu")
     private String menu;
     
+    @Column(name="longitud")
+    private float longitud;
+    
+    @Column(name="latitud")
+    private float latitud;
+    
     @OneToMany(mappedBy="puesto")
     private Set<Comentarios> comentarios = new HashSet<>();
-
     
     public Puesto(){}
 
-    public Puesto(int idPuesto, String nombre, String descripcion, float calificacion, String menu) {
-        this.idPuesto = idPuesto;
+    public Puesto(/*int idPuesto,*/ String nombre, String descripcion, float calificacion, String menu, float longitud,float latitud) {
+       // this.idPuesto = idPuesto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.calificacion = calificacion;
         this.menu = menu;
+        this.longitud = longitud;
+        this.latitud = latitud;
     }   
     
     public int getIdPuesto() {
@@ -100,7 +107,19 @@ public class Puesto {
     public void setMenu(String menu) {
         this.menu = menu;
     }
+  public float getLongitud() {
+        return longitud;
+    }
 
- 
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
+  public float getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(float latitud) {
+        this.latitud = latitud;
+    }
     
 }
