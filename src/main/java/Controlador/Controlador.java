@@ -28,7 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Controlador {
    
-    PuestoModel puesto = null;
+    @Autowired
+    PuestoModel puesto_db;
     
     @Autowired
     UsuarioModel usuario_db;
@@ -55,68 +56,17 @@ public class Controlador {
 
     }    
     
+    /*EMMANUEL*/
+     @RequestMapping(value = "/principalbase", method = RequestMethod.GET)
+    public ModelAndView principalbase(ModelMap model) {
+        return new ModelAndView("principalbase", model);
+    }
+    
+    
+    /*EMMANUEL*/
+    
     @RequestMapping(value = "/agregarPuesto", method = RequestMethod.POST)
     public ModelAndView agregarPuesto(ModelMap model) {
         return new ModelAndView("agregarPuesto", model);
     }  
-     @RequestMapping(value = "/agregar", method = RequestMethod.GET)
-    public ModelAndView registro(ModelMap model,HttpServletRequest request) {
-        Puesto p = null;
-        
-        int idPuesto = 0;
-        String nombre = request.getParameter("nombre");
-        String descripcion = request.getParameter("descripcion");
-        String menu = request.getParameter("menu");
-        Float longitud = Float.parseFloat(request.getParameter("longitud"));
-        Float latitud = Float.parseFloat(request.getParameter("latitud"));
-        Float calificacion = Float.parseFloat(request.getParameter("califacion"));
-      /*  
-        p.setIdPuesto(idPuesto);
-        p.setNombre(nombre);
-        p.setDescripcion(descripcion);
-        p.setMenu(menu);
-        p.setLongitud(longitud);
-        p.setLatitud(latitud);
-        p.setCalificacion(calificacion);*/
-       
-        if(p != null){
-          String error = "El nombre del puesto ya existe";
-            model.addAttribute("mensaje",error);
-            return new ModelAndView("error",model);
-        }
-        else{
-            p = new Puesto(idPuesto,nombre,descripcion,calificacion,menu,latitud,longitud);
-            puesto.insert(p);
-        }
-        
-        return new ModelAndView("agregarPuesto", model);
-    }
-    
-    @RequestMapping(value="/lista",method = RequestMethod.GET)
-    public ModelAndView lista(ModelMap model,HttpServletRequest request){
-        
-        List u = usuario_db.listarUsuarios();
-        Usuario uu = (Usuario)u.get(0);
-            System.out.println("Nombre: "+uu.getNombre());
-            System.out.println("id: " +uu.getIdUsuario());
-            System.out.println("correo: " +uu.getCorreo());
-        model.addAttribute("usuarios",u); /*la variable, la lista*/
-        return new ModelAndView("lista",model); /*la vista, el modelo*/    
-    }
-
-    @RequestMapping(value="/mostrarUsuario", method = RequestMethod.GET)
-    public ModelAndView profesor(ModelMap model,HttpServletRequest request){
-        String p = request.getParameter("nombre1");
-        Usuario prof = usuario_db.buscarUsuario(p);
-        
-        String info = "";
-        if (prof == null){
-            model.addAttribute("info", info+"No se encontro nungun profesor con ese nombre");
-        }else{
-            model.addAttribute("info", info+"El usuario es");
-            model.addAttribute("profesor", prof);
-        }
-        return new ModelAndView("mostrarUsuario",model);
-    
-    }    
 }

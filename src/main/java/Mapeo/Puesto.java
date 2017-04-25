@@ -17,15 +17,15 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Abraham
+ * @author emmanuel
  */
 @Entity
 @Table(name="puesto")
 public class Puesto {
-
+    
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idpuesto")
-    private int idPuesto;
+    private int id_puesto;
     
     @Column(name="nombre")
     private String nombre;
@@ -39,35 +39,23 @@ public class Puesto {
     @Column(name="menu")
     private String menu;
     
-    @Column(name="longitud")
-    private float longitud;
-    
     @Column(name="latitud")
     private float latitud;
     
+    @Column(name="longitud")
+    private float longitud;
+   
     @OneToMany(mappedBy="puesto")
     private Set<Comentarios> comentarios = new HashSet<>();
     
-    public Puesto(){}
+    public int getId_puesto() {
+        return id_puesto;
+    }
 
-    public Puesto(int idPuesto, String nombre, String descripcion, float calificacion, String menu, float longitud,float latitud) {
-       this.idPuesto = idPuesto;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.calificacion = calificacion;
-        this.menu = menu;
-        this.longitud = longitud;
-        this.latitud = latitud;
-    }   
+    public void setId_puesto(int id_puesto) {
+        this.id_puesto = id_puesto;
+    }
     
-    public int getIdPuesto() {
-        return idPuesto;
-    }
-
-    public void setIdPuesto(int idPuesto) {
-        this.idPuesto = idPuesto;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -107,19 +95,23 @@ public class Puesto {
     public void setMenu(String menu) {
         this.menu = menu;
     }
-  public float getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(float longitud) {
-        this.longitud = longitud;
-    }
-  public float getLatitud() {
+    
+     public float getLatitud() {
         return latitud;
     }
 
     public void setLatitud(float latitud) {
         this.latitud = latitud;
     }
+    
+    public float getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
+    
+    public Puesto(){}
     
 }

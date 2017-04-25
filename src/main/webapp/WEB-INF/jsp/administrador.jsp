@@ -117,6 +117,11 @@
                                     </div>
                                     </h4>
                                 </form>
+                                    <div class="btn-group">
+                                    <form method="GET" action="/BlueRabbit/principalbase">
+                                                 <button type="submit" class="btn btn-primary">Base</button>
+                                            </form>
+                                    </div>
                                
                
 		</div><!-- /container -->
