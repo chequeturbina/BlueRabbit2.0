@@ -35,7 +35,16 @@ public class controladorbase {
         String menu = request.getParameter("menu");
         float latitud = Float.parseFloat(request.getParameter("latitud"));
         float longitud = Float.parseFloat(request.getParameter("longitud"));
+        
+        if(puesto_db != null){
+            String error = "El nombre del puesto ya existe";
+            model.addAttribute("mensaje",error);
+            return new ModelAndView("error",model);
+        }
+        else{
         puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
+        }
         return new ModelAndView("/principalbase"); 
+        
     }
 }
