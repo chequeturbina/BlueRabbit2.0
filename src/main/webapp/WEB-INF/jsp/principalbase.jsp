@@ -13,6 +13,7 @@
     </head>
     <body>
         
+        <h1>Agregar</h1>
         <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
             
             <label><p style="color:#F14FC8">Nombre:</label>
@@ -24,8 +25,8 @@
             <div>
                 <input type="submit"/>
             </div>
-        </form>
-        
+        <a href="listapuesto ">Lista de Puestos </a>     
+      
         
     </body>
 </html>
