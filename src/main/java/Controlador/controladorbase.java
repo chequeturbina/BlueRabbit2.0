@@ -27,6 +27,7 @@ public class controladorbase {
    
     @Autowired
     PuestoModel puesto_db;
+    Puesto p ;
 
     @RequestMapping(value="/crearPuesto", method = RequestMethod.POST)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
@@ -35,14 +36,16 @@ public class controladorbase {
         String menu = request.getParameter("menu");
         float latitud = Float.parseFloat(request.getParameter("latitud"));
         float longitud = Float.parseFloat(request.getParameter("longitud"));
-        
-        if(puesto_db != null){
+       
+        p = puesto_db.getPuesto(nombre);
+       
+        if(p != null ){
             String error = "El nombre del puesto ya existe";
             model.addAttribute("mensaje",error);
             return new ModelAndView("error",model);
         }
         else{
-        puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
+            puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
         }
         return new ModelAndView("/principalbase"); 
         
