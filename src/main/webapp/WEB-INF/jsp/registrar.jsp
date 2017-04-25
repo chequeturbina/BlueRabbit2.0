@@ -28,7 +28,8 @@
             
             <p><input type="submit" value="Enviar"></p>
         </form>
- 
-        <a href ="lista">Lista de usuarios</a>
+        
+        <a href ="lista">Lista usuarios</a>
+        <a href="/BlueRabbit">Inicio</a>
     </body>
 </html>

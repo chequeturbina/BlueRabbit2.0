@@ -49,13 +49,7 @@ public class Controlador {
         return new ModelAndView("administrador", model);
 
     }
-    
-    @RequestMapping(value = "/registrar", method = RequestMethod.GET)
-    public ModelAndView registrar(ModelMap model) {
-        return new ModelAndView("registrar", model);
-
-    }    
-    
+        
     /*EMMANUEL*/
      @RequestMapping(value = "/principalbase", method = RequestMethod.GET)
     public ModelAndView principalbase(ModelMap model) {
@@ -68,5 +62,51 @@ public class Controlador {
     @RequestMapping(value = "/agregarPuesto", method = RequestMethod.POST)
     public ModelAndView agregarPuesto(ModelMap model) {
         return new ModelAndView("agregarPuesto", model);
-    }  
+    }
+    
+    @RequestMapping(value = "/registrar", method = RequestMethod.GET)
+    public ModelAndView registrar(ModelMap model,HttpServletRequest request) {
+   
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+        String contrasena = request.getParameter("contrasena");
+        String url_foto= request.getParameter("url_foto");
+        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto); 
+        System.out.println("Usario creado exitosamente");
+        return new ModelAndView("registrar", model);
+    }    
+    
+    @RequestMapping(value="/lista",method = RequestMethod.GET)
+    public ModelAndView lista(ModelMap model,HttpServletRequest request){
+        
+        List u = usuario_db.listarUsuarios(); 
+        model.addAttribute("usuarios",u);
+        return new ModelAndView("lista",model);
+    }
+
+    @RequestMapping(value = "/borrar", method = RequestMethod.GET)
+    public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
+        int idUsuario = Integer.parseInt(request.getParameter("id"));
+        Usuario user = usuario_db.porId(idUsuario);
+        usuario_db.eliminarUsuario(user);
+        return new ModelAndView("redirect:/lista", model);
+    }
+
+    @RequestMapping(value="/usuario", method = RequestMethod.GET)
+    public ModelAndView buscarUsuario(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombre"); 
+        Usuario usuario = usuario_db.buscarUsuario(p);
+        
+        String nombre = usuario.getNombre();
+        String info = "";
+        if (usuario == null){
+            model.addAttribute("info", info+"No se encontro nungun profesor con ese nombre");
+        }else{
+            model.addAttribute("info", info+"El usuario es: "+nombre);
+            model.addAttribute("usuario", usuario);
+        }
+        return new ModelAndView("usuario",model);
+    }
+
+
 }

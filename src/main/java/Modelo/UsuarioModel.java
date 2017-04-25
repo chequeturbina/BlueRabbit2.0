@@ -171,7 +171,7 @@ public class UsuarioModel {
         try{
             
             tx = session.beginTransaction();
-            Query query = session.createQuery("from usuario where idUsuario = :var");
+            Query query = session.createQuery("from Usuario where idUsuario = :var");
             query.setParameter("var", idUsuario);
             usuario = (Usuario) query.uniqueResult();
             tx.commit();
@@ -195,7 +195,7 @@ public class UsuarioModel {
         try{
             
             tx = session.beginTransaction();
-            Query query = session.createQuery("from usuario where correo = :var");
+            Query query = session.createQuery("from Usuario where correo = :var");
             query.setParameter("var", correo);
             usuario = (Usuario) query.uniqueResult();
             tx.commit();

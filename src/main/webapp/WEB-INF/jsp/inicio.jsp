@@ -77,17 +77,19 @@
     <script src="js/main.js"></script>
     
     
-        <h1>Nuestra página principal</h1>
+         <h1>Nuestra página principal</h1>
         <hr>
         <center>
-            <form method="GET" action="/BlueRabbit/comida">
+            <form method="GET" action="/BlueRabbit/usuario">
                 <h2>Ingresa nombre</h2>
-                <input id="nombre2" name="nombre1" type="text" placeholder="Nombre">
+                <input name="nombre" type="text" placeholder="Nombre">
                 <button>Aceptar</button>
             </form>
             <br><hr>
         </center>
-    <a href="lista">Lista</a>
+        <a href="lista">Lista de Usuarios |</a>
+        <a href="registrar"> Registrar Usuarios |</a>
+        <a href="/BlueRabbit"> Iniciar Sesión </a>
     
     <!-- Hasta Abajo -->
     <footer class="container-fluid bg-4 text-center">

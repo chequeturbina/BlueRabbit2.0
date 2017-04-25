@@ -37,6 +37,6 @@
         </table>
                     
     </div>
-        
+        <a href="/BlueRabbit">Inicio</a>
     </body>
 </html>
