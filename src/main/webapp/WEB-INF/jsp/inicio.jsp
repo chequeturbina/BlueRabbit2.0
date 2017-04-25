@@ -89,7 +89,7 @@
         </center>
         <a href="lista">Lista de Usuarios |</a>
         <a href="registrar"> Registrar Usuarios |</a>
-        <a href="/BlueRabbit"> Iniciar Sesión </a>
+        <a href="iniciarSesion"> Iniciar Sesión </a>
     
     <!-- Hasta Abajo -->
     <footer class="container-fluid bg-4 text-center">

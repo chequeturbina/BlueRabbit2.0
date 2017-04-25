@@ -22,6 +22,6 @@
         
         <a href="lista">Lista de usuarios</a>
         <a href="<c:url value="/borrar?id=${usuario.idUsuario}"/>">Eliminar usuario</a>
-        
+        <a href="/BlueRabbit">Inicio</a>
         </body>
 </html>

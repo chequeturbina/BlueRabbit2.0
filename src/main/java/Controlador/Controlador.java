@@ -100,7 +100,7 @@ public class Controlador {
         String nombre = usuario.getNombre();
         String info = "";
         if (usuario == null){
-            model.addAttribute("info", info+"No se encontro nungun profesor con ese nombre");
+            model.addAttribute("info", info+"No se encontro ningun usuarios con ese nombre");
         }else{
             model.addAttribute("info", info+"El usuario es: "+nombre);
             model.addAttribute("usuario", usuario);
@@ -108,5 +108,35 @@ public class Controlador {
         return new ModelAndView("usuario",model);
     }
 
+    
+    @RequestMapping(value="/usuarioComun", method = RequestMethod.GET)
+    public ModelAndView iniciarSesion(ModelMap model,HttpServletRequest request){
+        
+        ModelAndView mv = null;
+        String n = request.getParameter("correo");
+        String p = request.getParameter("password");
+        
+        Usuario u = usuario_db.porCorreo(n);
+        
+        String info = "" ;
+        boolean b = false;
+        if (u == null){
+            model.addAttribute("log",b);
+            model.addAttribute("info",info+"No se encontró a ningún usuario con ese correo");
+            return mv = new ModelAndView("usuarioComun",model);
+        }else{
+            b = true;
+            model.addAttribute("info",info+"Bienvenido: "+u.getNombre());        
+            model.addAttribute("correo",n);
+            model.addAttribute("password",p);
+            model.addAttribute("log",b);
+            return mv = new ModelAndView("usuarioComun",model);
+        }
 
+    }
+    
+    @RequestMapping(value="/iniciarSesion", method = RequestMethod.GET)
+    public ModelAndView inicia(ModelMap model,HttpServletRequest request){
+        return new ModelAndView("iniciarSesion",model);
+    }
 }
