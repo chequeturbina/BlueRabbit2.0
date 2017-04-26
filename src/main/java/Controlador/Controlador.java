@@ -73,16 +73,24 @@ public class Controlador {
     public ModelAndView registrarse(ModelMap model,HttpServletRequest request) {
    
         String nombre = request.getParameter("nombre");
+        boolean valido = false;
+        ValidarCorreo vc = new ValidarCorreo();
         String correo = request.getParameter("correo");
-        String contrasena = request.getParameter("contrasena");
-        String url_foto = request.getParameter("url_foto");
-        int edad = 22;  /*Integer.parseInt(request.getParameter("edad"));*/
-        String carrera = "computación"; /*request.getParameter("carrera");*/
-        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera);
+        valido = vc.validar(correo);
+        if(valido){
+            String contrasena = request.getParameter("contrasena");
+            String url_foto = request.getParameter("url_foto"); /*dejar vacio*/
+            int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
+            String carrera = request.getParameter("carrera");/*Hace un select*/
+            usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera);
         
-        Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
-        System.out.println("Usario creado exitosamente");
-        return new ModelAndView("registrar", model); /*Lo envia el inicio*/
+            Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
+            System.out.println("Usario creado exitosamente");
+        }
+        
+        System.out.println("ERROR");
+
+        return new ModelAndView("registrar", model);
     }    
     
     @RequestMapping(value="/lista",method = RequestMethod.GET)
