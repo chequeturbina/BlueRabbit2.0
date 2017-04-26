@@ -122,12 +122,13 @@ public class Controlador {
         ModelAndView mv = null;
         String n = request.getParameter("correo");
         String p = request.getParameter("password");
+        String info = "" ;
         
         Usuario u = usuario_db.porCorreo(n);
-        
-        String info = "" ;
         boolean b = false;
-        if (u == null){
+        if (n.equals("admin")) {
+            return mv = new ModelAndView("home_admi",model);
+        }else if (u == null){
             model.addAttribute("log",b);
             model.addAttribute("info",info+"No se encontró a ningún usuario con ese correo");
             return mv = new ModelAndView("usuarioComun",model);

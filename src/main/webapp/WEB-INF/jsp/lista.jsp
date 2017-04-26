@@ -1,22 +1,3 @@
-<%-- 
-    Document   : lista
-    Created on : 25/04/2017, 12:15:30 PM
-    Author     : emmanuel
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <%-- 
-    Document   : lista
-    Created on : 19/04/2017, 02:26:08 AM
-    Author     : Abraham
---%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -30,28 +11,29 @@
         <h1>Lista de los usuarios</h1>
     <div align="center">
         <h1>Usuarios</h1>
-        <h1>${usuarios.get(0).getNombre()}</h1>
-        <h1>${usuarios.get(1).nombre}</h1>
         <table border="1">
             
             <th>id</th>
             <th>Nombre</th>
             <th>correo</th>
             <th>contrasena</th>
-            <th>url</th>
+            <th>edad</th>
+            <th>carrera</th>
             <c:forEach var="us" items="${usuarios}">
                 <tr>
  
                     <td>${us.idUsuario}</td>
-                    <td>${us.nombre}</td>
+                    <td><a href="<c:url value="/usuario?nombre=${us.nombre}"/>">${us.nombre}</a></td>
                     <td>${us.correo}</td>
                     <td>${us.contrasena}</td>                    
+                    <td>${us.edad}</td>                    
+                    <td>${us.carrera}</td>                    
                 </tr>
             </c:forEach>
         </table>
                     
     </div>
-        <a href="/BlueRabbit">Inicio</a>
+        <a href="/BlueRabbit">Inicio</a> 
     </body>
 </html>
     </body>

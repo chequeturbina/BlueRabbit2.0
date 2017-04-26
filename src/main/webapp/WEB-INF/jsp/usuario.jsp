@@ -18,7 +18,8 @@
         <h2>Nombre: ${usuario.nombre}</h2>
         <h2>Correo: ${usuario.correo}</h2>
         <h2>Contraseña: ${usuario.contrasena}</h2>
-        <h2>URL-foto: ${usuario.foto}</h2>
+        <h2>Edad: ${usuario.edad}</h2>
+        <h2>Carrera: ${usuario.carrera}</h2>
         
         <a href="lista">Lista de usuarios</a>
         <a href="<c:url value="/borrar?id=${usuario.idUsuario}"/>">Eliminar usuario</a>
