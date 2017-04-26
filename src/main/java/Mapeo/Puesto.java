@@ -5,6 +5,7 @@
  */
 package Mapeo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="puesto")
-public class Puesto {
+public class Puesto implements Serializable {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idpuesto")

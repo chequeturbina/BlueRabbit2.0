@@ -76,16 +76,17 @@
 		<div class="container">
 			<div class="row">
 				<h3>Agregar Puesto</h3>
+                                 <form method="submit" action="/BlueRabbit/registro">
                                 <div class="col-xs-5 btn-group">
                                             <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
                                             <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
                                             <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
-                                             <input type="text" class="form-control" placeholder="Longitud" id="longitud">
-                                             <input type="text" class="form-control"placeholder=latitud id="latitud">
-                                             <form method="submit" action="/BlueRabbit/registro">
-                                            <button class="btn btn-primary " onclick="validar()" value=Acceder type="button">Agregar Puesto</button>
-                                             </form>
+                                             <input type="text" class="form-control" placeholder="Longitud" id="ongitud">
+                                             <input type="text" class="form-control"placeholder=Latitud id="atitud">
+                                            
+                                              <button type="submit" class="btn btn-primary">Agregar Puesto</button>
                                 </div>
+                                </form>
                                    <div id="map1">
                             <script src="js/mapadmin.js"></script>
                             <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMapadmin"async defer></script>
