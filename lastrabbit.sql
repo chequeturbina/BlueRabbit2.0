@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `lastrabbit`.`Puesto` (
   `descripcion` VARCHAR(150) NOT NULL,
   `calificacion` INT NOT NULL,
   `menu` TEXT(2500) NOT NULL,
-  `latitud` FLOAT NOT NULL,
-  `longitud` FLOAT NOT NULL,
+  `latitud` VARCHAR(100) NOT NULL,
+  `longitud` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idPuesto`))
 ENGINE = InnoDB;
 
@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS `lastrabbit`.`Usuario` (
   `correo` VARCHAR(100) NOT NULL,
   `contrasena` VARCHAR(100) NOT NULL,
   `foto` VARCHAR(100) NOT NULL,
+  `edad` INT NOT NULL,
+  `carrera` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
