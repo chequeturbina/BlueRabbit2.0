@@ -73,11 +73,14 @@ public class Controlador {
     public ModelAndView registrarse(ModelMap model,HttpServletRequest request) {
    
         String nombre = request.getParameter("nombre");
-        boolean valido = false;
+        boolean validoC = false;
+        boolean validoN = false;
         ValidarCorreo vc = new ValidarCorreo();
         String correo = request.getParameter("correo");
-        valido = vc.validar(correo);
-        if(valido){
+        validoC = vc.validar(correo);
+        validoN = vc.validarNombre(nombre);
+        System.out.println("correo: "+validoC+" nombre: "+validoN);
+        if(validoC & validoN){
             String contrasena = request.getParameter("contrasena");
             String url_foto = request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
@@ -86,10 +89,9 @@ public class Controlador {
         
             Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
             System.out.println("Usario creado exitosamente");
+        }else{
+            System.out.println("ERROR");
         }
-        
-        System.out.println("ERROR");
-
         return new ModelAndView("registrar", model);
     }    
     
@@ -141,14 +143,15 @@ public class Controlador {
         }else if (u == null){
             model.addAttribute("log",b);
             model.addAttribute("info",info+"No se encontró a ningún usuario con ese correo");
-            return mv = new ModelAndView("usuarioComun",model);
+            return mv = new ModelAndView("ErrorIH",model);
         }else{
             b = true;
             model.addAttribute("info",info+"Bienvenido: "+u.getNombre());        
             model.addAttribute("correo",n);
             model.addAttribute("password",p);
+            model.addAttribute("nombre",u.getNombre());
             model.addAttribute("log",b);
-            return mv = new ModelAndView("usuarioComun",model);
+            return mv = new ModelAndView("home_user",model);
         }
 
     }
