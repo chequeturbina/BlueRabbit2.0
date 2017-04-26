@@ -7,7 +7,6 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link rel="shortcut icon"  href="imagenes/favicon.png">
         <title>Inicio</title>
         
         <link rel="stylesheet" href="css/bootstrap.css">

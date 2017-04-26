@@ -38,17 +38,26 @@ public class Usuario {
 
     @Column
     private String foto;
+    
+    @Column
+    private int edad;
+    
+    @Column
+    private String carrera;
+    
 
     @OneToMany(mappedBy="usuario")
     private Set<Comentarios> comentarios = new HashSet<>();
 
     
-    public Usuario(int idUsuario, String nombre, String correo, String contrasena, String foto) {
+    public Usuario(int idUsuario, String nombre, String correo, String contrasena, String foto, int edad, String carrera) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
         this.foto = foto;
+        this.edad = edad;
+        this.carrera = carrera;
     }
 
     public Usuario(){}
@@ -99,6 +108,22 @@ public class Usuario {
 
     public void setComentarios(Set<Comentarios> comentarios) {
         this.comentarios = comentarios;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
     
  

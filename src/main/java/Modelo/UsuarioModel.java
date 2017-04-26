@@ -31,7 +31,7 @@ public class UsuarioModel {
     * @param contrasena
     * @param url_foto
     */
-    public void crearUsuario(String nombre, String correo, String contrasena, String url_foto){
+    public void crearUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera){
         Session session = sessionFactory.openSession();
         
         Usuario usuario = new Usuario();
@@ -39,6 +39,8 @@ public class UsuarioModel {
         usuario.setContrasena(contrasena);
         usuario.setCorreo(correo);
         usuario.setFoto(url_foto);
+        usuario.setEdad(edad);
+        usuario.setCarrera(carrera);
         
         try{
             session = sessionFactory.openSession();
@@ -62,7 +64,7 @@ public class UsuarioModel {
     * @param contrasena
     * @param url_foto
     */
-    public void actualizarUsuario(String nombre, String correo, String contrasena, String url_foto){
+    public void actualizarUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         
@@ -71,6 +73,8 @@ public class UsuarioModel {
         usuario.setContrasena(contrasena);
         usuario.setCorreo(correo);
         usuario.setFoto(url_foto);
+        usuario.setEdad(edad);
+        usuario.setCarrera(carrera);
         
         try{
             
@@ -119,11 +123,6 @@ public class UsuarioModel {
             tx = session.beginTransaction();
             Query query = session.createQuery("from Usuario");
             usuarios =  query.list();
-//            Usuario u = (Usuario)usuarios.get(0);
-  //          System.out.println("Nombre "+u.getNombre());
-    //        System.out.println("id " +u.getIdUsuario());
-      //      System.out.println("correo " +u.getCorreo());
-        //    System.out.println("url "+u.getFoto());
             tx.commit();
             
         }catch(Exception e){

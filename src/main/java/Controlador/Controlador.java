@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Mapeo.Puesto;
+
 import Modelo.PuestoModel;
 import Mapeo.Usuario;
 import Modelo.UsuarioModel;
@@ -36,7 +36,7 @@ public class Controlador {
 
     @RequestMapping(value="/")
     public String inicio(){
-        return "inicio";
+        return "index";
     }
     
     /**
@@ -66,14 +66,21 @@ public class Controlador {
     
     @RequestMapping(value = "/registrar", method = RequestMethod.GET)
     public ModelAndView registrar(ModelMap model,HttpServletRequest request) {
+        return new ModelAndView("registrar",model);
+    }
+    
+    @RequestMapping(value = "/registrarse", method = RequestMethod.GET)
+    public ModelAndView registrarse(ModelMap model,HttpServletRequest request) {
    
         String nombre = request.getParameter("nombre");
         String correo = request.getParameter("correo");
         String contrasena = request.getParameter("contrasena");
-        String url_foto= request.getParameter("url_foto");
-        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto); 
+        String url_foto = request.getParameter("url_foto");
+        int edad = 22;  /*Integer.parseInt(request.getParameter("edad"));*/
+        String carrera = "computación"; /*request.getParameter("carrera");*/
+        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera); 
         System.out.println("Usario creado exitosamente");
-        return new ModelAndView("registrar", model);
+        return new ModelAndView("index", model); /*Lo envia el inicio*/
     }    
     
     @RequestMapping(value="/lista",method = RequestMethod.GET)
