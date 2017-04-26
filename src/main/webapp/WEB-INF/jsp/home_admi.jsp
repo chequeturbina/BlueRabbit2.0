@@ -26,7 +26,7 @@
             <ul>
                 <li><a href="#">Puestos</a></li>
                 <li><a href="#">Nosotros</a></li>
-                <li style="float:right"><a class="active" href="index">Cerrar Sesión</a></li>
+                <li style="float:right"><a class="active" href="/BlueRabbit">Cerrar Sesión</a></li>
                 <li style="float:right"><a class="active1" href="#">Admi</a></li>
             </ul>
         </div>

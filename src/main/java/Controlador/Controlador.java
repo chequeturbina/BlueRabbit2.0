@@ -78,9 +78,11 @@ public class Controlador {
         String url_foto = request.getParameter("url_foto");
         int edad = 22;  /*Integer.parseInt(request.getParameter("edad"));*/
         String carrera = "computación"; /*request.getParameter("carrera");*/
-        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera); 
+        usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera);
+        
+        Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
         System.out.println("Usario creado exitosamente");
-        return new ModelAndView("index", model); /*Lo envia el inicio*/
+        return new ModelAndView("registrar", model); /*Lo envia el inicio*/
     }    
     
     @RequestMapping(value="/lista",method = RequestMethod.GET)

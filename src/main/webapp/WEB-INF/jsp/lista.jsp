@@ -33,7 +33,7 @@
         </table>
                     
     </div>
-        <a href="/BlueRabbit">Inicio</a> 
+        <a href="<c:url value="/usuarioComun?correo=admin&password="/>">Inicio</a>
     </body>
 </html>
     </body>
