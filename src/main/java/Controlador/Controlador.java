@@ -48,6 +48,14 @@ public class Controlador {
     
     
     /*EMMANUEL*/
+    @RequestMapping(value = "/modificarpuesto")
+    public ModelAndView modificarpuesto(ModelMap model) {
+        return new ModelAndView("modificarpuesto", model);
+    }
+    @RequestMapping(value = "/home_admi")
+    public ModelAndView home_admi(ModelMap model) {
+        return new ModelAndView("home_admi", model);
+    }
     
     @RequestMapping(value = "/agregarPuesto", method = RequestMethod.POST)
     public ModelAndView agregarPuesto(ModelMap model) {

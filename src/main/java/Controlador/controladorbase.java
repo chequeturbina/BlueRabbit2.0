@@ -37,7 +37,7 @@ public class controladorbase {
         float latitud = Float.parseFloat(request.getParameter("latitud"));
         float longitud = Float.parseFloat(request.getParameter("longitud"));
         puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
-        return new ModelAndView("/principalbase"); 
+        return new ModelAndView("home_admi"); 
         
     }
     
@@ -45,7 +45,7 @@ public class controladorbase {
     public ModelAndView listapuesto(ModelMap model,HttpServletRequest request){
         List u = puesto_db.listarpuestos();
         model.addAttribute("puestos",u);
-        return new ModelAndView("listapuesto",model);
+        return new ModelAndView("modificarpuesto",model);
     }
     
     @RequestMapping(value="/actualizarpuesto", method = RequestMethod.POST)
@@ -94,7 +94,7 @@ public class controladorbase {
          model.addAttribute("descripcion", descripcion);
          model.addAttribute("menu", menu);
         
-        return new ModelAndView("puesto",model);
+        return new ModelAndView("modificarpuesto",model);
     }
     
 }

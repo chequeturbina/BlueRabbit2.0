@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home_admi
-    Created on : 26/04/2017, 09:55:08 AM
-    Author     : Abraham
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -43,7 +38,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="#agregarpuesto" class="smoothScroll">Agregar Puesto</a>
-			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
+			<a href="<c:url value = '/home_admi/modificarpuesto' />">Modificar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
 		</div>
 		
@@ -51,54 +46,58 @@
 		<div id="menuToggle"><i class="icon-reorder"></i></div>
 	</nav>
 
-
-	
-	<!-- ========== HEADER SECTION ========== -->
-	<section id="home" name="home"></section>
+        
+        <!-- ========== Modificar Puesto ========== -->
+	<section id="modificarpuesto" name="modificarpuesto"></section>
 	<div id="headerwrap">
 		<div class="container">
-			<div class="row">
-				<h1>ADMINISTRADOR</h1>
-				<br>
-				<h3>Desliza el menu para realizar una accion.</h3>
-				<br>
-				<br>
-				<div class="col-lg-6 col-lg-offset-3">
-				</div>
-			</div>
-		</div><!-- /container -->
-	</div><!-- /headerwrap -->
-	
-        <!-- ========== Agregar Puesto ========== -->
-	<section id="agregarpuesto" name="agregarpuesto"></section>
-	<div id="headerwrap">
-		<div class="container">
-			<div class="row">
-				<h3>Agregar Puesto</h3>
-                                <div class="col-xs-5 btn-group">
-                                    <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
-                                            <input class="form-control" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
-                                            <br>
-                                            <textarea  type="text" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
-                                            <br>
-                                            <textarea type="text" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
-                                            <br>
-                                            <input type="float" class="form-control" placeholder="Latitud" id="latitud" name="latitud"/>
-                                            <br>
-                                            <input type="float" class="form-control" placeholder="Longitud" id="longitud" name ="longitud"/>
-                                            <br>
-                                            <input type="submit" onclick="alert('Puesto Agregado')" value="Agregar"/>
-                                </div>    
+                                    <h3>Modificar Puesto</h3>
+                                    <form method="POST" action="/BlueRabbit/puesto">
+                                    <div class="search">
+                                        <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" id="nombre2" name="nombre"/>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
                                 </form>
-                                   <div id="map1">
-                            <script src="js/mapadmin.js"></script>
-                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMapadmin"async defer></script>
-				
-			</div>    
-			</div>
-			</div>
-		</div>
-	
+                                    <form method="POST"  action="/BlueRabbit/actualizarpuesto">
+                                    <h4>
+                                    <div class="col-xs-5 btn-group">
+                                            <input type="hidden" value = "${nombre}" name="nombrebuscar">
+                                            <input class="form-control" type="text" value = "${nombre}" name ="nombre"  >
+                                            
+                                            <textarea class="form-control" rows="5"  name ="descripcion">${descripcion}</textarea>
+                                            <textarea class="form-control" rows="5" name ="menu">${menu}</textarea>
+                                            <button class="btn btn-primary " onclick="alert('Puesto Modificado')">Modificar</button>
+                                    </div>
+                                    </h4>
+                                </form>
+                                            <a href="listapuesto ">Lista de Puestos </a>
+                                            <div class="table-responsive">
+                                    <table class="table .table-condensed">
+                                        <thead>
+                                            <tr class="info">
+            <th>id</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+            <th>menu</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+            <c:forEach var="us" items="${puestos}">
+            <tr class="danger">
+                <td>${us.id_puesto}</td>
+                <td>${us.nombre}</td>
+                <td>${us.descripcion}</td>
+                <td>${us.menu}</td>
+            </tr>
+            </c:forEach>
+                                    </tbody>
+        </table>
+                                    </div>
+                               
+               
+		</div><!-- /container -->
+	</div><!-- /f -->
+
     <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">
