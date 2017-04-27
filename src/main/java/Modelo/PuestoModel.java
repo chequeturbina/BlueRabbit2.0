@@ -5,6 +5,7 @@ package Modelo;
 
 import Mapeo.Puesto;
 import java.util.List;
+import static org.apache.taglibs.standard.resources.Resources.getMessage;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -68,27 +69,50 @@ public class PuestoModel {
          return puestos;
      }
      
-     public void update(long id_Puesto, String nombre, String descripcion, String menu) {
+     /**
+    * Actualizar un Usuario y guardarlo en la base de datos
+     * @param puesto
+    */
+    public void update(Puesto puesto){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        try {
-            Puesto puesto = (Puesto) session.get(Puesto.class, id_Puesto);
+        try{
+            
             tx = session.beginTransaction();
-
-            puesto.setNombre(nombre);
-            puesto.setDescripcion(descripcion);
-            puesto.setMenu(menu);
             session.update(puesto);
             tx.commit();
-        } catch (Exception e) {
+            
+        }catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
             }
             e.printStackTrace();
-        } finally {
+        }finally{
             session.close();
         }
-
+    }
+     
+     /**
+    * Buscar un usuario por nombre
+    */    
+    public Puesto buscarPuesto(String nombrebuscar){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Puesto puesto = null;
+        
+        try{
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Puesto where nombre = :var");
+            query.setParameter("var", nombrebuscar);
+            puesto = (Puesto)query.uniqueResult();
+            tx.commit();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return puesto;
     }
     
 }

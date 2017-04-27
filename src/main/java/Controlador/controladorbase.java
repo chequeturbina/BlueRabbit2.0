@@ -28,7 +28,7 @@ public class controladorbase {
    
     @Autowired
     PuestoModel puesto_db;
-
+    
     @RequestMapping(value="/crearPuesto", method = RequestMethod.POST)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
@@ -48,14 +48,53 @@ public class controladorbase {
         return new ModelAndView("listapuesto",model);
     }
     
-    @RequestMapping(value="editar/Puesto", method = RequestMethod.POST)
-               public ModelAndView editapuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
-                 long id_puesto = Long.parseLong(request.getParameter("id_puesto"));
-                 String nombre = request.getParameter("name");
+    @RequestMapping(value="/actualizarpuesto", method = RequestMethod.POST)
+               public ModelAndView actualizarpuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
+                 String nombrebuscar = request.getParameter("nombrebuscar");
+                 String nombre = request.getParameter("nombre");
                  String descripcion = request.getParameter("descripcion");
                  String menu = request.getParameter("menu");
-                 puesto_db.update(id_puesto,nombre, descripcion, menu);
-                 return new ModelAndView("lista", model); 
+                 Puesto puesto = puesto_db.buscarPuesto(nombrebuscar);
+                 String err = "";
+                 if(puesto == null){
+                     model.addAttribute("mensaje",err + "No se encontro el Puesto");
+                     return new ModelAndView("ErrorIH",model);
+                 } else {
+                     if(nombre.equals("") != true){
+                         puesto.setNombre(nombre);
+                         puesto_db.update(puesto);
+                     }
+                     if(descripcion.equals("") != true){
+                         puesto.setDescripcion(descripcion);
+                         puesto_db.update(puesto);
+                     }
+                     if(menu.equals("") != true){
+                         puesto.setMenu(menu);
+                         puesto_db.update(puesto);
+                     }
                }
+                 return new ModelAndView("home_admi",model);
+               }
+    
+    @RequestMapping(value="/puesto", method = RequestMethod.POST)
+    public ModelAndView buscarPuesto(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombre"); 
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        
+      
+        if (puesto == null){
+            String info = "";
+            model.addAttribute("mensaje", info + "No se encontro ningun puesto con ese nombre");
+            return new ModelAndView("ErrorIH",model);
+        }
+         String nombre = puesto.getNombre();
+         String descripcion = puesto.getDescripcion();
+         String menu = puesto.getMenu();
+         model.addAttribute("nombre", nombre);
+         model.addAttribute("descripcion", descripcion);
+         model.addAttribute("menu", menu);
+        
+        return new ModelAndView("puesto",model);
+    }
     
 }

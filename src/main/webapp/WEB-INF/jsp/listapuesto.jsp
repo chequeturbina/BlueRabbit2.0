@@ -27,25 +27,7 @@
             </c:forEach>
         </table>
         
-         <form name="editapuesto" method="POST" action="editar/Puesto">
-                            <label for="id_puesto"><p style="color:#F14FC8">ID :</p></label>
-                            <input type="hidden" value = ${Puesto.id_puesto} class="form-control" id="id" name ="id" />
-                            
-                                <label for="nombre"><p style="color:#F14FC8">Nombre :</p></label>
-                            <input type="text" value = "${Puesto.nombre}" class="form-control" id="nombre" name ="nombre" />
-                            
-                                <label for="descripcion"><p style="color:#F14FC8">Descripcion :</p></label>
-                            <input type="text" value = "${Puesto.descripcion}" class="form-control"  id="descripcion" name ="descripcion"/>
-                            
-                                <label for="menu"><p style="color:#F14FC8">Menu :</p></label>
-                            <input type="text" value = "${Puesto.menu}" class="form-control"  id="menu" name ="menu"/>
-                            
-                            <hr />
-                            
-                            <input type="submit">
-                               
-                        </form>
-                    
+                           
         
     </body>
 </html>

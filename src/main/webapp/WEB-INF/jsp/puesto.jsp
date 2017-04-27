@@ -12,12 +12,21 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3>Usuario</h3>
-                <h5>ID: ${puesto.idpuesto}</h5>
-                <h5>ID: ${puesto.nombre}</h5>
-                <h5>ID: ${puesto.descripcion}</h5>
-                <h5>ID: ${puesto.menu}</h5>
-                <h5>ID: ${puesto.latitud}</h5>
-                <h5>ID: ${puesto.longitud}</h5>
+        <h2>Puesto</h2>
+        <form method="POST"  action="/BlueRabbit/actualizarpuesto">
+                <input type="hidden" value = "${nombre}" name="nombrebuscar">
+                            
+                                <label><p style="color:#F14FC8">Nombre :</p></label>
+                            <input type="text" value = "${nombre}" name ="nombre">
+                            
+                                <label><p style="color:#F14FC8">Descripcion :</p></label>
+                            <input type="text" value = "${descripcion}" name ="descripcion">
+                            
+                            <label><p style="color:#F14FC8">Menu :</p></label>
+                            <input type="text" value = "${menu}" name ="menu">
+                            
+                            <button>Actualizar</button>
+                            </form>
+                            
     </body>
 </html>

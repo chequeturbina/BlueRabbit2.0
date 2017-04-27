@@ -10,6 +10,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Iniciar Sesión</title>
+        
+        <script src="js/validar.js"></script>
+        
     </head>
     <body>
         <div align="center">

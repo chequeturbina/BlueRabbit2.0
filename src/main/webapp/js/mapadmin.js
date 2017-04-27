@@ -24,25 +24,26 @@ function initMapadmin() {
     }
        //Marcador manual
         function placeMarker(map1, location,marcador) {
-         var marcador=1;
-         var marker = new google.maps.Marker({
+            var marcador=1;
+            var marker = new google.maps.Marker({
             position: location,
             draggable: true,
             map: map1
         });
-         var latitud =location.lat();
-         var infowindow = new google.maps.InfoWindow({
-         content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-        });
+        var latitud =location.lat();
+        var infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });
     infowindow.open(map1,marker);
-   }
-      
-      google.maps.event.addListener(map1, 'click', function(event) {  
-          if(marcador===1){
-              placeMarker(map1, event.latLng);
-          }else{
-              alert("ya no puedes agregar mas");
-          }
-          openInfoWindow(marker);
-      marcador=marcador+1;});
 }
+
+    google.maps.event.addListener(map1, 'click', function(event) {  
+        if(marcador===1){
+            placeMarker(map1, event.latLng);
+        }else{
+            alert("ya no puedes agregar mas");
+        }
+        marcador=marcador+1;});
+        openInfoWindow(marker);
+      
+    }

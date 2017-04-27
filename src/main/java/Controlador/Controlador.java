@@ -39,16 +39,6 @@ public class Controlador {
         return "index";
     }
     
-    /**
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/administrador", method = RequestMethod.GET)
-    public ModelAndView administrador(ModelMap model) {
-        return new ModelAndView("administrador", model);
-
-    }
         
     /*EMMANUEL*/
      @RequestMapping(value = "/principalbase", method = RequestMethod.GET)

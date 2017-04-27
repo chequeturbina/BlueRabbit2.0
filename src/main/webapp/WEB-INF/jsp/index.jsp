@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/mapadmin.css">
+        <link rel="stylesheet" href="css/mapaindex.css">
         
     </head>
     <body>

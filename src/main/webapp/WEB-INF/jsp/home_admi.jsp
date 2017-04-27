@@ -3,89 +3,135 @@
     Created on : 26/04/2017, 09:55:08 AM
     Author     : Abraham
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <link rel="shortcut icon"  href="imagenes/favicon.png">
         <title>Administrador</title>
-
+        
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/search.css">
+        <link rel="stylesheet" href="css/mapadmin.css">
         
+        <script src="js/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
         
     </head>
-    <body>
-        <div>
-            <ul>
-                <li><a href="#">Puestos</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li style="float:right"><a class="active" href="/BlueRabbit">Cerrar Sesión</a></li>
-                <li style="float:right"><a class="active1" href="#">Admi</a></li>
-            </ul>
-        </div>
-        <h1>Bienvenido Administrador</h1>
+    <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+       
+      
+        <!-- Menu -->
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
+			<i class="icon-remove menu-close"></i>
+                        <a href="#home" class="smoothScroll">Home</a>
+			<a href="#agregarpuesto" class="smoothScroll">Agregar Puesto</a>
+			<a href="#modificarpuesto" class="smoothScroll">Modificar Puesto</a>
+                        <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
+		</div>
+		
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="icon-reorder"></i></div>
+	</nav>
 
-        <div class="container">
-            <div class="row">
-                <div style ="background-color: gray" align="center" class="col-sm-6">
-                    
-                    
-                            <!-- ========== Agregar Puesto ========== -->
-                <section id="agregarpuesto" name="agregarpuesto"></section>
-                    <h3>Agregar Puesto</h3>
-                    <form method="submit" action="/BlueRabbit/registro">
-                        <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
-                        <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
-                        <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
-                        <input type="text" class="form-control" placeholder="Longitud" id="ongitud">
-                        <input type="text" class="form-control"placeholder=Latitud id="atitud">
-                        <br><br><br>
-                        <button type="submit" class="btn btn-primary">Agregar Puesto</button>
-                    </form>
-                
-                    
-                </div>
-                <div style ="background-color: gray; border: 0px" align="center" class="col-sm-6">
-                    
-                    <h3>Modificar Puesto</h3>
+
+	
+	<!-- ========== HEADER SECTION ========== -->
+	<section id="home" name="home"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<h1>ADMINISTRADOR</h1>
+				<br>
+				<h3>Desliza el menu para realizar una accion.</h3>
+				<br>
+				<br>
+				<div class="col-lg-6 col-lg-offset-3">
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
+	
+        <!-- ========== Agregar Puesto ========== -->
+	<section id="agregarpuesto" name="agregarpuesto"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<h3>Agregar Puesto</h3>
+                                <div class="col-xs-5 btn-group">
+                                    <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
+                                            <input class="form-control" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
+                                            <br>
+                                            <textarea  type="text" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
+                                            <br>
+                                            <textarea type="text" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
+                                            <br>
+                                            <input type="float" class="form-control" placeholder="Latitud" id="longitud"/>
+                                            <br>
+                                            <input type="float" class="form-control" placeholder="Longitud" id="longitud" name ="longitud"/>
+                                            <br>
+                                            <input type="submit"/>
+                                </div>    
+                                </form>
+                                   <div id="map1">
+                            <script src="js/mapadmin.js"></script>
+                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMapadmin"async defer></script>
+				
+			</div>    
+			</div>
+			</div>
+		</div>
+	
+        
+        <!-- ========== Modificar Puesto ========== -->
+	<section id="modificarpuesto" name="modificarpuesto"></section>
+	<div id="headerwrap">
+		<div class="container">
+                                    <h3>Modificar Puesto</h3>
                                     <form>
                                     <div class="search">
-                                        <input type="text" class="form-control input-sm" maxlength="100" placeholder="Buscar" />
-                                        <button type="submit" class="btn btn-primary">Buscar</button>
+                                        <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" />
+                                        <button type="submit" class="btn btn-primary">Search</button>
                                     </div>
                                 </form>
                                     <form>
                                     <h4>
-
+                                    <div class="col-xs-5 btn-group">
                                             <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
                                             <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
                                             <textarea class="form-control" rows="5" placeholder="Menu de Puesto" id="comment"></textarea>
                                             <button class="btn btn-primary " onclick="validar()" value=Acceder type="button">Modificar</button>
+                                    </div>
                                     </h4>
                                 </form>
                                     <div class="btn-group">
                                     <form method="GET" action="/BlueRabbit/principalbase">
-                                        <br>         
-                                        <button type="submit" class="btn btn-primary">Base</button>
+                                                 <button type="submit" class="btn btn-primary">Base</button>
                                             </form>
                                     </div>
-                 
-                    
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="container">
+                               
+               
+		</div><!-- /container -->
+	</div><!-- /f -->
+
+    <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">
                     <h1>Administrar Usuarios</h1>
@@ -98,9 +144,18 @@
             </div>
                 
         </div>
-                <!-- Hasta Abajo -->
+        
+        
+    <script src="js/classie.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/main.js"></script>
+   
+    
+    <!-- Hasta Abajo -->
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>
+    
     </body>
 </html>
