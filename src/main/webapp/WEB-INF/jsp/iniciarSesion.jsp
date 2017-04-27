@@ -10,27 +10,39 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Iniciar Sesión</title>
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="css/style.css">
         
         <script src="js/validar.js"></script>
         
     </head>
     <body>
-        <div align="center">
-            <h2>Iniciar sesión</h2>
-            <br><br>
-            <center>
-            <form method="GET" action="/BlueRabbit/usuarioComun">
-                <h2>Ingresa correo</h2>
-                <input name="correo" type="text" placeholder="Correo">
-                <h2>Ingresa contraseña</h2>
-                <input name="password" type="text" placeholder="Contraseña">
-                <br><br>
-                <button>Aceptar</button>
-            </form>
-            <br><hr>
-            <a href="/BlueRabbit">Inicio</a>    
-        </center>
-            
-        </div>
+        
+          <div align="center" class="form">
+
+          <h2>Iniciar Sesión 🐰</h2>
+          
+          <form method="GET" action="/BlueRabbit/usuarioComun">
+
+          <div class="field-wrap">
+            <input type="text" required autocomplete="off" placeholder="Correo" name="correo"/>  <!--necesita el type=email-->
+          </div>
+          
+          <div class="field-wrap">
+            <input type="password" autocomplete="off" placeholder="Contraseña" name="contrasena"/> <!--necesita el required-->
+          </div>
+                          <button>Aceptar</button>
+          </form>
+
+        <!-- Hasta Abajo -->
+        <br>
+        <a href="/BlueRabbit">Inicio</a>    
+        <footer class="container-fluid bg-4 text-center">
+            <h3>Binary Code, 2017</h3>
+        </footer>
+
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        
     </body>
 </html>

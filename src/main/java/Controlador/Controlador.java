@@ -81,8 +81,8 @@ public class Controlador {
         System.out.println("correo: "+validoC+" nombre: "+validoN);
         if(validoC & validoN){
             String contrasena = request.getParameter("contrasena");
-            mj.enviaCorreo(correo, contrasena);
-            String url_foto = request.getParameter("url_foto"); /*dejar vacio*/
+            //mj.enviaCorreo(correo, contrasena);
+            String url_foto = "miURLFOTO";//request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
             String carrera = request.getParameter("carrera");/*Hace un select*/
             usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera);
