@@ -66,12 +66,14 @@ public class Controlador {
         boolean validoC = false;
         boolean validoN = false;
         ValidarCorreo vc = new ValidarCorreo();
+        Mensajero mj = new Mensajero();
         String correo = request.getParameter("correo");
         validoC = vc.validar(correo);
         validoN = vc.validarNombre(nombre);
         System.out.println("correo: "+validoC+" nombre: "+validoN);
         if(validoC & validoN){
             String contrasena = request.getParameter("contrasena");
+            mj.enviaCorreo(correo, contrasena);
             String url_foto = request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
             String carrera = request.getParameter("carrera");/*Hace un select*/
