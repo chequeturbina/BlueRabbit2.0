@@ -32,8 +32,8 @@
             Carrera:
             <input type="text" name="carrera">
             <br/>
-            
-            <p><input type="submit" value="Enviar"></p>
+            <input type="submit" onclick="alert('Usuario Agregado')" value="Enviar"/>
+
         </form>
         
         <a href ="lista">Lista usuarios</a>
