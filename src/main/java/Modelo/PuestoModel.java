@@ -61,8 +61,8 @@ public class PuestoModel {
              puestos = query.list();
              tx.commit();
          } catch (Exception e){
-             e.printStackTrace();
              tx.rollback();
+             e.printStackTrace();
          } finally{
              session.close();
          }

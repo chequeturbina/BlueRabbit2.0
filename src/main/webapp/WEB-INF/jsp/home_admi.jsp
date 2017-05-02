@@ -42,7 +42,7 @@
 			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
-			<a href="#agregarpuesto" class="smoothScroll">Agregar Puesto</a>
+			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
 			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
 		</div>
@@ -68,36 +68,7 @@
 			</div>
 		</div><!-- /container -->
 	</div><!-- /headerwrap -->
-	
-        <!-- ========== Agregar Puesto ========== -->
-	<section id="agregarpuesto" name="agregarpuesto"></section>
-	<div id="headerwrap">
-		<div class="container">
-			<div class="row">
-				<h3>Agregar Puesto</h3>
-                                <div class="col-xs-5 btn-group">
-                                    <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
-                                            <input class="form-control" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
-                                            <br>
-                                            <textarea  type="text" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
-                                            <br>
-                                            <textarea type="text" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
-                                            <br>
-                                            <input type="float" class="form-control" placeholder="Latitud" id="latitud" name="latitud"/>
-                                            <br>
-                                            <input type="float" class="form-control" placeholder="Longitud" id="longitud" name ="longitud"/>
-                                            <br>
-                                            <input type="submit" onclick="alert('Puesto Agregado')" value="Agregar"/>
-                                </div>    
-                                </form>
-                                   <div id="map1">
-                            <script src="js/mapadmin.js"></script>
-                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMapadmin"async defer></script>
-				
-			</div>    
-			</div>
-			</div>
-		</div>
+
 	
     <div class="container">
             <div class="row">

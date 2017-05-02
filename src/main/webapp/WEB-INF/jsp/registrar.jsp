@@ -37,7 +37,7 @@
           </div>
                <div class="field-wrap">
             <input type="text"required autocomplete="off" list= "carrera" placeholder="Selecciona tu carrera" name="carrera"/>
-                   <datalist id="carrera">
+              <datalist id="carrera">
                    <option value="Actuaria"/>
                    <option value="Biología"/>
                    <option value="C. Computación"/>
@@ -46,7 +46,7 @@
                    <option value="Física Biomédica"/>
                    <option value="Matemáticas"/>
                    <option value="Matemáticas Aplicadas"/>
-                   </datalist>
+             </datalist>
           </div>
                
           <div class="field-wrap">

@@ -48,6 +48,10 @@ public class Controlador {
     
     
     /*EMMANUEL*/
+    @RequestMapping(value = "/agregarpuesto")
+    public ModelAndView agregarpuesto(ModelMap model) {
+        return new ModelAndView("agregarpuesto", model);
+    }
     @RequestMapping(value = "/modificarpuesto")
     public ModelAndView modificarpuesto(ModelMap model) {
         return new ModelAndView("modificarpuesto", model);
@@ -81,7 +85,7 @@ public class Controlador {
         System.out.println("correo: "+validoC+" nombre: "+validoN);
         if(validoC & validoN){
             String contrasena = request.getParameter("contrasena");
-            //mj.enviaCorreo(correo, contrasena);
+            mj.enviaCorreo(correo, contrasena);
             String url_foto = "miURLFOTO";//request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
             String carrera = request.getParameter("carrera");/*Hace un select*/

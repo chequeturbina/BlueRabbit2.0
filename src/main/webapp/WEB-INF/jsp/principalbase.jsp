@@ -27,14 +27,14 @@
             </div>
 </form>--%>
         <h1>
-            <a href="listapuesto ">Lista de Puestos </a> 
+          
         </h1>    
-        <h2><form method="POST" action="/BlueRabbit/puesto">
+       <%-- <h2><form method="POST" action="/BlueRabbit/puesto">
                 <h2>Buscar por nombre</h2>
                 <input id="nombre2" name="nombre" type="text" placeholder="Nombre">
                 <button>Aceptar</button>
             </form></h2>
-            
+            --%>
         
     </body>
 </html>

@@ -43,8 +43,9 @@ public class controladorbase {
     
     @RequestMapping(value="/listapuesto", method=RequestMethod.GET)
     public ModelAndView listapuesto(ModelMap model,HttpServletRequest request){
-        List u = puesto_db.listarpuestos();
-        model.addAttribute("puestos",u);
+        
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
         return new ModelAndView("modificarpuesto",model);
     }
     

@@ -126,8 +126,9 @@ public class UsuarioModel {
             tx.commit();
             
         }catch(Exception e){
-            e.printStackTrace();
             tx.rollback();
+            e.printStackTrace();
+            
         }finally{
             session.close();
         } 

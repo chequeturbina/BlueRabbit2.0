@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table border="1">
+      <%--  <table border="1">
             <th>id</th>
             <th>nombre</th>
             <th>descripcion</th>
@@ -25,7 +25,7 @@
                 <td>${us.menu}</td>
             </tr>
             </c:forEach>
-        </table>
+        </table>--%>
         
                            
         
