@@ -60,19 +60,19 @@
 				<h3>Agregar Puesto</h3>
                                 <div class="col-xs-5 btn-group">
                                     <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
-                                            <input class="form-control" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
+                                            <input class="form-control" required autocomplete="off" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
                                             <br>
-                                            <textarea  type="text" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
+                                            <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
                                             <br>
-                                            <textarea type="text" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
+                                            <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
                                             <br>
                                             <p>Latitud</p>
-                                            <input type="float" class="form-control" id="latitud" name="latitud"/>
+                                            <input type="float" required autocomplete="off" class="form-control" id="latitud" name="latitud"/>
                                             <br>
                                             <p>Longitud</p>
-                                            <input type="float" class="form-control" id="longitud" name ="longitud"/>
+                                            <input type="float" required autocomplete="off" class="form-control" id="longitud" name ="longitud"/>
                                             <br>
-                                            <input type="submit" onclick="alert('Puesto Agregado')" value="Agregar"/>
+                                            <input type="submit" value="Agregar"/>
                                 </div>    
                                 </form>
                                    <div id="map1">

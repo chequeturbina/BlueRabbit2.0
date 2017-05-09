@@ -9,6 +9,7 @@ import Mapeo.Puesto;
 import Modelo.PuestoModel;
 import java.io.IOException;
 import java.text.ParseException;
+import static java.time.Clock.system;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +37,16 @@ public class controladorbase {
         String menu = request.getParameter("menu");
         float latitud = Float.parseFloat(request.getParameter("latitud"));
         float longitud = Float.parseFloat(request.getParameter("longitud"));
-        puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
-        return new ModelAndView("home_admi"); 
-        
+        Puesto puesto = puesto_db.buscarPuesto(nombre);
+        String err = "";
+        if (puesto != null){
+             err = "El puesto ya existe";
+             model.addAttribute("alerta",err);
+             return new ModelAndView("errorP",model);
+        }else{
+            puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
+        }
+        return new ModelAndView("home_admi");
     }
     
     @RequestMapping(value="/listapuesto", method=RequestMethod.GET)
@@ -58,8 +66,9 @@ public class controladorbase {
                  Puesto puesto = puesto_db.buscarPuesto(nombrebuscar);
                  String err = "";
                  if(puesto == null){
-                     model.addAttribute("mensaje",err + "No se encontro el Puesto");
-                     return new ModelAndView("ErrorIH",model);
+                      err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
                  } else {
                      if(nombre.equals("") != true){
                          puesto.setNombre(nombre);
@@ -81,13 +90,12 @@ public class controladorbase {
     public ModelAndView buscarPuesto(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
         Puesto puesto = puesto_db.buscarPuesto(p);
-        
-      
+        String err = "";
         if (puesto == null){
-            String info = "";
-            model.addAttribute("mensaje", info + "No se encontro ningun puesto con ese nombre");
-            return new ModelAndView("ErrorIH",model);
-        }
+            err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
+        }else{
          String nombre = puesto.getNombre();
          String descripcion = puesto.getDescripcion();
          String menu = puesto.getMenu();
@@ -97,5 +105,6 @@ public class controladorbase {
         
         return new ModelAndView("modificarpuesto",model);
     }
-    
-}
+    }
+
+    }    
