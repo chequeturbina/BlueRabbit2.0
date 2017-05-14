@@ -91,6 +91,26 @@ public class PuestoModel {
             session.close();
         }
     }
+    
+     /**
+    * Eliminar Puesto
+    */ 
+    public void eliminarPuesto(Puesto puesto){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+                
+        try{
+            
+            tx = session.beginTransaction();
+            session.delete(puesto);
+            tx.commit();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+    }
      
      /**
     * Buscar un usuario por nombre

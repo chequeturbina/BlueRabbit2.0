@@ -5,7 +5,9 @@
  */
 //MAPA
  function initMap() {
-          var marcador=1;
+          var markerLat=[
+              <c:forEach var="$" items=""
+          ];
           var myLatLng = {lat: 19.323447, lng: -99.179642};
           var map = new google.maps.Map(document.getElementById('map'), {
               center: myLatLng,

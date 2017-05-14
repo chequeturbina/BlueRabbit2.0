@@ -1,3 +1,8 @@
+<%-- 
+    Document   : eliminarpuesto
+    Created on : 13/05/2017, 04:17:58 PM
+    Author     : emmanuel
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -39,6 +44,7 @@
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
 			<a href="<c:url value = '/home_admi/modificarpuesto' />">Modificar Puesto</a>
+                        <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
 		</div>
 		

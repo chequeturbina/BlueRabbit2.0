@@ -56,14 +56,13 @@ public class Controlador {
     public ModelAndView modificarpuesto(ModelMap model) {
         return new ModelAndView("modificarpuesto", model);
     }
+    @RequestMapping(value = "/eliminarpuesto")
+    public ModelAndView eliminarpuesto(ModelMap model) {
+        return new ModelAndView("eliminarpuesto", model);
+    }
     @RequestMapping(value = "/home_admi")
     public ModelAndView home_admi(ModelMap model) {
         return new ModelAndView("home_admi", model);
-    }
-    
-    @RequestMapping(value = "/agregarPuesto", method = RequestMethod.POST)
-    public ModelAndView agregarPuesto(ModelMap model) {
-        return new ModelAndView("agregarPuesto", model);
     }
     
     @RequestMapping(value = "/registrar", method = RequestMethod.GET)

@@ -30,6 +30,7 @@ public class controladorbase {
     @Autowired
     PuestoModel puesto_db;
     
+    //Agrega un puesto a la base
     @RequestMapping(value="/crearPuesto", method = RequestMethod.POST)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
@@ -49,6 +50,7 @@ public class controladorbase {
         return new ModelAndView("home_admi");
     }
     
+    //Muestra la lista de los puestos
     @RequestMapping(value="/listapuesto", method=RequestMethod.GET)
     public ModelAndView listapuesto(ModelMap model,HttpServletRequest request){
         
@@ -57,6 +59,7 @@ public class controladorbase {
         return new ModelAndView("modificarpuesto",model);
     }
     
+    //Modifica el puesto
     @RequestMapping(value="/actualizarpuesto", method = RequestMethod.POST)
                public ModelAndView actualizarpuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
                  String nombrebuscar = request.getParameter("nombrebuscar");
@@ -86,6 +89,7 @@ public class controladorbase {
                  return new ModelAndView("home_admi",model);
                }
     
+    //Busca Puesto para modificar
     @RequestMapping(value="/puesto", method = RequestMethod.POST)
     public ModelAndView buscarPuesto(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
@@ -105,6 +109,37 @@ public class controladorbase {
         
         return new ModelAndView("modificarpuesto",model);
     }
+    }
+    
+    //Buscador de puesto para eliminarlo
+    @RequestMapping(value="/puesto1", method = RequestMethod.POST)
+    public ModelAndView buscarPuesto1(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombre"); 
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        String err = "";
+        if (puesto == null){
+            err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
+        }else{
+         String nombre = puesto.getNombre();
+         String descripcion = puesto.getDescripcion();
+         String menu = puesto.getMenu();
+         model.addAttribute("nombre", nombre);
+         model.addAttribute("descripcion", descripcion);
+         model.addAttribute("menu", menu);
+        
+        return new ModelAndView("eliminarpuesto",model);
+    }
+    }
+    
+    //Eliminar Puesto
+    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
+    public ModelAndView eliminar(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
+        String nombre = request.getParameter("nombre");
+        Puesto puesto = puesto_db.buscarPuesto(nombre);
+        puesto_db.eliminarPuesto(puesto);
+        return new ModelAndView("home_admi", model);
     }
 
     }    

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : home_admi
-    Created on : 26/04/2017, 09:55:08 AM
-    Author     : Abraham
+    Document   : eliminarpuesto
+    Created on : 13/05/2017, 04:17:58 PM
+    Author     : emmanuel
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -43,7 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
-			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
+			<a href="<c:url value = '/home_admi/modificarpuesto' />">Modificar Puesto</a>
                         <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
 		</div>
@@ -52,25 +52,36 @@
 		<div id="menuToggle"><i class="icon-reorder"></i></div>
 	</nav>
 
-
-	
-	<!-- ========== HEADER SECTION ========== -->
-	<section id="home" name="home"></section>
+        
+        <!-- ========== Eliminar Puesto ========== -->
+	<section id="eliminarpuesto" name="eliminarpuesto"></section>
 	<div id="headerwrap">
 		<div class="container">
-			<div class="row">
-				<h1>ADMINISTRADOR</h1>
-				<br>
-				<h3>Desliza el menu para realizar una accion.</h3>
-				<br>
-				<br>
-				<div class="col-lg-6 col-lg-offset-3">
-				</div>
-			</div>
+                                    <h3>Eliminar Puesto</h3>
+                                    <form method="POST" action="/BlueRabbit/puesto1">
+                                    <div class="search">
+                                        <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" id="nombre2" name="nombre"/>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                </form>
+                                    <form method="GET"  action="/BlueRabbit/eliminar">
+                                    <h4>
+                                    <div class="col-xs-5 btn-group">
+                                            <input type="hidden" value = "${nombre}" name="nombrebuscar">
+                                            <input class="form-control" type="text" value = "${nombre}" name ="nombre" readonly="readonly"readonly="readonly" >
+                                            <br>
+                                            <textarea class="form-control" rows="5"  name ="descripcion" readonly="readonly">${descripcion}</textarea>
+                                            <br>
+                                            <textarea class="form-control" rows="5" name ="menu" readonly="readonly">${menu}</textarea>
+                                            <button class="btn btn-primary">Eliminar</button>
+                                    </div>
+                                    </h4>
+                                </form>
+                                           
+               
 		</div><!-- /container -->
-	</div><!-- /headerwrap -->
+	</div><!-- /f -->
 
-	
     <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">
