@@ -9,7 +9,6 @@ import Mapeo.Puesto;
 import Modelo.PuestoModel;
 import java.io.IOException;
 import java.text.ParseException;
-import static java.time.Clock.system;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,7 @@ public class controladorbase {
     PuestoModel puesto_db;
     
     //Agrega un puesto a la base
-    @RequestMapping(value="/crearPuesto", method = RequestMethod.POST)
+    @RequestMapping(value="/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -45,9 +44,15 @@ public class controladorbase {
              model.addAttribute("alerta",err);
              return new ModelAndView("errorP",model);
         }else{
-            puesto_db.guardar(nombre, descripcion, menu,latitud,longitud);
+            Puesto a = new Puesto();
+            a.setNombre(nombre);
+            a.setDescripcion(descripcion);
+            a.setMenu(menu);
+            a.setLatitud(latitud);
+            a.setLongitud(longitud);
+            puesto_db.guardar(a);
         }
-        return new ModelAndView("home_admi");
+        return new ModelAndView("redirect:/home_admi");
     }
     
     //Muestra la lista de los puestos

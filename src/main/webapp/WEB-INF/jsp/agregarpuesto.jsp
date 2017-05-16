@@ -39,7 +39,6 @@
         <!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
@@ -60,12 +59,12 @@
 			<div class="row">
 				<h3>Agregar Puesto</h3>
                                 <div class="col-xs-5 btn-group">
-                                    <form name="crearPuesto" method="POST"  action="<c:url value = '/crearPuesto' />">
-                                            <input class="form-control" required autocomplete="off" type="text" id="nombre" name ="nombre" placeholder="Nombre"/>
+                                    <form name="crearPuesto" method="GET"  action="<c:url value = '/crearPuesto' />">
+                                            <input class="form-control" required autocomplete="off" type="text"  name ="nombre" placeholder="Nombre"/>
                                             <br>
-                                            <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto" id="descripcion" name ="descripcion"></textarea>
+                                            <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto"  name ="descripcion"></textarea>
                                             <br>
-                                            <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto" id="menu" name ="menu"></textarea>
+                                            <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto"  name ="menu"></textarea>
                                             <br>
                                             <p>Latitud</p>
                                             <input type="float" required autocomplete="off" class="form-control" id="latitud" name="latitud"/>
@@ -76,15 +75,13 @@
                                             <input type="submit" value="Agregar"/>
                                 </div>    
                                 </form>
-                                   <div id="map1">
-                            <script type='text/javascript' src="js/mapadmin.js"></script>
-                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&sensor=true"async defer></script>
-				
+                                   <div id="mapa">
+                                       <script src="js/mapadmin.js"></script>
+                                       <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initialize"async defer></script>
 			</div>    
 			</div>
 			</div>
 		</div>
-	
     <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">

@@ -26,19 +26,14 @@ public class PuestoModel {
         this.sessionFactory = sessionFactory;
     }
     
-    public void guardar(String nombre,String descripcion,String menu, float latitud, float longitud) {
+    public void guardar(Puesto puesto) {
     
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        Puesto puesto = new Puesto();
-        puesto.setNombre(nombre);
-        puesto.setDescripcion(descripcion);
-        puesto.setMenu(menu);
-        puesto.setLatitud(latitud);
-        puesto.setLongitud(longitud);
+  
         try {
            tx = session.beginTransaction();
-           session.save(puesto);
+           session.persist(puesto);
            tx.commit();
         }
         catch (Exception e) {

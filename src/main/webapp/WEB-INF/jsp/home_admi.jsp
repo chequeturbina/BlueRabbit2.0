@@ -39,7 +39,7 @@
         <!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="index.html#home">Minimal</a></h1>
+			
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
