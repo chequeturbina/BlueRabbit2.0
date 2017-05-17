@@ -27,7 +27,7 @@
     
         <div>
             <ul>
-                <li><a href="#">Puestos</a></li>
+                <li><a href="listapuestom">Puestos</a></li>
                 <li><a href="#">Nosotros</a></li>
                 <li style="float:right"><a class="active" href="iniciarSesion">Iniciar Sesión</a></li>
                 <li style="float:right"><a class="active1" href="registrar">Registrarse</a></li>
@@ -36,72 +36,68 @@
 	<div id="headerwrap">
 		<div class="container">
 			<div id="mapa">
-                           <script>
-                        function ventanaInfo(des,nom){
-    var coso = '<div id="content">'+
-               '<div id="siteNotice">'+
-               '</div>'+
-               '<hl id="firstHeading" class="firstHeading">'+ nombre +'</hl'+
-               '<div id="bodycontent">'+
-               '<p>'+ descripcion+ '</p>'+
-               '</div>'+
-               '</div>';
-       return coso;
-               
-}
-var map;
- function initMap() {
-            markerLat=[
-                <c:forEach var="s" items="${puesto}" varStatus="status">
-                    <c:out value="${s.latitud}"/>,
-                </c:forEach>];
-            markerLong=[
-                <c:forEach var="s" items="${puesto}" varStatus="status">
-                    <c:out value="${s.longitud}"/>,
-                </c:forEach>];
-            markerName = [
-                <c:forEach var="s" items="${puesto}" varStatus="status">
-                     "${s.nombre}",
-                </c:forEach>];
-            markerDes = [
-                <c:forEach var="s" items="${puesto}" varStatus="status">
-                    "${s.descripcion}",
-                </c:forEach>];
-          
-
-          map = new google.maps.Map(document.getElementById('mapa'), {
-              center: {lat: 19.323447, lng: -99.179642},
-              zoom: 21
-          });
-          
-          var infowindow = new google.maps.Infowindow();
-          var marker, i;
-          
-          for (i=0; i < markerLat.length; i++){
-                  marker = new google.maps.Marker({
-                  position: new google.maps.Latlng(markerLat[i],markerLong[i]),
-                  map: map,
-                  title:markerName[i]
-              });
-              
-              google.maps.event.addListener(marker, 'click', (function(marker, i){
-                  return function(){
-                      infowindow.setContent(ventanaInfo(markerDes[i].markerName[i]));
-                      infowindow.open(map,marker);
-                  }})(marker,i));
-          }
-          
-          google.maps.event.addDomListener(window,'load',iniMap);
-      
-      }
-
-                        </script>
-                        <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMap"async defer></script>
+                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMap"async defer></script>
+                           
 			</div>
                     
 		</div><!-- /container -->
 	</div><!-- /headerwrap -->
-
+        <script>
+            function ventanaInfo(descripcion,nombre){
+                var coso = '<div id="content">'+
+                           '<div id="siteNotice">'+
+                           '</div>'+
+                           '<hl id="firstHeading" class="firstHeading">'+ nombre +'</hl'+
+                           '<div id="bodycontent">'+
+                           '<h2>' + descripcion + '</h2>'+
+                           '</div>'+
+                           '</div>';
+                return coso;
+            }
+            
+            function initMap() {
+                var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                markerLat=[
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            <c:out value="${um.latitud}"/>,
+                        </c:forEach>];
+                markerLong=[
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            <c:out value="${um.longitud}"/>,
+                        </c:forEach>];
+                markerName = [
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            "${um.nombre}",
+                        </c:forEach>];
+                markerDes = [
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            "${um.descripcion}",
+                        </c:forEach>];
+                            
+                            var map = new google.maps.Map(document.getElementById('mapa'), {
+                            zoom: 19,
+                            center: {lat: 19.323447, lng: -99.179642}
+                        });
+                        var infowindow = new google.maps.InfoWindow();
+                        var i;
+                        
+                            for (i=0; i < markerLat.length; i++){
+                                var marker = new google.maps.Marker({
+                                   position: new google.maps.LatLng(markerLat[i],markerLong[i]),
+                                   map: map,
+                                   icon: image,
+                                   title: markerName[i]
+                            });
+                            google.maps.event.addListener(marker, 'click', (function(marker, i){
+                                return function(){
+                                    infowindow.setContent(ventanaInfo(markerDes[i],markerName[i]));
+                                    infowindow.open(map,marker);
+                                }})(marker,i));
+                        }
+                        
+                            google.maps.event.addDomListener(window,'load',initMap);
+                        }
+        </script>
     <!-- Hasta Abajo -->
     <footer class="container-fluid bg-4 text-center">
         <h3>Binary Code, 2017</h3>

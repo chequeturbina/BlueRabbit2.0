@@ -29,6 +29,13 @@ public class controladorbase {
     @Autowired
     PuestoModel puesto_db;
     
+     @RequestMapping(value="/")
+    public ModelAndView inicio(ModelMap model){
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
+        return new ModelAndView("index",model);
+    }
+    
     //Agrega un puesto a la base
     @RequestMapping(value="/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
@@ -52,16 +59,9 @@ public class controladorbase {
             a.setLongitud(longitud);
             puesto_db.guardar(a);
         }
-        return new ModelAndView("redirect:/home_admi");
-    }
-    
-    //Muestra la lista de los puestos
-    @RequestMapping(value="/listapuesto", method=RequestMethod.GET)
-    public ModelAndView listapuesto(ModelMap model,HttpServletRequest request){
-        
-        List um = puesto_db.listarpuestos();
-        model.addAttribute("puestos",um);
-        return new ModelAndView("modificarpuesto",model);
+             err = "Puesto Agregado";
+             model.addAttribute("alerta",err);
+             return new ModelAndView("alert",model);
     }
     
     //Modifica el puesto
@@ -91,7 +91,9 @@ public class controladorbase {
                          puesto_db.update(puesto);
                      }
                }
-                 return new ModelAndView("home_admi",model);
+                 err = "Puesto Modificado";
+                 model.addAttribute("alerta",err);
+                 return new ModelAndView("alert",model);
                }
     
     //Busca Puesto para modificar
@@ -144,7 +146,11 @@ public class controladorbase {
         String nombre = request.getParameter("nombre");
         Puesto puesto = puesto_db.buscarPuesto(nombre);
         puesto_db.eliminarPuesto(puesto);
-        return new ModelAndView("home_admi", model);
+        String err ="";
+        err = "Puesto Eliminado";
+        model.addAttribute("alerta",err);
+        return new ModelAndView("alert",model);
     }
+    
 
     }    

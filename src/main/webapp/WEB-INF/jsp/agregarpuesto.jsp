@@ -57,6 +57,7 @@
 	<div id="headerwrap">
 		<div class="container">
 			<div class="row">
+                            <div id='address'></div>
 				<h3>Agregar Puesto</h3>
                                 <div class="col-xs-5 btn-group">
                                     <form name="crearPuesto" method="GET"  action="<c:url value = '/crearPuesto' />">

@@ -6,9 +6,10 @@
 package Controlador;
 
 
-import Modelo.PuestoModel;
 import Mapeo.Usuario;
+import Mapeo.Puesto;
 import Modelo.UsuarioModel;
+import Modelo.PuestoModel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -27,37 +28,29 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class Controlador {
-   
-    @Autowired
-    PuestoModel puesto_db;
     
     @Autowired
     UsuarioModel usuario_db;
-
-    @RequestMapping(value="/")
-    public String inicio(){
-        return "index";
-    }
     
-        
-    /*EMMANUEL*/
-     @RequestMapping(value = "/principalbase", method = RequestMethod.GET)
-    public ModelAndView principalbase(ModelMap model) {
-        return new ModelAndView("principalbase", model);
-    }
+    @Autowired
+    PuestoModel puesto_db;
     
     
-    /*EMMANUEL*/
+    /*EMMANUEL PUESTO*/
     @RequestMapping(value = "/agregarpuesto")
     public ModelAndView agregarpuesto(ModelMap model) {
         return new ModelAndView("agregarpuesto", model);
     }
     @RequestMapping(value = "/modificarpuesto")
     public ModelAndView modificarpuesto(ModelMap model) {
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
         return new ModelAndView("modificarpuesto", model);
     }
     @RequestMapping(value = "/eliminarpuesto")
     public ModelAndView eliminarpuesto(ModelMap model) {
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
         return new ModelAndView("eliminarpuesto", model);
     }
     @RequestMapping(value = "/home_admi")
@@ -65,6 +58,7 @@ public class Controlador {
         return new ModelAndView("home_admi", model);
     }
     
+    /*USUARIO*/
     @RequestMapping(value = "/registrar", method = RequestMethod.GET)
     public ModelAndView registrar(ModelMap model,HttpServletRequest request) {
         return new ModelAndView("registrar",model);

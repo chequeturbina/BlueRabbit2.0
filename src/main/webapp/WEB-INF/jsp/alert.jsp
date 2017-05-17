@@ -15,7 +15,7 @@
         <meta name="author" content="">
         
         <link rel="shortcut icon"  href="imagenes/favicon.png">
-        <title>Error</title>
+        <title>Alert</title>
         
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">

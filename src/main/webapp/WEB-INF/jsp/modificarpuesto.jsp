@@ -43,7 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
-			<a href="<c:url value = '/home_admi/modificarpuesto' />">Modificar Puesto</a>
+			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
                         <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
 		</div>
@@ -76,7 +76,7 @@
                                     </div>
                                     </h4>
                                 </form>
-                                            <a href="listapuesto">Lista de Puestos </a>
+                                            
                                             <div class="table-responsive">
                                     <table class="table .table-condensed">
                                         <thead>

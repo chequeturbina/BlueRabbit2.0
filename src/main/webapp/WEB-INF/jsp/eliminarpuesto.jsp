@@ -77,6 +77,30 @@
                                     </div>
                                     </h4>
                                 </form>
+                                            
+                                            <a href="listapuesto">Lista de Puestos </a>
+                                            <div class="table-responsive">
+                                    <table class="table .table-condensed">
+                                        <thead>
+                                            <tr class="info">
+            <th>id</th>
+            <th>nombre</th>
+            <th>descripcion</th>
+            <th>menu</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+            <c:forEach var="us" items="${puestos}">
+            <tr class="danger">
+                <td>${us.id_puesto}</td>
+                <td>${us.nombre}</td>
+                <td>${us.descripcion}</td>
+                <td>${us.menu}</td>
+            </tr>
+            </c:forEach>
+                                    </tbody>
+        </table>
+                                    </div>
                                            
                
 		</div><!-- /container -->

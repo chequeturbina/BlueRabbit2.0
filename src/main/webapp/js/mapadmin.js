@@ -12,12 +12,17 @@ function updateMarkerPosition(latLng){
  function updateMarkerAddress(str){
      document.getElementById('address').innerHTML = str;
  }
+ function geocodePosition(pos){
+     geocoder.geocode({
+         latLng: pos
+     });
+ }
  var map;
  var latLng;
  var geocoder;
  function initialize(){
      geocoder= new google.maps.Geocoder();
-     latLng = new google.mapsLatLng(19.323447,-99.179642);
+     latLng = new google.maps.LatLng(19.323447,-99.179642);
      map = new google.maps.Map(document.getElementById('mapa'),{
          zoom: 20,
          center: latLng
