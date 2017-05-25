@@ -25,7 +25,8 @@ function updateMarkerPosition(latLng){
      latLng = new google.maps.LatLng(19.323447,-99.179642);
      map = new google.maps.Map(document.getElementById('mapa'),{
          zoom: 20,
-         center: latLng
+         center: latLng,
+         mapTypeId: 'satellite'
          
      });
      marker = new  google.maps.Marker({
@@ -38,9 +39,6 @@ function updateMarkerPosition(latLng){
      updateMarkerPosition(latLng);
      geocodePosition(latLng);
      //Draggable marcadoor
-     google.maps.event.addListener(marker,'dragstart', function(){
-         updateMarkerAddress('Dragging...');
-     });
      google.maps.event.addListener(marker, 'drag', function(){
          updateMarkerPosition(marker.getPosition());
      });

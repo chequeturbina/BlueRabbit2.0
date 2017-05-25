@@ -113,7 +113,8 @@ public class controladorbase {
          model.addAttribute("nombre", nombre);
          model.addAttribute("descripcion", descripcion);
          model.addAttribute("menu", menu);
-        
+         List um = puesto_db.listarpuestos();
+         model.addAttribute("puestos",um);
         return new ModelAndView("modificarpuesto",model);
     }
     }
@@ -135,7 +136,8 @@ public class controladorbase {
          model.addAttribute("nombre", nombre);
          model.addAttribute("descripcion", descripcion);
          model.addAttribute("menu", menu);
-        
+         List um = puesto_db.listarpuestos();
+         model.addAttribute("puestos",um);
         return new ModelAndView("eliminarpuesto",model);
     }
     }

@@ -43,6 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
 			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
                         <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
@@ -68,17 +69,17 @@
                                     <h4>
                                     <div class="col-xs-5 btn-group">
                                             <input type="hidden" value = "${nombre}" name="nombrebuscar">
-                                            <input class="form-control" type="text" value = "${nombre}" name ="nombre" readonly="readonly"readonly="readonly" >
-                                            <br>
+                                            <input class="form-control" type="text" value = "${nombre}" name ="nombre" readonly="readonly" >
+                                           
                                             <textarea class="form-control" rows="5"  name ="descripcion" readonly="readonly">${descripcion}</textarea>
-                                            <br>
+                                           
                                             <textarea class="form-control" rows="5" name ="menu" readonly="readonly">${menu}</textarea>
                                             <button class="btn btn-primary">Eliminar</button>
                                     </div>
                                     </h4>
                                 </form>
                                             
-                                            <a href="listapuesto">Lista de Puestos </a>
+                                    
                                             <div class="table-responsive">
                                     <table class="table .table-condensed">
                                         <thead>

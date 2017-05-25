@@ -21,14 +21,6 @@
     </head>
 
     <body>
-            <div>
-            <ul>
-                <li><a href="#">Puestos</a></li>
-                <li><a href="#">Nosotros</a></li>
-                <li style="float:right"><a class="active" href="iniciarSesion">Iniciar Sesión</a></li>
-                <li style="float:right"><a class="active1" href="registrar">Registrarse</a></li>
-            </ul>
-        </div>
 
 	<!-- ========== HEADER SECTION ========== -->
 	<div id="headerwrap">

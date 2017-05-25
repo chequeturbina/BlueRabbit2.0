@@ -43,6 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home_admi' />">Home</a>
 			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
 			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
                         <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
                         <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
@@ -72,7 +73,7 @@
                                             
                                             <textarea class="form-control" rows="5"  name ="descripcion">${descripcion}</textarea>
                                             <textarea class="form-control" rows="5" name ="menu">${menu}</textarea>
-                                            <button class="btn btn-primary " onclick="alert('Puesto Modificado')">Modificar</button>
+                                            <button class="btn btn-primary ">Modificar</button>
                                     </div>
                                     </h4>
                                 </form>

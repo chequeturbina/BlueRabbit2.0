@@ -21,8 +21,8 @@ public class Mensajero {
  
         public void enviaCorreo(String correo, String contrasenia) {
         
-        final String username = "fletcher@ciencias.unam.mx";
-	final String password = "bankai6669";
+        final String username = "mezamartinezzz@gmail.com";
+	final String password = "Huevos12";
 
         Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -41,7 +41,7 @@ public class Mensajero {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("fletcher@ciencias.unam.mx"));
+			message.setFrom(new InternetAddress("mezamartinezzz@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(correo));
                         message.setSubject("Alta en sistema Blue Rabbit");

@@ -1,20 +1,21 @@
 <%-- 
-    Document   : home_admi
-    Created on : 26/04/2017, 09:55:08 AM
-    Author     : Abraham
+    Document   : errorP
+    Created on : 8/05/2017, 09:12:24 PM
+    Author     : emmanuel
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
-        <meta charset="utf-8">
+       <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
         
         <link rel="shortcut icon"  href="imagenes/favicon.png">
-        <title>Administrador</title>
+        <title>Alert</title>
         
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
@@ -31,72 +32,39 @@
         
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
-        
     </head>
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
-       
-      
-        <!-- Menu -->
-	<nav class="menu" id="theMenu">
-		<div class="menu-wrap">
-			
-			<i class="icon-remove menu-close"></i>
-                        <a href="<c:url value = '/home_admi' />">Home</a>
-			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
-                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
-			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
-                        <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
-                        <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
-		</div>
-		
-		<!-- Menu button -->
-		<div id="menuToggle"><i class="icon-reorder"></i></div>
-	</nav>
-
-
-	
-	<!-- ========== HEADER SECTION ========== -->
+        
+             <!-- ========== Mensaje ========== -->
 	<section id="home" name="home"></section>
 	<div id="headerwrap">
 		<div class="container">
 			<div class="row">
-				<h1>ADMINISTRADOR</h1>
+				<h1>${alerta}</h1>
 				<br>
-				<h3>Desliza el menu para realizar una accion.</h3>
+				<h3>Regresar a la Pagina de Inicio</h3>
 				<br>
+                                <br>
+                                <form name="crearPuesto" method="GET"  action="<c:url value = '/' />">
+                                <button type="submit" class="button button-block" />Regresar</button>
+                                </form>
+                                <br>
 				<br>
 				<div class="col-lg-6 col-lg-offset-3">
 				</div>
 			</div>
 		</div><!-- /container -->
-	</div><!-- /headerwrap -->
-
-	
-    <div class="container">
-            <div class="row">
-                <div style="background-color: black;" align="center" class="col-sm-12">
-                    <h1>Administrar Usuarios</h1>
-                    <br><br><br>
-                    <h4><a href="lista">Lista de Usuarios</a></h4>
-                    <br>
-                    <h4><a href="registrar">Registrar Usuarios</a></h4>
-                    <br>
-                </div>
-            </div>
-                
-        </div>
-        
-        
+	</div><!-- /headerwrap --> 
+             
     <script src="js/classie.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/smoothscroll.js"></script>
     <script src="js/main.js"></script>
-   
+        
+    </body>
     
     <!-- Hasta Abajo -->
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>
-    
-    </body>
 </html>

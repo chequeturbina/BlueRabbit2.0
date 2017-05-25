@@ -41,6 +41,12 @@ public class Controlador {
     public ModelAndView agregarpuesto(ModelMap model) {
         return new ModelAndView("agregarpuesto", model);
     }
+    @RequestMapping(value = "/verpuestos")
+    public ModelAndView verpuestos(ModelMap model) {
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
+        return new ModelAndView("verpuestos", model);
+    }
     @RequestMapping(value = "/modificarpuesto")
     public ModelAndView modificarpuesto(ModelMap model) {
         List um = puesto_db.listarpuestos();
@@ -76,6 +82,7 @@ public class Controlador {
         validoC = vc.validar(correo);
         validoN = vc.validarNombre(nombre);
         System.out.println("correo: "+validoC+" nombre: "+validoN);
+        String err = "";
         if(validoC & validoN){
             String contrasena = request.getParameter("contrasena");
             mj.enviaCorreo(correo, contrasena);
@@ -85,11 +92,14 @@ public class Controlador {
             usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera);
         
             Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
-            System.out.println("Usario creado exitosamente");
+             err = "Gracias Por Registrarte";
+             model.addAttribute("alerta",err);
+             return new ModelAndView("alertusuario",model);
         }else{
-            System.out.println("ERROR");
+             err = "Error verifique sus datos";
+             model.addAttribute("alerta",err);
+             return new ModelAndView("errorP",model);
         }
-        return new ModelAndView("registrar", model);
     }    
     
     @RequestMapping(value="/lista",method = RequestMethod.GET)

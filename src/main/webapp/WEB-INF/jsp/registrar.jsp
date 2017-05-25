@@ -33,10 +33,10 @@
           </div>
           
           <div class="field-wrap">
-            <input type="password"required autocomplete="off" placeholder="Contraseña" name="contrasena"/>
+            <input type="password" required autocomplete="off" placeholder="Contraseña" name="contrasena"/>
           </div>
                <div class="field-wrap">
-            <input type="text"required autocomplete="off" list= "carrera" placeholder="Selecciona tu carrera" name="carrera"/>
+            <input type="text" required autocomplete="off" list= "carrera" placeholder="Selecciona tu carrera" name="carrera"/>
               <datalist id="carrera">
                    <option value="Actuaria"/>
                    <option value="Biología"/>
@@ -57,12 +57,14 @@
             <input type="text" placeholder="Selecciona un archivo" name="url_foto">
           </div-->
           
-          <button type="submit" class="button button-block" onclick="alert('Usuario Agregado')"/>Enviame :) </button>
+          <button type="submit" class="button button-block" />Enviame :) </button>
           </form>
 
         <!-- Hasta Abajo -->
         <br>
-        <a href="lista">Lista de Usuarios</a>    
+        <form name="crearPuesto" method="GET"  action="<c:url value = '/' />">
+            <button type="submit" class="button" />Salir</button>
+        </form>
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>

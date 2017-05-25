@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="css/mapadmin.css">
+        <link rel="stylesheet" href="css/mapaindex.css">
         
         <script src="js/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -53,37 +54,74 @@
 	</nav>
 
 	
-        <!-- ========== Agregar Puesto ========== -->
-	<section id="agregarpuesto" name="agregarpuesto"></section>
+        <!-- ========== Ver Puestos ========== -->
 	<div id="headerwrap">
 		<div class="container">
-			<div class="row">
-                            <div id='address'></div>
-				<h3>Agregar Puesto</h3>
-                                <div class="col-xs-5 btn-group">
-                                    <form name="crearPuesto" method="GET"  action="<c:url value = '/crearPuesto' />">
-                                            <input class="form-control" required autocomplete="off" type="text"  name ="nombre" placeholder="Nombre"/>
-                                            <br>
-                                            <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto"  name ="descripcion"></textarea>
-                                            <br>
-                                            <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto"  name ="menu"></textarea>
-                                            <br>
-                                            <p>Latitud</p>
-                                            <input type="float" required autocomplete="off" class="form-control" id="latitud" name="latitud" readonly="readonly"/>
-                                            <br>
-                                            <p>Longitud</p>
-                                            <input type="float" required autocomplete="off" class="form-control" id="longitud" name ="longitud" readonly="readonly"/>
-                                            <br>
-                                            <input type="submit" value="Agregar"/>
-                                </div>    
-                                </form>
-                                   <div id="mapa">
-                                       <script src="js/mapadmin.js"></script>
-                                       <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initialize"async defer></script>
-			</div>    
+			<div id="mapa">
+                            <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initMap"async defer></script>
+                           
 			</div>
-			</div>
-		</div>
+                    
+		</div><!-- /container -->
+	</div><!-- /headerwrap -->
+        <script>
+            function ventanaInfo(descripcion,nombre){
+                var coso = '<div id="content">'+
+                           '<div id="siteNotice">'+
+                           '</div>'+
+                           '<hl id="firstHeading" class="firstHeading">'+ nombre +'</hl'+
+                           '<div id="bodycontent">'+
+                           '<h2>' + descripcion + '</h2>'+
+                           '</div>'+
+                           '</div>';
+                return coso;
+            }
+            
+            function initMap() {
+                var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                markerLat=[
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            <c:out value="${um.latitud}"/>,
+                        </c:forEach>];
+                markerLong=[
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            <c:out value="${um.longitud}"/>,
+                        </c:forEach>];
+                markerName = [
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            "${um.nombre}",
+                        </c:forEach>];
+                markerDes = [
+                        <c:forEach var="um" items="${puestos}" varStatus="status">
+                            "${um.descripcion}",
+                        </c:forEach>];
+                            
+                            var map = new google.maps.Map(document.getElementById('mapa'), {
+                            zoom: 19,
+                            center: {lat: 19.323447, lng: -99.179642}
+                        });
+                        var infowindow = new google.maps.InfoWindow();
+                        var i;
+                        
+                            for (i=0; i < markerLat.length; i++){
+                                var marker = new google.maps.Marker({
+                                   position: new google.maps.LatLng(markerLat[i],markerLong[i]),
+                                   map: map,
+                                   icon: image,
+                                   title: markerName[i]
+                            });
+                            google.maps.event.addListener(marker, 'click', (function(marker, i){
+                                return function(){
+                                    infowindow.setContent(ventanaInfo(markerDes[i],markerName[i]));
+                                    infowindow.open(map,marker);
+                                }})(marker,i));
+                        }
+                        
+                            google.maps.event.addDomListener(window,'load',initMap);
+                        }
+        </script>
+        
+        
     <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">
