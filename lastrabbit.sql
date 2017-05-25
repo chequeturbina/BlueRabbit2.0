@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `lastrabbit`.`Usuario` (
   `foto` VARCHAR(100) NOT NULL,
   `edad` INT NOT NULL,
   `carrera` VARCHAR(100) NOT NULL,
+  `rol_usuario` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
@@ -55,21 +56,21 @@ DROP TABLE IF EXISTS `lastrabbit`.`Comentarios` ;
 
 CREATE TABLE IF NOT EXISTS `lastrabbit`.`Comentarios` (
   `idComentarios` INT NOT NULL AUTO_INCREMENT,
-  `comentarios` VARCHAR(200) NOT NULL,
-  `calificaion` INT NOT NULL,
-  `Usuario_idUsuario` INT NOT NULL,
   `Puesto_idPuesto` INT NOT NULL,
-  PRIMARY KEY (`idComentarios`, `Puesto_idPuesto`),
-  INDEX `fk_Comentarios_Usuario_idx` (`Usuario_idUsuario` ASC),
-  INDEX `fk_Comentarios_Puesto1_idx` (`Puesto_idPuesto` ASC),
-  CONSTRAINT `fk_Comentarios_Usuario`
-    FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `lastrabbit`.`Usuario` (`idUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Comentarios_Puesto1`
+  `Usuario_idUsuario` INT NOT NULL,
+  `comentarios` VARCHAR(250) NOT NULL,
+  `calificacion` INT NOT NULL,
+  PRIMARY KEY (`idComentarios`, `Puesto_idPuesto`, `Usuario_idUsuario`),
+  INDEX `fk_Puesto_has_Usuario_Usuario1_idx` (`Usuario_idUsuario` ASC),
+  INDEX `fk_Puesto_has_Usuario_Puesto1_idx` (`Puesto_idPuesto` ASC),
+  CONSTRAINT `fk_Puesto_has_Usuario_Puesto1`
     FOREIGN KEY (`Puesto_idPuesto`)
     REFERENCES `lastrabbit`.`Puesto` (`idPuesto`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Puesto_has_Usuario_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `lastrabbit`.`Usuario` (`idUsuario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -78,3 +79,5 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO Usuario(idUsuario,nombre,correo,contrasena,foto,edad,carrera,rol_usuario) VALUES (1,'administrador','kirasan_@hotmail.com','admi123','miFotoURL',23,'Ciencias de la Computación','ROLE_ADMIN');
