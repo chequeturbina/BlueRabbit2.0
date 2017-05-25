@@ -20,7 +20,7 @@
     <mvc:resources mapping="/css/*" location="/css/"/>
     <mvc:resources mapping="/imagenes/*" location="/imagenes/"/>    
     <mvc:resources mapping="/webjars/*" location="classpath:/META-INF/resources/webjars/"/>
-    
+    <mvc:resources mapping="/fonts/*" location="/fonts/"/>
     <!-- Se añade para poder utilizar la etiqueta @Autowiring dentro del paquete Controlador-->
     <context:annotation-config/>
    

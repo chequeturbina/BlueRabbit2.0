@@ -32,7 +32,7 @@
 			<div class="row">
 				<h1>${info}</h1>
                                 <br>
-                                <h2><a href="iniciarSesion">Inicie Sesión</a></h2>
+                                <h2><a href="iniciar">Inicie Sesión</a></h2>
                                 <h2><a href="registrar">Registrarse</a></h2>
 				<div class="col-lg-6 col-lg-offset-3">
 				</div>

@@ -41,12 +41,12 @@
 		<div class="menu-wrap">
 			
 			<i class="icon-remove menu-close"></i>
-                        <a href="<c:url value = '/home_admi' />">Home</a>
-			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/home' />">Home</a>
+			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
-			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
-                        <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
-                        <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
+			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!--solo admi-->
+                        <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
 		
 		<!-- Menu button -->
@@ -59,13 +59,13 @@
 	<div id="headerwrap">
 		<div class="container">
                                     <h3>Modificar Puesto</h3>
-                                    <form method="POST" action="/BlueRabbit/puesto">
+                                    <form method="POST" action="/BlueRabbit/puesto"> <!--posible error-->
                                     <div class="search">
                                         <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" id="nombre2" name="nombre"/>
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </div>
                                 </form>
-                                    <form method="POST"  action="/BlueRabbit/actualizarpuesto">
+                                    <form method="POST"  action="/BlueRabbit/actualizarpuesto"> <!--posible error-->
                                     <h4>
                                     <div class="col-xs-5 btn-group">
                                             <input type="hidden" value = "${nombre}" name="nombrebuscar">
@@ -110,9 +110,9 @@
                 <div style="background-color: black;" align="center" class="col-sm-12">
                     <h1>Administrar Usuarios</h1>
                     <br><br><br>
-                    <h4><a href="lista">Lista de Usuarios</a></h4>
+                    <h4><a href="lista">Lista de Usuarios</a></h4> <!--solo admi-->
                     <br>
-                    <h4><a href="registrar">Registrar Usuarios</a></h4>
+                    <h4><a href="<c:url value="/registrar"/>">Registrar Usuarios</a></h4> <!--TODOS--!
                     <br>
                 </div>
             </div>

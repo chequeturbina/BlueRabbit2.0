@@ -76,7 +76,7 @@
 		<div class="container">
 			<div class="row">
 				<h3>Agregar Puesto</h3>
-                                 <form method="submit" action="/BlueRabbit/registro">
+                                 <form method="submit" action="/BlueRabbit/registro"> <!--Verificar que lo mande a admi -->
                                 <div class="col-xs-5 btn-group">
                                             <input type="text" class="form-control" placeholder="Nombre de Puesto" id="nombremod">
                                             <textarea class="form-control" rows="5" placeholder="Descripcion de Puesto" id="comment"></textarea>
@@ -98,7 +98,7 @@
 	
         
         <!-- ========== Modificar Puesto ========== -->
-	<section id="modificarpuesto" name="modificarpuesto"></section>
+	<section id="modificarpuesto" name="modificarpuesto"></section> <!--Verificar que lo mande a admi -->
 	<div id="headerwrap">
 		<div class="container">
                                     <h3>Modificar Puesto</h3>

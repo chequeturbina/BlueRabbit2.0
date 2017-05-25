@@ -2,8 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd" >
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+                           
     
     <!-- Se especifica la ruta del archivo que tendra los datos de la conexión a la BD,
          en este caso el archivo se llama database.properties y se encuentra dentro de 
@@ -50,5 +54,43 @@
     <bean id="ComentariosModel" class="Modelo.ComentariosModel"
         p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"
     />
+    
+     <!-- SpringSecurity -->
+
+    <security:http pattern="/css/*" security="none"/>
+    <security:http pattern="/imagenes/*" security="none"/>
+    <security:http pattern="/fonts/*" security="none"/>
+    <security:http pattern="/font/*" security="none"/>
+    <security:http pattern="/js/*" security="none"/>
+    
+    <security:http auto-config='true'>
+        <security:intercept-url pattern="/" access="permitAll" />
+        <security:intercept-url pattern="/administrador/**" access="hasAuthority('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/user/**" access="hasAuthority('ROLE_USER')" />
+        <security:form-login login-page="/iniciar"
+                             username-parameter="username"  
+                             password-parameter="password"
+                             login-processing-url="/j_spring_security_check"
+                             authentication-failure-url="/ErrorIH"
+                             default-target-url="/home"
+                             always-use-default-target="true"/>
+        <security:csrf disabled="true"/>
+        <security:access-denied-handler error-page="/error403" />
+        <security:logout logout-success-url="/iniciar"
+                         delete-cookies="JSESSIONID"/>
+        
+    </security:http>
+    
+   <!-- authetication role -->
+    
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:jdbc-user-service data-source-ref="dataSource" 
+             users-by-username-query= "select correo, contrasena,1 from Usuario where correo=?"
+             authorities-by-username-query="select correo, rol_usuario from Usuario where correo=?"
+            />
+        </security:authentication-provider>
+    </security:authentication-manager>
+        
     
 </beans>

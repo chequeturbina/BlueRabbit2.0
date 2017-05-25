@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,14 +24,14 @@
 
           <h2>Iniciar Sesión 🐰</h2>
           
-          <form method="GET" action="/BlueRabbit/usuarioComun">
+          <form method="POST" action="j_spring_security_check">
 
           <div class="field-wrap">
-            <input type="text" required autocomplete="off" placeholder="Correo" name="correo"/>  <!--necesita el type=email-->
+            <input type="text" required autocomplete="off" placeholder="Correo" id="username" name="username"/>  <!--necesita el type=email-->
           </div>
           
           <div class="field-wrap">
-            <input type="password" autocomplete="off" placeholder="Contraseña" name="contrasena"/> <!--necesita el required-->
+            <input type="password" autocomplete="off" placeholder="Contraseña" id="password" name="password"/> <!--necesita el required-->
           </div>
                           <button>Aceptar</button>
           </form>

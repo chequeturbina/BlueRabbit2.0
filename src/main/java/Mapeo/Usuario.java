@@ -45,12 +45,14 @@ public class Usuario {
     @Column
     private String carrera;
     
-
+    @Column
+    private String rol_usuario;
+    
     @OneToMany(mappedBy="usuario")
     private Set<Comentarios> comentarios = new HashSet<>();
 
     
-    public Usuario(int idUsuario, String nombre, String correo, String contrasena, String foto, int edad, String carrera) {
+    public Usuario(int idUsuario, String nombre, String correo, String contrasena, String foto, int edad, String carrera,String rol_usuario) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
@@ -58,6 +60,7 @@ public class Usuario {
         this.foto = foto;
         this.edad = edad;
         this.carrera = carrera;
+        this.rol_usuario = rol_usuario;
     }
 
     public Usuario(){}
@@ -126,6 +129,12 @@ public class Usuario {
         this.carrera = carrera;
     }
     
- 
-    
+    public String getRol_usuario() {
+        return rol_usuario;
+    }
+
+    public void setRol_usuario(String rol_usuario) {
+        this.rol_usuario = rol_usuario;
+    }
+   
 }

@@ -39,12 +39,12 @@
 		<div class="menu-wrap">
 			
 			<i class="icon-remove menu-close"></i>
-                        <a href="<c:url value = '/home_admi' />">Home</a>
-			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/home' />">Home</a>
+			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
-                        <a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
-                        <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
-                        <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
+                        <a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!--solo admi-->
+                        <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
 		
 		<!-- Menu button -->

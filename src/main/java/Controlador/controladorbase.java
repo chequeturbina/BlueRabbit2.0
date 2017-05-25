@@ -30,14 +30,14 @@ public class controladorbase {
     PuestoModel puesto_db;
     
      @RequestMapping(value="/")
-    public ModelAndView inicio(ModelMap model){
+    public ModelAndView index(ModelMap model){
         List um = puesto_db.listarpuestos();
         model.addAttribute("puestos",um);
         return new ModelAndView("index",model);
     }
     
     //Agrega un puesto a la base
-    @RequestMapping(value="/crearPuesto", method = RequestMethod.GET)
+    @RequestMapping(value="/administrador/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -65,7 +65,7 @@ public class controladorbase {
     }
     
     //Modifica el puesto
-    @RequestMapping(value="/actualizarpuesto", method = RequestMethod.POST)
+    @RequestMapping(value="/administrador/actualizarpuesto", method = RequestMethod.POST)
                public ModelAndView actualizarpuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
                  String nombrebuscar = request.getParameter("nombrebuscar");
                  String nombre = request.getParameter("nombre");
@@ -97,7 +97,7 @@ public class controladorbase {
                }
     
     //Busca Puesto para modificar
-    @RequestMapping(value="/puesto", method = RequestMethod.POST)
+    @RequestMapping(value="/administrador/puesto", method = RequestMethod.POST) //Este no sé si va aqui, por los usuarios
     public ModelAndView buscarPuesto(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
         Puesto puesto = puesto_db.buscarPuesto(p);
@@ -120,7 +120,7 @@ public class controladorbase {
     }
     
     //Buscador de puesto para eliminarlo
-    @RequestMapping(value="/puesto1", method = RequestMethod.POST)
+    @RequestMapping(value="/administrador/puesto1", method = RequestMethod.POST)
     public ModelAndView buscarPuesto1(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
         Puesto puesto = puesto_db.buscarPuesto(p);
@@ -143,7 +143,7 @@ public class controladorbase {
     }
     
     //Eliminar Puesto
-    @RequestMapping(value = "/eliminar", method = RequestMethod.GET)
+    @RequestMapping(value = "/administrador/eliminar", method = RequestMethod.GET)
     public ModelAndView eliminar(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
         Puesto puesto = puesto_db.buscarPuesto(nombre);

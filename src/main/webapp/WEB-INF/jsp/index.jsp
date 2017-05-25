@@ -27,7 +27,7 @@
     
         <div>
             <ul>
-                <li style="float:right"><a class="active" href="iniciarSesion">Iniciar Sesión</a></li>
+                <li style="float:right"><a class="active" href="iniciar">Iniciar Sesión</a></li>
                 <li style="float:right"><a class="active1" href="registrar">Registrarse</a></li>
             </ul>
         </div>

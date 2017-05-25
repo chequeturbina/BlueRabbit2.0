@@ -31,7 +31,7 @@ public class UsuarioModel {
     * @param contrasena
     * @param url_foto
     */
-    public void crearUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera){
+    public void crearUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera, String rol_usuario){
         Session session = sessionFactory.openSession();
         
         Usuario usuario = new Usuario();
@@ -41,6 +41,7 @@ public class UsuarioModel {
         usuario.setFoto(url_foto);
         usuario.setEdad(edad);
         usuario.setCarrera(carrera);
+        usuario.setRol_usuario(rol_usuario); //Para agregar un nuevo admin, aquí se modifica        
         
         try{
             session = sessionFactory.openSession();
@@ -64,7 +65,7 @@ public class UsuarioModel {
     * @param contrasena
     * @param url_foto
     */
-    public void actualizarUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera){
+    public void actualizarUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera, String rol_usuario){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         
@@ -75,6 +76,7 @@ public class UsuarioModel {
         usuario.setFoto(url_foto);
         usuario.setEdad(edad);
         usuario.setCarrera(carrera);
+        usuario.setRol_usuario(rol_usuario);
         
         try{
             

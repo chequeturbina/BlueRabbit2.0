@@ -23,7 +23,7 @@
                 <tr>
  
                     <td>${us.idUsuario}</td>
-                    <td><a href="<c:url value="/usuario?nombre=${us.nombre}"/>">${us.nombre}</a></td>
+                    <td><a href="<c:url value="usuario?nombre=${us.nombre}"/>">${us.nombre}</a></td>
                     <td>${us.correo}</td>
                     <td>${us.contrasena}</td>                    
                     <td>${us.edad}</td>                    
@@ -33,7 +33,7 @@
         </table>
                     
     </div>
-        <a href="<c:url value="/usuarioComun?correo=admin&password="/>">Inicio</a>
+        <a href="<c:url value="/home"/>">Inicio</a>
     </body>
 </html>
     </body>

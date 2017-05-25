@@ -62,8 +62,8 @@
 
         <!-- Hasta Abajo -->
         <br>
-        <form name="crearPuesto" method="GET"  action="<c:url value = '/' />">
-            <button type="submit" class="button" />Salir</button>
+        <form name="crearPuesto" method="GET"  action="<c:url value = '/home' />">
+            <button type="submit" class="button" />Salir</button> <!--aqui que-->
         </form>
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>

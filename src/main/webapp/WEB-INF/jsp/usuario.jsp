@@ -21,8 +21,8 @@
         <h2>Edad: ${usuario.edad}</h2>
         <h2>Carrera: ${usuario.carrera}</h2>
         
-        <a href="lista">Lista de usuarios</a>
-        <a href="<c:url value="/borrar?id=${usuario.idUsuario}"/>">Eliminar usuario</a>
-        <a href="<c:url value="/usuarioComun?correo=admin&password="/>">Inicio</a>        
+        <a href="lista">Lista de usuarios</a> <!--solo admi-->
+        <a href="<c:url value="/administrador/borrar?id=${usuario.idUsuario}"/>">Eliminar usuario</a> <!--posible error-->
+        <a href="<c:url value="/home"/>">Inicio</a>         
         </body>
 </html>

@@ -28,7 +28,7 @@
             <ul>
                 <li><a href="#">Puestos</a></li>
                 <li><a href="#">Nosotros</a></li>
-                <li style="float:right"><a class="active1" href="/BlueRabbit">Cerrar Sesión</a></li>
+                <li style="float:right"><a class="active1" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
                 <li style="float:right"><a class="active" href="<c:url value="/usuario?nombre=${nombre}"/>">${nombre}</a></li>
                 <!--Hacer que lo diriga a los detalles del usuario para modificar sus datos, y quitar, ver usuarios etc-->
             </ul>

@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link rel="shortcut icon"  href="imagenes/favicon.png">
+        <link rel="shortcut icon"  href="imagenes/favicon.png" >
         <title>Administrador</title>
         
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="css/search.css">
         <link rel="stylesheet" href="css/mapadmin.css">
         
-        <script src="js/jquery.min.js"></script>
+        <script src="<c:url value =" /js/jquery.min.js"/> "/></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
@@ -41,12 +41,12 @@
 		<div class="menu-wrap">
 			
 			<i class="icon-remove menu-close"></i>
-                        <a href="<c:url value = '/home_admi' />">Home</a>
-			<a href="<c:url value = '/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/home' />">Home</a>
+			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
-			<a href="<c:url value = '/modificarpuesto' />">Modificar Puesto</a>
-                        <a href="<c:url value = '/eliminarpuesto' />">Eliminar Puesto</a>
-                        <li style="float:right"><a class="smoothScroll" href="/BlueRabbit">Cerrar Sesión</a></li>
+			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!-- solo admi-->
+                        <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
 		
 		<!-- Menu button -->
@@ -77,9 +77,9 @@
                 <div style="background-color: black;" align="center" class="col-sm-12">
                     <h1>Administrar Usuarios</h1>
                     <br><br><br>
-                    <h4><a href="lista">Lista de Usuarios</a></h4>
+                    <h4><a href="lista">Lista de Usuarios</a></h4> <!--solo admi-->
                     <br>
-                    <h4><a href="registrar">Registrar Usuarios</a></h4>
+                    <h4><a href="<c:url value="/registrar"/>">Registrar Usuarios</a></h4> <!--TODOS--!
                     <br>
                 </div>
             </div>
