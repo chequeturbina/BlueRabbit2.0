@@ -38,12 +38,6 @@ public class Controlador {
     @Autowired
     PuestoModel puesto_db;
     
-    /*Página para enviar al inicio de nuestro
-    @RequestMapping(value = "/")
-    public String index(ModelMap model) {
-        return "index";
-    }    
-    */
     @RequestMapping(value = "/home")
     public ModelAndView inicio(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -132,7 +126,6 @@ public class Controlador {
     
     @RequestMapping(value="/administrador/lista",method = RequestMethod.GET) //admin
     public ModelAndView lista(ModelMap model,HttpServletRequest request){
-        System.out.println("Entre a la lista");
         List u = usuario_db.listarUsuarios(); 
         model.addAttribute("usuarios",u);
         return new ModelAndView("lista",model);
@@ -146,7 +139,7 @@ public class Controlador {
         return new ModelAndView("redirect:/administrador/lista", model);
     }
 
-    @RequestMapping(value="/administrador/usuario", method = RequestMethod.GET) //Admi
+    @RequestMapping(value="/administrador/usuario", method = RequestMethod.GET) //Admi porque se borra desde aquí
     public ModelAndView buscarUsuario(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
         Usuario usuario = usuario_db.buscarUsuario(p);

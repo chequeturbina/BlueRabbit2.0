@@ -13,11 +13,14 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -29,13 +32,21 @@ public class controladorbase {
     @Autowired
     PuestoModel puesto_db;
     
-     @RequestMapping(value="/")
-    public ModelAndView index(ModelMap model){
-        List um = puesto_db.listarpuestos();
-        model.addAttribute("puestos",um);
+   
+    @RequestMapping(value = "/")
+    public ModelAndView index(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String currentPrincipalName = authentication.getName();
+    List um = puesto_db.listarpuestos();
+    model.addAttribute("puestos",um);
+        if(String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities()).equals("[ROLE_ADMIN]")){
+            return new ModelAndView("redirect:/administrador/home");
+        }if(String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities()).equals("[ROLE_USER]")){
+            return new ModelAndView("redirect:/user/home");
+        }
         return new ModelAndView("index",model);
     }
-    
+       
     //Agrega un puesto a la base
     @RequestMapping(value="/administrador/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {

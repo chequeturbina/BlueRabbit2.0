@@ -59,13 +59,13 @@
 	<div id="headerwrap">
 		<div class="container">
                                     <h3>Modificar Puesto</h3>
-                                    <form method="POST" action="/BlueRabbit/puesto"> <!--posible error-->
+                                    <form method="POST" action="/BlueRabbit/administrador/puesto"> <!--posible error-->
                                     <div class="search">
                                         <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" id="nombre2" name="nombre"/>
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </div>
                                 </form>
-                                    <form method="POST"  action="/BlueRabbit/actualizarpuesto"> <!--posible error-->
+                                    <form method="POST"  action="/BlueRabbit/administrador/actualizarpuesto"> <!--posible error-->
                                     <h4>
                                     <div class="col-xs-5 btn-group">
                                             <input type="hidden" value = "${nombre}" name="nombrebuscar">

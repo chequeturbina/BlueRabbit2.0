@@ -13,10 +13,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link rel="shortcut icon"  href="imagenes/favicon.png" >
+        <link rel="shortcut icon"  href="<c:url value = 'imagenes/favicon.png' /> ">
         <title>Administrador</title>
         
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="<c:url value = 'css/bootstrap.css' /> ">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
