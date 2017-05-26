@@ -124,21 +124,6 @@
         </script>
         
         
-    <div class="container">
-            <div class="row">
-                <div style="background-color: black;" align="center" class="col-sm-12">
-                    <h1>Administrar Usuarios</h1>
-                    <br><br><br>
-                    <h4><a href="lista">Lista de Usuarios</a></h4> <!--solo admi-->
-                    <br>
-                    <h4><a href="<c:url value="/registrar"/>">Registrar Usuarios</a></h4>
-                    <br>
-                </div>
-            </div>
-                
-        </div>
-        
-        
     <script src=" <c:url value="/js/classie.js"/> "></script>
     <script src=" <c:url value="/js/bootstrap.min.js"/> "></script>
     <script src=" <c:url value="/js/smoothscroll.js"/> "></script>
