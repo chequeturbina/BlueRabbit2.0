@@ -62,7 +62,7 @@
 
         <!-- Hasta Abajo -->
         <br>
-        <form name="crearPuesto" method="GET"  action="<c:url value = '/home' />">
+        <form name="crearPuesto" method="GET"  action="<c:url value = '/' />">
             <button type="submit" class="button" />Salir</button> <!--aqui que-->
         </form>
         <footer class="container-fluid bg-4 text-center">

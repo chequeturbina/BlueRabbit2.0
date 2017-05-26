@@ -45,7 +45,7 @@
 				<h3>Regresar a la Pagina de Inicio</h3>
 				<br>
                                 <br>
-                                <form name="crearPuesto" method="GET"  action="<c:url value = 'home' />"> <!--verificar-->
+                                <form name="alerta" method="GET"  action="<c:url value = '/' />"> <!--verificar-->
                                 <button type="submit" class="button button-block" />Regresar</button>
                                 </form>
                                 <br>

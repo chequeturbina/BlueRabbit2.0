@@ -14,24 +14,25 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link rel="shortcut icon"  href="imagenes/favicon.png">
+        <link rel="shortcut icon"  href="<c:url value="/imagenes/favicon.png"/> ">
         <title>Alert</title>
         
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/search.css">
-        <link rel="stylesheet" href="css/mapadmin.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.min.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/search.css"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/mapadmin.css"/>">
         
-        <script src="js/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src=" <c:url value="/js/jquery.min.js"/> "></script>
+        <script src=" <c:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"/> "></script>
+        <script src=" <c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/> "></script>
         
-        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="<c:url value="http://fonts.googleapis.com/css?family=Oswald:400,300,700"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="http://fonts.googleapis.com/css?family=EB+Garamond"/>">
+        
     </head>
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
          <!-- Menu -->
@@ -44,6 +45,7 @@
                         <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
                         <a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
                         <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
 		
@@ -66,10 +68,10 @@
 		</div><!-- /container -->
 	</div><!-- /headerwrap --> 
              
-    <script src="js/classie.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/main.js"></script>
+    <script src=" <c:url value="/js/classie.js"/> "></script>
+    <script src=" <c:url value="/js/bootstrap.min.js"/> "></script>
+    <script src=" <c:url value="/js/smoothscroll.js"/> "></script>
+    <script src=" <c:url value="/js/main.js"/> "></script>
         
     </body>
     

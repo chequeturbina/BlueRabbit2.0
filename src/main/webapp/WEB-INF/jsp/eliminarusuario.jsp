@@ -1,6 +1,6 @@
 <%-- 
-    Document   : agregarpuesto
-    Created on : 27/04/2017, 12:18:06 PM
+    Document   : eliminarpuesto
+    Created on : 13/05/2017, 04:17:58 PM
     Author     : emmanuel
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         
-        <link rel="shortcut icon"  href="<c:url value="/imagenes/favicon.png" /> "/>
+        <link rel="shortcut icon"  href="<c:url value="/imagenes/favicon.png"/> ">
         <title>Administrador</title>
         
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.css"/> ">
@@ -39,12 +39,13 @@
         <!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
+			
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home' />">Home</a>
-			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede agregar -->
-                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a> <!-- TODOS -->
-			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede modificar -->
-                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede eliminar -->
+			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a>
+                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
+			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a>
+                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a>
                         <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
                         <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
@@ -53,38 +54,61 @@
 		<div id="menuToggle"><i class="icon-reorder"></i></div>
 	</nav>
 
-	
-        <!-- ========== Agregar Puesto ========== -->
-	<section id="agregarpuesto" name="agregarpuesto"></section>
+        
+        <!-- ========== Eliminar Usuario ========== -->
+	<section id="eliminarusuario" name="eliminarpuesto"></section>
 	<div id="headerwrap">
 		<div class="container">
-			<div class="row">
-                            <div id='address'></div>
-				<h3>Agregar Puesto</h3>
-                                <div class="col-xs-5 btn-group">
-                                    <form name="crearPuesto" method="GET"  action="<c:url value = '/administrador/crearPuesto' />"> <!-- Creo que va de esta forma, sólo admi puede crear -->
-                                            <input class="form-control" required autocomplete="off" type="text"  name ="nombre" placeholder="Nombre"/>
-                                            <br>
-                                            <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto"  name ="descripcion"></textarea>
-                                            <br>
-                                            <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto"  name ="menu"></textarea>
-                                            <br>
-                                            <p>Latitud</p>
-                                            <input type="float" required autocomplete="off" class="form-control" id="latitud" name="latitud" readonly="readonly"/>
-                                            <br>
-                                            <p>Longitud</p>
-                                            <input type="float" required autocomplete="off" class="form-control" id="longitud" name ="longitud" readonly="readonly"/>
-                                            <br>
-                                            <input type="submit" value="Agregar"/>
-                                </div>    
+                                    <h3>Eliminar Usuario</h3>
+                                    <form method="POST" action="/BlueRabbit/administrador/usuario"> <!--solo admi-->
+                                    <div class="search">
+                                        <input type="text" class="form-control input-sm" maxlength="200" placeholder="Search" id="nombre2" name="correo"/>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
                                 </form>
-                                   <div id="mapa">
-                                       <script src="<c:url value ="/js/mapadmin.js"/> "/></script>
-                                       <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initialize"async defer></script>
-			</div>    
-			</div>
-			</div>
-		</div>
+                                    <form method="GET"  action="/BlueRabbit/administrador/borrar"> <!--solo admi-->
+                                    <h4>
+                                    <div class="col-xs-5 btn-group">
+                                            <input type="hidden" value = "${correo}" name="nombrebuscar">
+                                            <input class="form-control" type="text" value = "${nombre}" name ="nombre" readonly="readonly" >
+                                            <input class="form-control" type="text" value = "${correo}" name ="correo" readonly="readonly" >
+                                            <input class="form-control" type="text" value = "${edad}" name ="edad" readonly="readonly" >
+                                            <input class="form-control" type="text" value = "${carrera}" name ="carrera" readonly="readonly" >
+                                            <button class="btn btn-primary">Eliminar</button>
+                                    </div>
+                                    </h4>
+                                </form>
+                                            
+                                    
+                                            <div class="table-responsive">
+                                    <table class="table .table-condensed">
+                                        <thead>
+                                            <tr class="info">
+            <th>id</th>
+            <th>Nombre</th>
+            <th>correo</th>
+            <th>edad</th>
+            <th>carrera</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+            <c:forEach var="us" items="${usuarios}">
+            <tr class="danger">
+                <td>${us.idUsuario}</td>
+                <td>${us.nombre}</td>
+                <td>${us.correo}</td>
+                <td>${us.edad}</td>
+                <td>${us.carrera}</td>
+            </tr>
+            </c:forEach>
+                                    </tbody>
+        </table>
+                                    </div>
+                                           
+               
+		</div><!-- /container -->
+	</div><!-- /f -->
+
     <div class="container">
             <div class="row">
                 <div style="background-color: black;" align="center" class="col-sm-12">

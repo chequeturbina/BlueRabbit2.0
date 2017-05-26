@@ -164,30 +164,6 @@ public class UsuarioModel {
 
     /**
     * Buscar un usuario por id
-    * @param id
-    */        
-    public Usuario porId(int idUsuario){
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        Usuario usuario = null;
-        try{
-            
-            tx = session.beginTransaction();
-            Query query = session.createQuery("from Usuario where idUsuario = :var");
-            query.setParameter("var", idUsuario);
-            usuario = (Usuario) query.uniqueResult();
-            tx.commit();
-            
-        }catch(Exception e){
-            e.printStackTrace();
-        }finally{
-            session.close();
-        }
-        return usuario;
-    }
- 
-    /**
-    * Buscar un usuario por correo
     * @param correo
     */        
     public Usuario porCorreo(String correo){
@@ -209,6 +185,8 @@ public class UsuarioModel {
         }
         return usuario;
     }
+ 
+    
 
     
 }

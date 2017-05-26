@@ -12,14 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        
-
+        <link rel="shortcut icon"  href="<c:url value="/imagenes/favicon.png"/> ">
         <title>Inicio</title>
 
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/mapaindex.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.min.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/mapaindex.css"/> ">
         
     </head>
     <body>
@@ -31,6 +31,7 @@
                 <li style="float:right"><a class="active1" href="registrar">Registrarse</a></li>
             </ul>
         </div>
+        <!--   MAPA -->
 	<div id="headerwrap">
 		<div class="container">
 			<div id="mapa">

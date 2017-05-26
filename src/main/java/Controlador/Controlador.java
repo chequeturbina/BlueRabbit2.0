@@ -102,9 +102,9 @@ public class Controlador {
         String correo = request.getParameter("correo");
         validoC = vc.validar(correo);
         validoN = vc.validarNombre(nombre);
-        System.out.println("correo: "+validoC+" nombre: "+validoN);
+        Usuario usuario = usuario_db.porCorreo(correo);
         String err = "";
-        if(validoC /*& validoN*/){ //Ahora no validamos el nombre
+        if(validoC /*& validoN*/ & usuario == null){ //Ahora no validamos el nombre
             String contrasena = request.getParameter("contrasena");
             mj.enviaCorreo(correo, contrasena);
             String url_foto = "miURLFOTO";//request.getParameter("url_foto"); /*dejar vacio*/
@@ -120,39 +120,53 @@ public class Controlador {
         }else{
              err = "Error verifique sus datos";
              model.addAttribute("alerta",err);
-             return new ModelAndView("errorP",model);
+             return new ModelAndView("alertusuario",model);
         }
     }    
     
-    @RequestMapping(value="/administrador/lista",method = RequestMethod.GET) //admin
+    //Vista de eliminar Usuario
+    @RequestMapping(value="/administrador/eliminarusuario",method = RequestMethod.GET) //admin
     public ModelAndView lista(ModelMap model,HttpServletRequest request){
         List u = usuario_db.listarUsuarios(); 
         model.addAttribute("usuarios",u);
-        return new ModelAndView("lista",model);
+        return new ModelAndView("eliminarusuario",model);
     }
-
+    
+    //Elimina Usuario
     @RequestMapping(value = "/administrador/borrar", method = RequestMethod.GET)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
-        int idUsuario = Integer.parseInt(request.getParameter("id"));
-        Usuario user = usuario_db.porId(idUsuario);
+        String correo = request.getParameter("correo");
+        Usuario user = usuario_db.porCorreo(correo);
         usuario_db.eliminarUsuario(user);
-        return new ModelAndView("redirect:/administrador/lista", model);
+        String err ="";
+        err = "Usuario Eliminado";
+        model.addAttribute("alerta",err);
+        return new ModelAndView("alert", model);
     }
-
-    @RequestMapping(value="/administrador/usuario", method = RequestMethod.GET) //Admi porque se borra desde aquí
+    
+    //Busca Usuario para eliminarlo
+    @RequestMapping(value="/administrador/usuario", method = RequestMethod.POST) //Admi porque se borra desde aquí
     public ModelAndView buscarUsuario(ModelMap model,HttpServletRequest request){
-        String p = request.getParameter("nombre"); 
-        Usuario usuario = usuario_db.buscarUsuario(p);
-        
-        String nombre = usuario.getNombre();
-        String info = "";
+        String p = request.getParameter("correo"); 
+        Usuario usuario = usuario_db.porCorreo(p);
+        String err = "";
         if (usuario == null){
-            model.addAttribute("info", info+"No se encontro ningun usuarios con ese nombre");
+            err = "No se encontro Usuario con el correo solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
         }else{
-            model.addAttribute("info", info+"El usuario es: "+nombre);
-            model.addAttribute("usuario", usuario);
-        }
-        return new ModelAndView("usuario",model);
+         String nombre = usuario.getNombre();
+         String correo = usuario.getCorreo();
+         int edad = usuario.getEdad();
+         String carrera = usuario.getCarrera();
+         model.addAttribute("nombre", nombre);
+         model.addAttribute("correo", correo);
+         model.addAttribute("edad", edad);
+         model.addAttribute("carrera", carrera);
+         List um = usuario_db.listarUsuarios();
+         model.addAttribute("usuarios",um);
+        return new ModelAndView("eliminarusuario",model);
+    }
     }
     
     @RequestMapping(value = "/iniciar") //todos para iniciar sesión
