@@ -85,7 +85,7 @@
                            '</div>'+
                            '<div id="bodycontent">'+
                            '<form name="index" method="POST"  action="/BlueRabbit/user/home">'+
-                           '<input type="hidden" name="nombrebuscar" value=' + nombre + '>'+
+                           '<input type="hidden" name="nombrebuscar" value="' + nombre + '">' +
                            '<h2>' + nombre + '</h2>'+
                            '<button type="submit" class="button" />Informacion</button>'+
                            '</form>'+
@@ -130,7 +130,7 @@
                             });
                             google.maps.event.addListener(marker, 'click', (function(marker, i){
                                 return function(){
-                                    infowindow.setContent(ventanaInfo(markerDes[i],markerName[i]));
+                                    infowindow.setContent(ventanaInfo(markerName[i]));
                                     infowindow.open(map,marker);
                                 }})(marker,i));
                         }

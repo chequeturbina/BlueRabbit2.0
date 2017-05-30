@@ -6,7 +6,9 @@
 package Controlador;
 
 import Mapeo.Puesto;
+import Mapeo.Usuario;
 import Modelo.PuestoModel;
+import Modelo.UsuarioModel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -31,6 +33,9 @@ public class controladorbase {
    
     @Autowired
     PuestoModel puesto_db;
+    
+    @Autowired
+    UsuarioModel usuario_db;
     
    
     /*Vista Principal*/
@@ -197,21 +202,17 @@ public class controladorbase {
     }
     
     /*Busca el puesto para mostrar su informacion en la vista usuario*/
-
-    /**
-     *
-     * @param model
-     * @param request
-     * @return
-     */
-
     @RequestMapping(value="/user/home", method = RequestMethod.POST)
     public ModelAndView buscarPuestomap1(ModelMap model,HttpServletRequest request){
-        String p = request.getParameter("nombrebuscar"); 
-        Puesto puesto = puesto_db.buscarPuesto(p);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Usuario p = usuario_db.porCorreo(currentPrincipalName);
+        model.addAttribute("usuario", p);
+        String pa = request.getParameter("nombrebuscar"); 
+        Puesto puesto = puesto_db.buscarPuesto(pa);
         String err = "";
         if (puesto != null){
-             String nombre = puesto.getNombre();
+         String nombre = puesto.getNombre();
          String descripcion = puesto.getDescripcion();
          String menu = puesto.getMenu();
          model.addAttribute("nombre", nombre);

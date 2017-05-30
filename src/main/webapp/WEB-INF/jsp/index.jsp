@@ -67,11 +67,9 @@
         <script>
             function ventanaInfo(nombre){
                 var coso = '<div id="content">'+
-                           '<div id="siteNotice">'+
-                           '</div>'+
                            '<div id="bodycontent">'+
                            '<form name="index" method="POST"  action="<c:url value = '/info' />">'+
-                           '<input type="hidden" name="nombrebuscar" value=' + nombre + '>'+
+                           '<input type="hidden" name="nombrebuscar" value="' + nombre + '">' +
                            '<h2>' + nombre + '</h2>'+
                            '<button type="submit" class="button" />Informacion</button>'+
                            '</form>'+
