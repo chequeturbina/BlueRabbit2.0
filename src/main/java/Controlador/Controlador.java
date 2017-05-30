@@ -7,7 +7,6 @@ package Controlador;
 
 
 import Mapeo.Usuario;
-import Mapeo.Puesto;
 import Modelo.UsuarioModel;
 import Modelo.PuestoModel;
 import java.io.IOException;
@@ -38,6 +37,7 @@ public class Controlador {
     @Autowired
     PuestoModel puesto_db;
     
+    /*Home Admi o User*/
     @RequestMapping(value = "/home")
     public ModelAndView inicio(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,35 +49,83 @@ public class Controlador {
         }
         return new ModelAndView("index");
     }
- 
+    
+    /*Home Admi*/
     @RequestMapping(value = "/administrador/home")
     public ModelAndView home_admi(ModelMap model) {
         return new ModelAndView("home_admi", model);
     }
-
+    
+    /*Home User*/
     @RequestMapping(value = "/user/home")
     public ModelAndView home_user(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Usuario p = usuario_db.porCorreo(currentPrincipalName);
+        model.addAttribute("usuario", p);
+        List um = puesto_db.listarpuestos();
+        model.addAttribute("puestos",um);
         return new ModelAndView("home_user", model);
     }
-
     
-    /*EMMANUEL PUESTO*/
+    /*Editar Perfil*/
+    @RequestMapping(value = "/user/editarusuario")
+    public ModelAndView editarusuario(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Usuario p = usuario_db.porCorreo(currentPrincipalName);
+        model.addAttribute("usuario", p);
+        return new ModelAndView("editarusuario", model);
+    }
+    
+    /*Actualizar perfil de la base*/
+    @RequestMapping(value = "/user/actualizarperfil", method = RequestMethod.POST)
+    public ModelAndView actualizarperfil(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
+        String correobuscar = request.getParameter("correobuscar");
+        String nombre = request.getParameter("nombre");
+        String contrasena = request.getParameter("contrasena");
+        Usuario usuario = usuario_db.porCorreo(correobuscar);
+        String err = "";
+        if(usuario == null){
+                      err = "No se encontro el usuario para modificar";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("ErrorIH",model);
+                 }else{
+        if(nombre.equals("") != true){
+            usuario.setNombre(nombre);
+            usuario_db.updateusuario(usuario);
+        }
+        if(contrasena.equals("") != true){
+            usuario.setContrasena(contrasena);
+            usuario_db.updateusuario(usuario);
+        }
+        }
+        err="Perfil Actualizado con exito";
+        model.addAttribute("alerta",err);
+        return new ModelAndView("alertusuario", model);
+    }
+    
+    /*VISTAS ADMINISTRADOR*/
+    /*Agregar Puesto*/
     @RequestMapping(value = "/administrador/agregarpuesto")
     public ModelAndView agregarpuesto(ModelMap model) {
         return new ModelAndView("agregarpuesto", model);
     }
-    @RequestMapping(value = "/verpuestos") //Todos
+    /*Ver Puestos*/
+    @RequestMapping(value = "/administrador/verpuestos")
     public ModelAndView verpuestos(ModelMap model) {
         List um = puesto_db.listarpuestos();
         model.addAttribute("puestos",um);
         return new ModelAndView("verpuestos", model);
     }
-    @RequestMapping(value = "/administrador/modificarpuesto") //Admi
+    /*Modificar Puesto*/
+    @RequestMapping(value = "/administrador/modificarpuesto")
     public ModelAndView modificarpuesto(ModelMap model) {
         List um = puesto_db.listarpuestos();
         model.addAttribute("puestos",um);
         return new ModelAndView("modificarpuesto", model);
     }
+    /*Eliminar Puesto*/
     @RequestMapping(value = "/administrador/eliminarpuesto")
     public ModelAndView eliminarpuesto(ModelMap model) {
         List um = puesto_db.listarpuestos();
@@ -85,12 +133,14 @@ public class Controlador {
         return new ModelAndView("eliminarpuesto", model);
     }
     
-    /*USUARIO*/
+    /* VISTAS USUARIO*/
+    /*Registrar*/
     @RequestMapping(value = "/registrar", method = RequestMethod.GET)//Todos
     public ModelAndView registrar(ModelMap model,HttpServletRequest request) {
         return new ModelAndView("registrar",model);
     }
     
+    /*Registrar Usuario en la base*/
     @RequestMapping(value = "/registrarse", method = RequestMethod.GET) //sólo administrador y anonimos
     public ModelAndView registrarse(ModelMap model,HttpServletRequest request) {
    
@@ -124,15 +174,15 @@ public class Controlador {
         }
     }    
     
-    //Vista de eliminar Usuario
-    @RequestMapping(value="/administrador/eliminarusuario",method = RequestMethod.GET) //admin
+    /*Eliminar Usuario*/
+    @RequestMapping(value="/administrador/eliminarusuario",method = RequestMethod.GET) 
     public ModelAndView lista(ModelMap model,HttpServletRequest request){
         List u = usuario_db.listarUsuarios(); 
         model.addAttribute("usuarios",u);
         return new ModelAndView("eliminarusuario",model);
     }
     
-    //Elimina Usuario
+    /*Elimina Usuario de la Base*/
     @RequestMapping(value = "/administrador/borrar", method = RequestMethod.GET)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String correo = request.getParameter("correo");
@@ -144,7 +194,7 @@ public class Controlador {
         return new ModelAndView("alert", model);
     }
     
-    //Busca Usuario para eliminarlo
+    /*Busca Usuario para eliminarlo*/
     @RequestMapping(value="/administrador/usuario", method = RequestMethod.POST) //Admi porque se borra desde aquí
     public ModelAndView buscarUsuario(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("correo"); 
@@ -169,6 +219,7 @@ public class Controlador {
     }
     }
     
+    /*Iniciar Sesion*/
     @RequestMapping(value = "/iniciar") //todos para iniciar sesión
     public ModelAndView inicia(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -181,9 +232,11 @@ public class Controlador {
         return new ModelAndView("iniciarSesion");
     }
     
+    /*Vista Errores Usuario*/
     @RequestMapping(value="/ErrorIH", method = RequestMethod.GET) //Todos los errores, no sé si va el admi :/
     public ModelAndView error(ModelMap model,HttpServletRequest request){
         return new ModelAndView("ErrorIH",model);
     }
+ 
 
 }

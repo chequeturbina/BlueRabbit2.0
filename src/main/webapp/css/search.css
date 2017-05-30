@@ -12,11 +12,12 @@ and open the template in the editor.
     float: right;
     margin-top: 9px;
     width: 250px;
+    display: inline-block;
 }
 
 .search {
     padding: 5px 0;
-    width: 230px;
+    width: 270px;
     height: 30px;
     position: relative;
     left: 10px;
@@ -25,7 +26,7 @@ and open the template in the editor.
 }
 
     .search input {
-        position: absolute;
+        position: center;
         width: 0px;
         float: Left;
         margin-left: 210px;

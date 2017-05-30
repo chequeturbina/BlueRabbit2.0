@@ -58,33 +58,23 @@ public class UsuarioModel {
         }
     }
     
-    /**
+     /**
     * Actualizar un Usuario y guardarlo en la base de datos
-    * @param nombre
-    * @param correo
-    * @param contrasena
-    * @param url_foto
+     * @param usuario
     */
-    public void actualizarUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera, String rol_usuario){
+    public void updateusuario(Usuario usuario){
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        
-        Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuario.setContrasena(contrasena);
-        usuario.setCorreo(correo);
-        usuario.setFoto(url_foto);
-        usuario.setEdad(edad);
-        usuario.setCarrera(carrera);
-        usuario.setRol_usuario(rol_usuario);
-        
         try{
             
             tx = session.beginTransaction();
             session.update(usuario);
             tx.commit();
             
-        }catch(Exception e){
+        }catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
             e.printStackTrace();
         }finally{
             session.close();

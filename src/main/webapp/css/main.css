@@ -113,7 +113,7 @@ a:after {
 #headerwrap {
 	background: url(../imagenes/header-bg.jpg) no-repeat center top;
 	margin-top: -10px;
-	padding-top:20px;
+	padding-top: 20px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
@@ -148,11 +148,42 @@ a:after {
 }
 
 #headerwrap h3 {
+        margin-top: 10px;
 	color: white;
 	font-size: 30px;
 	font-weight: 100;
-    font-family: 'EB Garamond', serif;
-    font-style: oblique;
+        font-family: 'EB Garamond', serif;
+        font-style: oblique;
+}
+#headerwrap h5 { 
+        margin-top: 5px;
+	color: black;
+	font-size: 50px;
+	font-weight: 100;
+        font-family: 'EB Garamond', serif;
+        font-style: oblique;
+}
+#headerwrap h7 {
+        margin-top: 5px;
+	color: black;
+	font-size: 30px;
+	font-weight: 100;
+        font-family: arial;
+        font-style: oblique;
+}
+#headerwrap h8 {
+        margin-top: 10px;
+	color: black;
+	font-size: 30px;
+	font-weight: 100;
+        font-family: arial;
+        font-style: oblique;
+}
+#headerwrap h9 {
+       	color: white;
+	font-size: 15px;
+	font-weight: 100;
+        font-style: oblique;
 }
 
 #headerwrap .logo {

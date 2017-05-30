@@ -43,7 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home' />">Home</a>
 			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a>
-                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
+                        <a href="<c:url value = '/administrador/verpuestos' />">Ver Puestos</a>
 			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a>
                         <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a>
                         <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->

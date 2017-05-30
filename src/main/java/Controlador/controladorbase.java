@@ -33,6 +33,7 @@ public class controladorbase {
     PuestoModel puesto_db;
     
    
+    /*Vista Principal*/
     @RequestMapping(value = "/")
     public ModelAndView index(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -47,7 +48,7 @@ public class controladorbase {
         return new ModelAndView("index",model);
     }
        
-    //Agrega un puesto a la base
+    /*Agrega un puesto a la base*/
     @RequestMapping(value="/administrador/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
@@ -75,7 +76,7 @@ public class controladorbase {
              return new ModelAndView("alert",model);
     }
     
-    //Modifica el puesto
+    /*Modifica El puesto de la base*/
     @RequestMapping(value="/administrador/actualizarpuesto", method = RequestMethod.POST)
                public ModelAndView actualizarpuesto(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
                  String nombrebuscar = request.getParameter("nombrebuscar");
@@ -83,12 +84,18 @@ public class controladorbase {
                  String descripcion = request.getParameter("descripcion");
                  String menu = request.getParameter("menu");
                  Puesto puesto = puesto_db.buscarPuesto(nombrebuscar);
+                 Puesto puesto1 = puesto_db.buscarPuesto(nombre);
                  String err = "";
                  if(puesto == null){
                       err = "No se encontro el puesto con el nombre solicitado";
                       model.addAttribute("alerta",err);
                       return new ModelAndView("errorP",model);
-                 } else {
+                 }else{
+                     /*if(puesto1 != null){
+                     err = "El puesto ya existe";
+                     model.addAttribute("alerta",err);
+                     return new ModelAndView("errorP",model);
+                     }*/
                      if(nombre.equals("") != true){
                          puesto.setNombre(nombre);
                          puesto_db.update(puesto);
@@ -102,13 +109,14 @@ public class controladorbase {
                          puesto_db.update(puesto);
                      }
                }
+                 
                  err = "Puesto Modificado";
                  model.addAttribute("alerta",err);
                  return new ModelAndView("alert",model);
                }
     
-    //Busca Puesto para modificar
-    @RequestMapping(value="/administrador/puesto", method = RequestMethod.POST) //Este no sé si va aqui, por los usuarios
+    /*Busca el puesto para modificar*/
+    @RequestMapping(value="/administrador/puesto", method = RequestMethod.POST)
     public ModelAndView buscarPuesto(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
         Puesto puesto = puesto_db.buscarPuesto(p);
@@ -130,7 +138,7 @@ public class controladorbase {
     }
     }
     
-    //Buscador de puesto para eliminarlo
+    /*Busca el puesto para eliminarlo*/
     @RequestMapping(value="/administrador/puesto1", method = RequestMethod.POST)
     public ModelAndView buscarPuesto1(ModelMap model,HttpServletRequest request){
         String p = request.getParameter("nombre"); 
@@ -153,7 +161,7 @@ public class controladorbase {
     }
     }
     
-    //Eliminar Puesto
+    /*Eliminar el  puesto de la base*/
     @RequestMapping(value = "/administrador/eliminar", method = RequestMethod.GET)
     public ModelAndView eliminar(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {
         String nombre = request.getParameter("nombre");
@@ -165,5 +173,59 @@ public class controladorbase {
         return new ModelAndView("alert",model);
     }
     
+    /*Busca el puesto para mostrar su informacion*/
+    @RequestMapping(value="/info", method = RequestMethod.POST)
+    public ModelAndView buscarPuestomap(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombrebuscar"); 
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        String err = "";
+        if (puesto == null){
+            err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
+        }else{
+         String nombre = puesto.getNombre();
+         String descripcion = puesto.getDescripcion();
+         String menu = puesto.getMenu();
+         model.addAttribute("nombre", nombre);
+         model.addAttribute("descripcion", descripcion);
+         model.addAttribute("menu", menu);
+         List um = puesto_db.listarpuestos();
+         model.addAttribute("puestos",um);
+        return new ModelAndView("index",model);
+    }
+    }
+    
+    /*Busca el puesto para mostrar su informacion en la vista usuario*/
+
+    /**
+     *
+     * @param model
+     * @param request
+     * @return
+     */
+
+    @RequestMapping(value="/user/home", method = RequestMethod.POST)
+    public ModelAndView buscarPuestomap1(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombrebuscar"); 
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        String err = "";
+        if (puesto != null){
+             String nombre = puesto.getNombre();
+         String descripcion = puesto.getDescripcion();
+         String menu = puesto.getMenu();
+         model.addAttribute("nombre", nombre);
+         model.addAttribute("descripcion", descripcion);
+         model.addAttribute("menu", menu);
+         List um = puesto_db.listarpuestos();
+         model.addAttribute("puestos",um);
+        return new ModelAndView("home_user",model);
+            
+        }else{
+         err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("alertusuario",model);
+    }
+    }
 
     }    

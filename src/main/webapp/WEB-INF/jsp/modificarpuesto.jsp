@@ -43,7 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home' />">Home</a>
 			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!--solo admi-->
-                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a>
+                        <a href="<c:url value = '/administrador/verpuestos' />">Ver Puestos</a>
 			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
@@ -60,13 +60,13 @@
 	<div id="headerwrap">
 		<div class="container">
                                     <h3>Modificar Puesto</h3>
-                                    <form method="POST" action="/BlueRabbit/puesto"> <!--posible error-->
-                                    <div class="search">
+                                    <form method="POST" action="/BlueRabbit/administrador/puesto"> 
+                                    <div class="col-xs-5 search">
                                         <input type="text" class="form-control input-sm" maxlength="100" placeholder="Search" id="nombre2" name="nombre"/>
                                         <button type="submit" class="btn btn-primary">Search</button>
                                     </div>
                                 </form>
-                                    <form method="POST"  action="/BlueRabbit/actualizarpuesto"> <!--posible error-->
+                                    <form method="POST"  action="/BlueRabbit/administrador/actualizarpuesto">
                                     <h4>
                                     <div class="col-xs-5 btn-group">
                                             <input type="hidden" value = "${nombre}" name="nombrebuscar">
@@ -80,7 +80,7 @@
                                 </form>
                                             
                                             <div class="table-responsive">
-                                    <table class="table .table-condensed">
+                                    <table class="table">
                                         <thead>
                                             <tr class="info">
             <th>id</th>

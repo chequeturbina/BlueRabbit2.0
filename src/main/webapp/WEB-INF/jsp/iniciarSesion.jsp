@@ -11,15 +11,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Iniciar Sesión</title>
-        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="css/style.css">
         
-        <script src="js/validar.js"></script>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600"/>">
+        
+        <script src=" <c:url value="/js/validar.js"/> "></script>
         
     </head>
     <body>
-        
+        <div id="headerwrap">
           <div align="center" class="form">
 
           <h2>Iniciar Sesión 🐰</h2>
@@ -33,12 +34,15 @@
           <div class="field-wrap">
             <input type="password" autocomplete="off" placeholder="Contraseña" id="password" name="password"/> <!--necesita el required-->
           </div>
-                          <button>Aceptar</button>
+                          <button type="submit" class="button button-block">Aceptar</button>
           </form>
-
+          <br>
+          <form name="index" method="GET"  action="<c:url value = '/' />">
+            <button type="submit" class="button" />Salir</button>
+        </form>
+          </div>
         <!-- Hasta Abajo -->
-        <br>
-        <a href="/BlueRabbit">Inicio</a>    
+        <br>    
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>

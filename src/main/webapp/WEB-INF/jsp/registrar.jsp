@@ -11,17 +11,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrarse</title>
-  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="css/style.css">
         
+       
+  <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600"/>">
+
+  <script type="text/javascript">
+function validate(){
+	if(document.getElementById('contrasena').value.length < 7) {
+		alert('la contraseña debe tener al menos 6 caracteres');
+		}else{
+		document.getElementById('registrarse').submit();
+	}
+}
+</script>
+  
     </head>
     <body>
+        <div id="headerwrap">
           <div style="margin-top: 50px; "align="center" class="formL">
 
           <h2>Registrate a Blue Rabbit🐰 </h2>
           
-          <form  action="registrarse" method="get">
+          <form  action="registrarse" method="get" id="registrarse">
           
          
             <div class="field-wrap">
@@ -33,7 +46,7 @@
           </div>
           
           <div class="field-wrap">
-            <input type="password" required autocomplete="off" placeholder="Contraseña" name="contrasena"/>
+            <input type="password" required autocomplete="off" placeholder="Contraseña" minlength="6" maxlength="12" name="contrasena" id="contrasena"/>
           </div>
                <div class="field-wrap">
             <input type="text" required autocomplete="off" list= "carrera" placeholder="Selecciona tu carrera" name="carrera"/>
@@ -57,15 +70,16 @@
             <input type="text" placeholder="Selecciona un archivo" name="url_foto">
           </div-->
           
-          <button type="submit" class="button button-block" />Enviame :) </button>
+          <button type="submit" class="button button-block" onClick="validate()"/>Enviame :) </button>
           </form>
 
         <!-- Hasta Abajo -->
         <br>
-        <form name="crearPuesto" method="GET"  action="<c:url value = '/' />">
+        <form name="index" method="GET"  action="<c:url value = '/' />">
             <button type="submit" class="button" />Salir</button> <!--aqui que-->
         </form>
-        <footer class="container-fluid bg-4 text-center">
+        
+            <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>
 

@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/search.css"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/mapadmin.css"/>">
         
+        <script src=" <c:url value="/js/menumapa.js"/> "></script>
         <script src=" <c:url value="/js/jquery.min.js"/> "></script>
         <script src=" <c:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"/> "></script>
         <script src=" <c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/> "></script>
@@ -42,7 +43,7 @@
 			<i class="icon-remove menu-close"></i>
                         <a href="<c:url value = '/home' />">Home</a>
 			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede agregar -->
-                        <a href="<c:url value = '/verpuestos' />">Ver Puestos</a> <!-- TODOS -->
+                        <a href="<c:url value = '/administrador/verpuestos' />">Ver Puestos</a> <!-- TODOS -->
 			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede modificar -->
                         <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!-- Creo que va de esta forma, sólo admi puede eliminar -->
                         <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
@@ -67,8 +68,10 @@
                                             <br>
                                             <textarea  type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Descripcion de Puesto"  name ="descripcion"></textarea>
                                             <br>
+                                            <div class="field-wrap">
                                             <textarea type="text" required autocomplete="off" class="form-control" rows="5" placeholder="Menu de Puesto"  name ="menu"></textarea>
                                             <br>
+                                            </div>
                                             <p>Latitud</p>
                                             <input type="float" required autocomplete="off" class="form-control" id="latitud" name="latitud" readonly="readonly"/>
                                             <br>
@@ -78,7 +81,11 @@
                                             <input type="submit" value="Agregar"/>
                                 </div>    
                                 </form>
+                                            <br>
+                                            <br>
+                                            <br>
                                    <div id="mapa">
+                                       
                                        <script src="<c:url value ="/js/mapadmin.js"/> "/></script>
                                        <script type='text/javascript' src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsYhv7CnynR4gKT0JJQhNPzV-y6uqfHXI&callback=initialize"async defer></script>
 			</div>    
