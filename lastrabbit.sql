@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `lastrabbit`.`Usuario` (
   `nombre` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(100) NOT NULL,
   `contrasena` VARCHAR(100) NOT NULL,
-  `foto` VARCHAR(100) NOT NULL,
+  `foto` VARCHAR(250) NOT NULL,
   `edad` INT NOT NULL,
   `carrera` VARCHAR(100) NOT NULL,
   `rol_usuario` VARCHAR(100) NOT NULL,
@@ -80,4 +80,4 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO Usuario(idUsuario,nombre,correo,contrasena,foto,edad,carrera,rol_usuario) VALUES (1,'administrador','kirasan_@hotmail.com','admi123',{},23,'Ciencias de la Computación','ROLE_ADMIN');
+INSERT INTO Usuario(idUsuario,nombre,correo,contrasena,foto,edad,carrera,rol_usuario) VALUES (1,'administrador','kirasan_@hotmail.com','admi123','C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/admin.jpg',23,'Ciencias de la Computación','ROLE_ADMIN');
