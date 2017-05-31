@@ -5,6 +5,10 @@ package Modelo;
 
 
 import Mapeo.Usuario;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -31,14 +35,15 @@ public class UsuarioModel {
     * @param contrasena
     * @param url_foto
     */
-    public void crearUsuario(String nombre, String correo, String contrasena, String url_foto, int edad, String carrera, String rol_usuario){
+    public void crearUsuario(String nombre, String correo, String contrasena, String foto, int edad, String carrera, String rol_usuario){
+        foto = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/all.jpg";
         Session session = sessionFactory.openSession();
         
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setContrasena(contrasena);
         usuario.setCorreo(correo);
-        usuario.setFoto(url_foto);
+        usuario.setFoto(foto); //Foto predeterminada por todos
         usuario.setEdad(edad);
         usuario.setCarrera(carrera);
         usuario.setRol_usuario(rol_usuario); //Para agregar un nuevo admin, aquí se modifica        
@@ -56,6 +61,20 @@ public class UsuarioModel {
         }finally{
             session.close();
         }
+        String f = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+usuario.getIdUsuario()+".jpg";
+        try{
+            FileInputStream fis = new FileInputStream(foto);
+            FileOutputStream fos = new FileOutputStream(f);
+            FileChannel inChannel = fis.getChannel();
+            FileChannel outChannel = fos.getChannel();
+            inChannel.transferTo(0, inChannel.size(), outChannel);
+            fis.close();
+            fos.close();
+        } catch (IOException e) {
+            System.err.println("Error al Generar Copia"); //No debe pasar
+        }
+        usuario.setFoto(f);
+        updateusuario(usuario);
     }
     
      /**
@@ -175,8 +194,6 @@ public class UsuarioModel {
         }
         return usuario;
     }
- 
-    
-
+   
     
 }

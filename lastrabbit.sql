@@ -80,4 +80,4 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO Usuario(idUsuario,nombre,correo,contrasena,foto,edad,carrera,rol_usuario) VALUES (1,'administrador','kirasan_@hotmail.com','admi123','miFotoURL',23,'Ciencias de la Computación','ROLE_ADMIN');
+INSERT INTO Usuario(idUsuario,nombre,correo,contrasena,foto,edad,carrera,rol_usuario) VALUES (1,'administrador','kirasan_@hotmail.com','admi123',{},23,'Ciencias de la Computación','ROLE_ADMIN');

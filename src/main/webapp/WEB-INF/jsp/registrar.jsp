@@ -19,11 +19,11 @@
 
   <script type="text/javascript">
 function validate(){
-	if(document.getElementById('contrasena').value.length < 7) {
+	if(document.getElementById('contrasena').value.length < 6) {
 		alert('la contraseña debe tener al menos 6 caracteres');
-		}else{
-		document.getElementById('registrarse').submit();
-	}
+        }else{
+            document.getElementById('registrarse').submit();
+        }
 }
 </script>
   

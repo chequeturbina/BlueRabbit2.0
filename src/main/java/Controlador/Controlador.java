@@ -9,9 +9,13 @@ package Controlador;
 import Mapeo.Usuario;
 import Modelo.UsuarioModel;
 import Modelo.PuestoModel;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -74,6 +80,7 @@ public class Controlador {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         Usuario p = usuario_db.porCorreo(currentPrincipalName);
+        System.out.println("El id del usuario es: \n"+p.getIdUsuario());
         model.addAttribute("usuario", p);
         return new ModelAndView("editarusuario", model);
     }
@@ -84,6 +91,7 @@ public class Controlador {
         String correobuscar = request.getParameter("correobuscar");
         String nombre = request.getParameter("nombre");
         String contrasena = request.getParameter("contrasena");
+        
         Usuario usuario = usuario_db.porCorreo(correobuscar);
         String err = "";
         if(usuario == null){
@@ -104,6 +112,33 @@ public class Controlador {
         model.addAttribute("alerta",err);
         return new ModelAndView("alertusuario", model);
     }
+    /*
+    * Cambiar foto de perfil, debug hacerlo ModelAndView para retornar alerta al usuario
+    */
+    @RequestMapping(value = "/upload")
+    public String handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException{
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Usuario p = usuario_db.porCorreo(currentPrincipalName);
+        System.out.println("El id del usuario es: \n"+p.getIdUsuario());
+        if (!file.isEmpty()) {
+            BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+            String url_foto = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+p.getIdUsuario()+".jpg";
+            File destination = new File(url_foto);
+            ImageIO.write(src, "jpg", destination);
+            p.setFoto(url_foto);
+            usuario_db.updateusuario(p);
+            System.out.println("IMAGEN ARRIBA");
+            return "home_user";
+        }
+        return "home_user";
+    }
+
+    @RequestMapping(value="/user/editarusuario/subir")
+    public String up(){
+        return "subirfoto";
+    }    
+    
     
     /*VISTAS ADMINISTRADOR*/
     /*Agregar Puesto*/
@@ -157,11 +192,11 @@ public class Controlador {
         if(validoC /*& validoN*/ & usuario == null){ //Ahora no validamos el nombre
             String contrasena = request.getParameter("contrasena");
             mj.enviaCorreo(correo, contrasena);
-            String url_foto = "miURLFOTO";//request.getParameter("url_foto"); /*dejar vacio*/
+            String foto = "";//request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
             String carrera = request.getParameter("carrera");/*Hace un select*/
             String rol_usuario = "ROLE_USER"; //Sólo agregamos usuarios, cambiar para agregar admins            
-            usuario_db.crearUsuario(nombre, correo, contrasena, url_foto,edad,carrera,rol_usuario);
+            usuario_db.crearUsuario(nombre, correo, contrasena,foto,edad,carrera,rol_usuario);
         
             Usuario nuevo = usuario_db.porCorreo(correo); /*Para ir al nuevo usuario*/
             err = "Gracias Por Registrarte";
@@ -237,6 +272,4 @@ public class Controlador {
     public ModelAndView error(ModelMap model,HttpServletRequest request){
         return new ModelAndView("ErrorIH",model);
     }
- 
-
 }

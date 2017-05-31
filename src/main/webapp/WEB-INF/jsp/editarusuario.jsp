@@ -59,19 +59,26 @@
           </div>
           
           <div class="field-wrap">
-            <input type="password" required autocomplete="off" value="${usuario.contrasena}" placeholder="Password" maxlength="12" name="contrasena"/>
+              <input type="password" required autocomplete="off" value="${usuario.contrasena}" placeholder="Password" maxlength="12" name="contrasena" minlength="6"/>
           </div>
 
-          <!--div class="field-wrap">
-            <input type="text" placeholder="Selecciona un archivo" name="url_foto">
-          </div-->
-          
-          <button type="submit" class="button button-block" /> Guardar </button>
+          <div class="field-wrap">
+                <img src="<c:url value="/imagenes/profile/12.jpg"/>" height="250" width="250">                             
+          </div>
+          <div class="field-wrap" >
+                <a href="/BlueRabbit/user/editarusuario/subir">
+                   <input type="button" value="Cambiar Foto" name="${usuario.idUsuario}" />
+                </a>
+          </div>
+          <div class="field-wrap">
+              <button type="submit" class="button button-block" /> Guardar </button>
+          </div>
+                
           </form>
                     
                 </div>
                     
-                    <footer class="container-fluid bg-4 text-center">
+        <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>
         </footer>
                 
