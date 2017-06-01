@@ -59,7 +59,48 @@
           <div class="field-wrap">
               <textarea type="text" readonly="readonly">${menu}</textarea>
           </div>
-          <h6>aqui va comentarios</h6>
+         <form class="formulario" name="comentarios" method="GET"  action="/BlueRabbit/user/comentar" >
+              <input type="hidden" value="${nombre}" name="puesto">
+              <div class="form-group">
+                  
+                  <textarea class="form-control"  rows="2" id="comment" required autocomplete="off" maxlength="250" placeholder="Has un comentario" name ="comentario" style="resize: none"></textarea>
+                            <!--<input type="submit" value="Agregar"/>-->
+                  <button type="submit" class="btn btn-default" value="Agregar">comentar</button>
+              </div>              
+          </form>
+
+          <div id="table1" >
+          <form class="formulario"  method="GET"  action="/BlueRabbit/user/eliminarComentario" >
+              
+              <table  class="table">        
+
+
+                  <c:forEach var="us" items="${comentarios}">
+
+                      <tr calss="cabezera">
+
+                          <th> <span class="label label-primary">${us.usuario.getNombre()} 
+                                
+                                  </span>
+                                <c:set var = "id" scope = "session" value = "${us.usuario.getIdUsuario()}"/>
+                                <c:set var = "ids" scope = "session" value = "${usuarin}"/>
+                                <c:if test ="${id == ids}" >
+                                     <button type="submit" class="btn btn-default" value="${us. getIdComentarios()}" name="borrar">eliminar</button>
+              
+                                      </c:if>
+
+                          </th>
+
+                      </tr>
+                      <tr>
+                          <td>${us.comentarios}</td>
+                      </tr>
+                  </c:forEach>                                    
+              </table>
+          </form>
+          </div>
+          
+
    
       </div>
         <div class="col-sm-6">

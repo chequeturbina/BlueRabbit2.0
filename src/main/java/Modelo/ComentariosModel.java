@@ -3,149 +3,122 @@
  */
 package Modelo;
 
+import Mapeo.Comentarios;
+import Mapeo.Puesto;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Abraham
  */
 public class ComentariosModel {
- 
-      //Atributo para una nueva sesion 
+
+    //Atributo para una nueva sesion 
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-/*
-      
-    /**
-     * Guarda a un comida de la base de datos.
-     * @param comida 
-     
-    public void guardar(Comida comida) {
-    
+
+    public void guardar(Comentarios comentario) { //También guarda la calificacion, por default es 0
+
         Session session = sessionFactory.openSession();
         Transaction tx = null;
-        try {
-           tx = session.beginTransaction();
-         
-           session.persist(comida);
-           tx.commit();
-        }
-        catch (Exception e) {
-           if (tx!=null){ 
-               tx.rollback();
-           }
-           e.printStackTrace(); 
-        }finally {
-           session.close();
-        }
-    
-    }
-    
-    /**
-     * Actualiza a un comida de la base de datos.
-     * @param comida
-    
-    public void actualizar(Comida comida) {
-    
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-           tx = session.beginTransaction();
-         
-           session.update(comida);
-           
-           tx.commit();
-        }
-        catch (Exception e) {
-           if (tx!=null){ 
-               tx.rollback();
-           }
-           e.printStackTrace(); 
-        }finally {
-           session.close();
-        }
-    
-    }
-    
-  
-    /**
-     * Elimina a un comida de la base de datos.
-     * @param comida
-     
-    public void eliminar(Comida comida) {
-    
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-           tx = session.beginTransaction();
-         
-           session.delete(comida);
-           
-           tx.commit();
-        }
-        catch (Exception e) {
-           if (tx!=null){ 
-               tx.rollback();
-           }
-           e.printStackTrace(); 
-        }finally {
-           session.close();
-        }
-    
-    }
-  
-    /**
-     * Lista todas las comidas de la base de datos.
-     * @param none
-       
-    public List listar() {
-        Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        List lista = null;
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery("from Comida");
-            lista = query.list();
+
+            session.save(comentario);
             tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public Comentarios buscarComentario(String id) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Comentarios comentario = null;
+
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("from Comentarios where idComentarios = :var");
+            query.setParameter("var", id);
+            comentario = (Comentarios) query.uniqueResult();
+            tx.commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
-
         }
-        return lista;
+        return comentario;
     }
 
-    /**
-     * Busca una comida por su nombre
-     * @param nombre
-         
-    public Comida getComida(String nombre) {
-        Comida comida = null;
+    public List listarComentarios(Puesto puesto) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        List comentarios = null;
+        String id = "" + puesto.getId_puesto() + "";
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery(" from Comentarios as p where puesto = " + id + "");
+            //Query query = session.createQuery("from Comentarios");
+            comentarios = query.list();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+
+        } finally {
+            session.close();
+        }
+        return comentarios;
+    }
+
+    public void eliminar(Comentarios comentario) { //También elimina la calificacion
+
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
-           tx = session.beginTransaction();
-            String hql = " from Comida where nombre = :nombre";
-            Query query = session.createQuery(hql);
-            query.setParameter("nombre", nombre);
-            comida = (Comida)query.uniqueResult();
+            tx = session.beginTransaction();
+            session.delete(comentario);
             tx.commit();
-           
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
         }
-        catch (Exception e) {
-           if (tx!=null){ 
-               tx.rollback();
-           }
-           e.printStackTrace(); 
-        }finally {
-           session.close();
-        }
-        return comida;
     }
-    
-*/ 
+
+    public void actualizar(Comentarios comentario) { //También actualiza la calificacion
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.update(comentario);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
+
 }

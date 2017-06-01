@@ -49,6 +49,7 @@
 			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
                         <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!-- solo admi-->
                         <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarusuario1' />">Eliminar Comentario</a> <!-- solo admi-->
                         <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
 		</div>
 		

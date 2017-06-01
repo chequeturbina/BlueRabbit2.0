@@ -7,8 +7,10 @@ package Controlador;
 
 import Mapeo.Puesto;
 import Mapeo.Usuario;
+import Mapeo.Comentarios;
 import Modelo.PuestoModel;
 import Modelo.UsuarioModel;
+import Modelo.ComentariosModel;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -37,6 +39,9 @@ public class controladorbase {
     @Autowired
     UsuarioModel usuario_db;
     
+    @Autowired
+    ComentariosModel comentarios_db;
+
    
     /*Vista Principal*/
     @RequestMapping(value = "/")
@@ -189,6 +194,7 @@ public class controladorbase {
                       model.addAttribute("alerta",err);
                       return new ModelAndView("errorP",model);
         }else{
+         List un = comentarios_db.listarComentarios(puesto);            
          String nombre = puesto.getNombre();
          String descripcion = puesto.getDescripcion();
          String menu = puesto.getMenu();
@@ -196,6 +202,7 @@ public class controladorbase {
          model.addAttribute("descripcion", descripcion);
          model.addAttribute("menu", menu);
          List um = puesto_db.listarpuestos();
+         model.addAttribute("comentarios",un);
          model.addAttribute("puestos",um);
         return new ModelAndView("index",model);
     }
@@ -215,10 +222,10 @@ public class controladorbase {
          String nombre = puesto.getNombre();
          String descripcion = puesto.getDescripcion();
          String menu = puesto.getMenu();
+         List um = puesto_db.listarpuestos();
          model.addAttribute("nombre", nombre);
          model.addAttribute("descripcion", descripcion);
          model.addAttribute("menu", menu);
-         List um = puesto_db.listarpuestos();
          model.addAttribute("puestos",um);
         return new ModelAndView("home_user",model);
             

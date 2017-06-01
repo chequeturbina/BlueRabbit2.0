@@ -6,7 +6,9 @@
 package Controlador;
 
 
+import Mapeo.Puesto;
 import Mapeo.Usuario;
+import Modelo.ComentariosModel;
 import Modelo.UsuarioModel;
 import Modelo.PuestoModel;
 import java.awt.image.BufferedImage;
@@ -43,6 +45,9 @@ public class Controlador {
     @Autowired
     PuestoModel puesto_db;
     
+    @Autowired
+    ComentariosModel comentarios_db;
+
     /*Home Admi o User*/
     @RequestMapping(value = "/home")
     public ModelAndView inicio(ModelMap model, HttpServletRequest a, RedirectAttributes redirect){
@@ -217,6 +222,33 @@ public class Controlador {
         return new ModelAndView("eliminarusuario",model);
     }
     
+         /*Eliminar comentarios*/
+    @RequestMapping(value="/administrador/eliminarusuario1",method = RequestMethod.GET) 
+    public ModelAndView listas(ModelMap model,HttpServletRequest request){
+        List u = puesto_db.listarpuestos(); 
+        model.addAttribute("puestos",u);
+        return new ModelAndView("EliminarComentarios",model);
+    }
+    
+
+        public ModelAndView buscarPuestoComentario(ModelMap model,HttpServletRequest request){
+        String p = request.getParameter("nombre"); 
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        String err = "";
+        if (puesto == null){
+            err = "No se encontro el puesto con el nombre solicitado";
+                      model.addAttribute("alerta",err);
+                      return new ModelAndView("errorP",model);
+        }else{
+         String nombre = puesto.getNombre();
+        List um = comentarios_db.listarComentarios(puesto); 
+        model.addAttribute("comentarios",um);
+
+         model.addAttribute("comentarios",um);
+        return new ModelAndView("EliminarComentarios",model);
+    }
+    }
+
     /*Elimina Usuario de la Base*/
     @RequestMapping(value = "/administrador/borrar", method = RequestMethod.GET)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) throws ServletException, IOException, ParseException {

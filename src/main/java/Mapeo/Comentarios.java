@@ -34,15 +34,11 @@ public class Comentarios {
     private int calificacion;
     
     @ManyToOne
-    @JoinColumn(name = "idPuesto") /*Puesto_idPuesto*/
+    @JoinColumn(name = "Puesto_idPuesto")
     private Puesto puesto;
-/*
-    @ManyToOne /*No estoy segura de que vaya aquí o si sea necesario
-    @JoinColumn(name= "comida_id")
-    private Comida comida;
-  */  
+
     @ManyToOne
-    @JoinColumn(name= "idUsuario")
+    @JoinColumn(name= "Usuario_idUsuario")
     private Usuario usuario;
     
     public Comentarios(){}
@@ -56,7 +52,7 @@ public class Comentarios {
     /*
     * No sabemos si será requerido de esta forma
     */
-    public Comentarios(int idComentarios, String comentarios, int calificacion, Puesto puesto, Usuario Usuario_idUsuario) {
+    public Comentarios(int idComentarios, String comentarios, int calificacion, Puesto puesto, Usuario usuario) {
         this.idComentarios = idComentarios;
         this.comentarios = comentarios;
         this.calificacion = calificacion;
