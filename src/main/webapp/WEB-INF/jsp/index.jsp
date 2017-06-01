@@ -19,7 +19,10 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/bootstrap.min.css"/> ">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/font-awesome.min.css"/> ">
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/mapaindex.css"/> ">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/start.css"/> ">
         <link rel='stylesheet' href="<c:url value="https://fonts.googleapis.com/css?family=Farsan"/>">
+        <link href=http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
         <script src=" <c:url value="http://code.jquery.com/jquery-latest.js"/> "></script>
 
@@ -38,21 +41,20 @@
 
 
                     <h5>${nombre}</h5>
-                    <h6>aqui va calificacion</h6>
+                    <h2>Calificación:</h2>
+                    <h3>${calificacion}</h3><br>
                     <div class="field-wrap">
                         <textarea type="text" readonly="readonly">${descripcion}</textarea>
                     </div>
                     <div class="field-wrap">
                         <textarea type="text" readonly="readonly">${menu}</textarea>
                     </div>
-                    <h6>aqui va comentarios</h6>
-                    dfsklfmaskl
+                    <h6>Comentarios</h6><br>
+
                     <table  class="table">        
                         <c:forEach var="un" items="${comentarios}">
-
                             <tr calss="cabezera">
-
-                                <th> <span class="label label-primary">${un.usuario.getNombre()}  </span></th>
+                                <th> <span class="label label-primary">${un.usuario.getNombre()}</span></th>
                             </tr>
                             <tr>
                                 <td>${un.comentarios}</td>
@@ -129,7 +131,8 @@
                         return function () {
                             infowindow.setContent(ventanaInfo(markerName[i]));
                             infowindow.open(map, marker);
-                        }})(marker, i));
+                        }
+                    })(marker, i));
                 }
 
                 google.maps.event.addDomListener(window, 'load', initMap);

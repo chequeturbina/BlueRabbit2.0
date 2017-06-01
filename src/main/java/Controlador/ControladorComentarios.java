@@ -5,7 +5,6 @@
  */
 package Controlador;
 
-
 import Mapeo.Comentarios;
 import Mapeo.Puesto;
 import Mapeo.Usuario;
@@ -29,64 +28,73 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ControladorComentarios {
-     
+
     @Autowired
     PuestoModel puesto_db;
-    
+
     @Autowired
     ComentariosModel comentarios_db;
-    
-    @Autowired 
+
+    @Autowired
     UsuarioModel usuario_db;
-    
-    @RequestMapping(value="/user/comentar", method = RequestMethod.GET)
-    public ModelAndView comentarios(ModelMap model,HttpServletRequest request){ 
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String currentPrincipalName = authentication.getName();
-        System.out.println(currentPrincipalName);
+
+    @RequestMapping(value = "/user/comentar")
+    public ModelAndView comentarios(ModelMap model, HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
         Usuario user = usuario_db.porCorreo(currentPrincipalName);
-        System.out.println(user.getNombre());
-         String cadena = request.getParameter("comentario");
-        
-         Puesto puesto = puesto_db.buscarPuesto(request.getParameter("puesto"));
-         System.out.println(puesto.getNombre());
-         Comentarios comentario = new Comentarios();
+        String cadena = request.getParameter("comentario");
+        int calificacion = Integer.parseInt(request.getParameter("calificacion"));
+
+        Puesto puesto = puesto_db.buscarPuesto(request.getParameter("puesto"));
+        Comentarios comentario = new Comentarios();
         comentario.setComentarios(cadena);
-        comentario.setCalificacion(0);
+        comentario.setCalificacion(calificacion);
         comentario.setPuesto(puesto);
         comentario.setUsuario(user);
-        
-        System.out.println(comentario.getCalificacion());
-        System.out.println(comentario.getComentarios());
-        System.out.println(comentario.getIdComentarios());
-        
+
         String nombre = puesto.getNombre();
-         String descripcion = puesto.getDescripcion();
-         String menu = puesto.getMenu();
+        String descripcion = puesto.getDescripcion();
+        String menu = puesto.getMenu();
         List um = puesto_db.listarpuestos();
 
-          model.addAttribute("nombre", nombre);
-         model.addAttribute("descripcion", descripcion);
-         model.addAttribute("menu", menu);
-         model.addAttribute("puestos",um);
-        
-         
-         System.out.println(puesto.getNombre());
-        System.out.println(user.getNombre());
-        //System.out.println(comentario.getIdComentarios());
+        model.addAttribute("nombre", nombre);
+        model.addAttribute("descripcion", descripcion);
+        model.addAttribute("menu", menu);
+        model.addAttribute("puestos", um);
+
         int id = user.getIdUsuario();
         comentarios_db.guardar(comentario);
         List un = comentarios_db.listarComentarios(puesto);
-         model.addAttribute("comentarios",un);
-         model.addAttribute("usuarin",id);
-        return new ModelAndView("home_user",model);
+        model.addAttribute("comentarios", un);
+        model.addAttribute("usuarin", id);
+        return new ModelAndView("home_user", model);
     }
-    
-    @RequestMapping(value="/user/eliminarComentario", method = RequestMethod.GET)
-    public ModelAndView borrarComentarios(ModelMap model,HttpServletRequest request){
-        //Comentarios comen = comentarios_db.buscarComentario(request.getParameter("borrar"));
-        System.out.println(request.getParameter("borrar"));
-        return new ModelAndView("home_user",model);
-    }    
 
+    @RequestMapping(value = "/user/eliminarComentario")
+    public ModelAndView borrarComentarios(ModelMap model, HttpServletRequest request) {
+        Puesto puesto = puesto_db.buscarPuesto(request.getParameter("puesto"));
+        List un = comentarios_db.listarComentarios(puesto);
+        int id = Integer.parseInt(request.getParameter("borrar"));
+        Comentarios comentarios = comentarios_db.buscarComentario(id);
+        comentarios_db.eliminar(comentarios);
+        model.addAttribute("comentarios", un);
+        model.addAttribute("usuarin", id);        
+        return new ModelAndView("redirect:/user/home", model);
+    }
+ 
+ 
+    @RequestMapping(value = "/administrador/eliminarComentario")
+    public ModelAndView borrarComentariosAdmi(ModelMap model, HttpServletRequest request) {
+        Puesto puesto = puesto_db.buscarPuesto(request.getParameter("puesto"));
+        List un = comentarios_db.listarComentarios(puesto);
+        int id = Integer.parseInt(request.getParameter("borrar"));
+        Comentarios comentarios = comentarios_db.buscarComentario(id);
+        comentarios_db.eliminar(comentarios);
+        model.addAttribute("comentarios", un);
+        model.addAttribute("usuarin", id);        
+        return new ModelAndView("redirect:/administrador/home", model);
+    }
+            
+            
 }

@@ -223,12 +223,39 @@ public class Controlador {
     }
     
          /*Eliminar comentarios*/
-    @RequestMapping(value="/administrador/eliminarusuario1",method = RequestMethod.GET) 
-    public ModelAndView listas(ModelMap model,HttpServletRequest request){
-        List u = puesto_db.listarpuestos(); 
+    @RequestMapping(value="/administrador/eliminarusuario1") 
+    public ModelAndView eliminarComentario(ModelMap model, HttpServletRequest request){
+        List u = puesto_db.listarpuestos();
         model.addAttribute("puestos",u);
         return new ModelAndView("EliminarComentarios",model);
     }
+    
+    
+        /*Busca el comentario para mostrar su informacion en la vista usuario*/
+    @RequestMapping(value = "/administrador/eliminarcomentario")
+    public ModelAndView listas(ModelMap model, HttpServletRequest request) {
+        String p = request.getParameter("nombrebuscar");
+        Puesto puesto = puesto_db.buscarPuesto(p);
+        String err = "";
+        if (puesto == null) {
+            err = "No se encontro el puesto con el nombre solicitado";
+            model.addAttribute("alerta", err);
+            return new ModelAndView("errorP", model);
+        } else {
+            List un = comentarios_db.listarComentarios(puesto);
+            String nombre = puesto.getNombre();
+            String descripcion = puesto.getDescripcion();
+            String menu = puesto.getMenu();
+            model.addAttribute("nombre", nombre);
+            model.addAttribute("descripcion", descripcion);
+            model.addAttribute("menu", menu);
+            List um = puesto_db.listarpuestos();
+            model.addAttribute("comentarios", un);
+            model.addAttribute("puestos", um);
+            return new ModelAndView("EliminarComentarios", model);
+        }
+    }
+    
     
 
         public ModelAndView buscarPuestoComentario(ModelMap model,HttpServletRequest request){

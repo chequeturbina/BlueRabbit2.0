@@ -43,7 +43,7 @@ public class ComentariosModel {
         }
     }
 
-    public Comentarios buscarComentario(String id) {
+    public Comentarios buscarComentario(int id) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         Comentarios comentario = null;
@@ -67,11 +67,10 @@ public class ComentariosModel {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         List comentarios = null;
-        String id = "" + puesto.getId_puesto() + "";
         try {
             tx = session.beginTransaction();
-            Query query = session.createQuery(" from Comentarios as p where puesto = " + id + "");
-            //Query query = session.createQuery("from Comentarios");
+            Query query = session.createQuery("from Comentarios where Puesto_idPuesto = :var");
+            query.setParameter("var",puesto.getId_puesto());
             comentarios = query.list();
             tx.commit();
         } catch (Exception e) {
