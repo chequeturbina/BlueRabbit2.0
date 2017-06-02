@@ -68,6 +68,7 @@ public class ControladorComentarios {
         List un = comentarios_db.listarComentarios(puesto);
         model.addAttribute("comentarios", un);
         model.addAttribute("usuarin", id);
+         model.addAttribute("usuario", user);
         return new ModelAndView("home_user", model);
     }
 
@@ -79,8 +80,10 @@ public class ControladorComentarios {
         Comentarios comentarios = comentarios_db.buscarComentario(id);
         comentarios_db.eliminar(comentarios);
         model.addAttribute("comentarios", un);
-        model.addAttribute("usuarin", id);        
-        return new ModelAndView("redirect:/user/home", model);
+        model.addAttribute("usuarin", id);  
+        String err = "Comentario Eliminado";
+        model.addAttribute("alerta", err);
+        return new ModelAndView("alertusuario", model);
     }
  
  
@@ -92,8 +95,10 @@ public class ControladorComentarios {
         Comentarios comentarios = comentarios_db.buscarComentario(id);
         comentarios_db.eliminar(comentarios);
         model.addAttribute("comentarios", un);
-        model.addAttribute("usuarin", id);        
-        return new ModelAndView("redirect:/administrador/home", model);
+        model.addAttribute("usuarin", id);
+        String err = "Comentario eliminado";
+        model.addAttribute("alerta", err);        
+        return new ModelAndView("alert", model);
     }
             
             

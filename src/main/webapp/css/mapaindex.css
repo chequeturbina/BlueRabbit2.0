@@ -78,3 +78,29 @@ textarea {
         font-weight: bold;
   resize: inherit;
 }
+
+.table2{
+    width:100%;
+    height: 50px;
+    direction:ltr;
+    overflow: auto;
+    display:inline-block;
+    resize:inherit;
+}
+
+.table3{
+    width:100%;
+    height: 150px;
+    direction:ltr;
+    overflow: auto;
+    display:inline-block;
+    resize:inherit;
+}
+.table4{
+    width:100%;
+    height: 150px;
+    direction:ltr;
+    overflow: auto;
+    display:inline-block;
+    resize:inherit;
+}

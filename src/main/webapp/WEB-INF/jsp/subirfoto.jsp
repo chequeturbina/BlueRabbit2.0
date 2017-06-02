@@ -35,20 +35,23 @@
 
     </head>
     <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+        <div id="headerwrap">
         <div>
             <ul>
                 <li style="float:right"><a class="active1" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
+                <li style="float:left"><a class="active" />${usuario.correo}</a></li>
             </ul>
         </div>
         <div style="margin-top: 50px; "align="center" class="formL">        
-            <h2>Cambiar Foto</h2><br>
+            <h3>Cambiar Foto</h3><br>
             <form method="POST" action="<c:url value='/upload' />" enctype="multipart/form-data">
                 <h3>Seleccione una imagen: </h3>
+                
                 <br><input type="file" name="file" />
                 <br><input type="submit" value="Subir" />
             </form>
         </div>
-
+        </div>
         <script src=" <c:url value="/js/classie.js"/> "></script>
         <script src=" <c:url value="/js/bootstrap.min.js"/> "></script>
         <script src=" <c:url value="/js/smoothscroll.js"/> "></script>

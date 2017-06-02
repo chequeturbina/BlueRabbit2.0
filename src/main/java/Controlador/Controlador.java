@@ -121,26 +121,28 @@ public class Controlador {
     * Cambiar foto de perfil, debug hacerlo ModelAndView para retornar alerta al usuario
     */
     @RequestMapping(value = "/upload")
-    public String handleFormUpload(@RequestParam("file") MultipartFile file) throws IOException{
+    public ModelAndView handleFormUpload(@RequestParam("file") MultipartFile file, ModelMap model, HttpServletRequest request) throws IOException{
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         Usuario p = usuario_db.porCorreo(currentPrincipalName);
         System.out.println("El id del usuario es: \n"+p.getIdUsuario());
         if (!file.isEmpty()) {
             BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            String url_foto = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+p.getIdUsuario()+".jpg";
+            String url_foto = "C:/Users/emmanuel/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+p.getIdUsuario()+".jpg";
             File destination = new File(url_foto);
             ImageIO.write(src, "jpg", destination);
             p.setFoto(url_foto);
             usuario_db.updateusuario(p);
             System.out.println("IMAGEN ARRIBA");
-            return "home_user";
         }
-        return "home_user";
+        String err="Perfil Actualizado con exito";
+        model.addAttribute("alerta",err);
+        return new ModelAndView("alertusuario", model);
     }
 
     @RequestMapping(value="/user/editarusuario/subir")
     public String up(){
+        
         return "subirfoto";
     }    
     
@@ -197,7 +199,7 @@ public class Controlador {
         if(validoC /*& validoN*/ & usuario == null){ //Ahora no validamos el nombre
             String contrasena = request.getParameter("contrasena");
             mj.enviaCorreo(correo, contrasena);
-            String foto = "";//request.getParameter("url_foto"); /*dejar vacio*/
+            String foto = "C:/Users/emmanuel/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/all.jpg";//request.getParameter("url_foto"); /*dejar vacio*/
             int edad = Integer.parseInt(request.getParameter("edad"));/*hacer un select*/
             String carrera = request.getParameter("carrera");/*Hace un select*/
             String rol_usuario = "ROLE_USER"; //Sólo agregamos usuarios, cambiar para agregar admins            

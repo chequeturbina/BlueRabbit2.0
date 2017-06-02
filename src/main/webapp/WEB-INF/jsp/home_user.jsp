@@ -74,11 +74,11 @@
                         </div>              
                     </form>
 
-                    <div id="table1" >
+                    <div class="table-responsive">
                         <form class="formulario"  method="POST"  action="/BlueRabbit/user/eliminarComentario" >
-                            <table  class="table">        
+                            <table  class="table2">        
                                 <c:forEach var="us" items="${comentarios}">
-                                    <tr calss="cabezera">
+                                    <tr class="cabezera">
                                         <th> <span class="label label-primary">${us.usuario.getNombre()}</span>
                                             <c:set var = "id" scope = "session" value = "${us.usuario.getIdUsuario()}"/>
                                             <c:set var = "ids" scope = "session" value = "${usuarin}"/>

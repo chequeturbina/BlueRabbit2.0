@@ -36,7 +36,7 @@ public class UsuarioModel {
     * @param url_foto
     */
     public void crearUsuario(String nombre, String correo, String contrasena, String foto, int edad, String carrera, String rol_usuario){
-        foto = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/all.jpg";
+        foto = "C:/Users/emmanuel/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/all.jpg";
         Session session = sessionFactory.openSession();
         
         Usuario usuario = new Usuario();
@@ -61,7 +61,7 @@ public class UsuarioModel {
         }finally{
             session.close();
         }
-        String f = "C:/Users/Abraham/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+usuario.getIdUsuario()+".jpg";
+        String f = "C:/Users/emmanuel/Documents/NetBeansProjects/BlueRabbit2.0/src/main/webapp/imagenes/profile/"+usuario.getIdUsuario()+".jpg";
         try{
             FileInputStream fis = new FileInputStream(foto);
             FileOutputStream fos = new FileOutputStream(f);

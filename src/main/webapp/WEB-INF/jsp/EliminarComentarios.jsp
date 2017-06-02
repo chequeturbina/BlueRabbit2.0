@@ -28,12 +28,25 @@
 
     </head>
     <body>
-        <div>
-            <ul>
-                <li style="float:right"><a class="active" href="<c:url value="/iniciar"/>">Iniciar Sesión</a></li>
-                <li style="float:right"><a class="active1" href="registrar">Registrarse</a></li>
-            </ul>
-        </div>
+        
+        <!-- Menu -->
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			
+			<i class="icon-remove menu-close"></i>
+                        <a href="<c:url value = '/home' />">Home</a>
+			<a href="<c:url value = '/administrador/agregarpuesto' />">Agregar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/verpuestos' />">Ver Puestos</a><!--solo admi-->
+			<a href="<c:url value = '/administrador/modificarpuesto' />">Modificar Puesto</a> <!--solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarpuesto' />">Eliminar Puesto</a> <!-- solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarusuario' />">Eliminar Usuario</a> <!-- solo admi-->
+                        <a href="<c:url value = '/administrador/eliminarusuario1' />">Eliminar Comentario</a> <!-- solo admi-->
+                        <li style="float:right"><a class="smoothScroll" href="<c:url value = '/logout' /> ">Cerrar Sesión</a></li>
+		</div>
+		
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="icon-reorder"></i></div>
+	</nav>
         <div id="headerwrap">
             <h9>Selecciona un puesto para ver la informacion</h9>
             <div class="container-fluid">
@@ -51,9 +64,9 @@
                     </div>
                     <h6>Comentarios</h6><br>
 
-                    <div id="table1" >
+                    <div class="table-responsive">
                         <form class="formulario"  method="POST"  action="/BlueRabbit/administrador/eliminarComentario" >
-                            <table  class="table">        
+                            <table  class="table3">        
                                 <c:forEach var="us" items="${comentarios}">
                                     <tr calss="cabezera">
                                         <th> <span class="label label-primary">${us.usuario.getNombre()}</span>
@@ -144,6 +157,10 @@
                 google.maps.event.addDomListener(window, 'load', initMap);
             }
         </script>
+         <script src=" <c:url value="/js/classie.js"/> "></script>
+    <script src=" <c:url value="/js/bootstrap.min.js"/> "></script>
+    <script src=" <c:url value="/js/smoothscroll.js"/> "></script>
+    <script src=" <c:url value="/js/main.js"/> "></script>
         <!-- Hasta Abajo -->
         <footer class="container-fluid bg-4 text-center">
             <h3>Binary Code, 2017</h3>

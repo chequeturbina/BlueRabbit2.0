@@ -56,3 +56,12 @@ button {
   display: block;
   width: 100%;
 }
+
+.table3{
+    width:100%;
+    height: 50px;
+    direction:ltr;
+    overflow: auto;
+    display:inline-block;
+    resize:inherit;
+}

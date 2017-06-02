@@ -50,8 +50,9 @@
                         <textarea type="text" readonly="readonly">${menu}</textarea>
                     </div>
                     <h6>Comentarios</h6><br>
-
-                    <table  class="table">        
+                    
+                    <div class="table-responsive">
+                    <table  class="table4">        
                         <c:forEach var="un" items="${comentarios}">
                             <tr calss="cabezera">
                                 <th> <span class="label label-primary">${un.usuario.getNombre()}</span></th>
@@ -61,7 +62,7 @@
                             </tr>
                         </c:forEach>                                    
                     </table>
-
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <section id="home" name="home"></section>

@@ -63,7 +63,7 @@
           </div>
 
           <div class="field-wrap">
-                <img src="<c:url value="/imagenes/profile/12.jpg"/>" height="250" width="250">                             
+              <img src="<c:url value="/imagenes/profile/${usuario.idUsuario}.jpg"/>" height="250" width="250">                             
           </div>
           <div class="field-wrap" >
                 <a href="/BlueRabbit/user/editarusuario/subir">
